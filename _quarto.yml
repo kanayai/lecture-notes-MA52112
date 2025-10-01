@@ -23,7 +23,6 @@ format:
     theme: 
       light: cosmo
       dark: darkly
-    cover-image: contractions.jpg
     include-in-header: 
       - mathjax_header.html
     code-link: true
@@ -32,12 +31,13 @@ format:
     code-line-numbers: false
     code-block-bg: true
     code-overflow: scroll
-    code-summary: "R Code"
+    code-summary: "Code"
     toc: true
     toc-depth: 3
     embed-resources: true
   pdf: 
-    documentclass: scrbook
+    documentclass: scrreport
+    pdf-engine: pdflatex
     keep-tex: true
     include-in-header: preamble.tex
     citation_package: natbib

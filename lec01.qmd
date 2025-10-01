@@ -1,4 +1,3 @@
-
 # Probability Theory for Data Scientists
 
 
@@ -12,6 +11,9 @@
 
 Consider an uncertain scenario. This include a random experiment, a data-generating process  or simply the future. We define the following concepts:
 
+```{tex}
+
+```
 *   **Sample Space ($\Omega$)**: The set of all possible outcomes or results from the scenario. Sample spaces can be either countable  or uncountable. If the elements of a sample space can be put into one-to-one correspondence with  the set of integers, the sample space is countable.  If the sample space contains only a finite number of elements, it is also countable. Otherwise is uncountable.
    
 
@@ -123,7 +125,7 @@ $$
 
 ::: {#exm-union}
 
-When we flip a coin twice, the event  $A$ "at least one head appears" can be written in variosu ways. These include
+When we flip a coin twice, the event  $A$ "at least one head appears" can be written in various ways. These include:
 
 * the union of three events $A = \{HT\} \cup \{TH\} \cup \{HH\}$. That is, $A$ occurs if we get heads on the first flip and tails on the second flip, or tails on the first flip and heads on the second flip, or heads on both flips. Note that these three events are disjoint as they do not share any outcomes.
 
@@ -144,7 +146,7 @@ $$
 $$
 \mathcal P_{equal}=\{\{HH,TT\}, \{HT,TH\}\}
 $$
-that is, when we throw the coin twice, either we get the same results in both throws OR  different ones.
+that is, when we flip the coin twice, either we get the same results in both throws OR  different ones.
 
 
 * The partition where we group the outcomes based on the number of heads:
@@ -174,7 +176,12 @@ A collection $\mathcal{F}$ of subsets of $\Omega$ is a **sigma algebra** (or $\s
 
 1.  $\Omega \in \mathcal{F}$ (The sample space is in the collection).
 2.  If $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$ (The collection is closed under complementation).
-3.  If $A_1, A_2, \dots$ are in $\mathcal{F}$, then $A_1 \cup A_2 \cup \dots \cup A_n \in \mathcal{F}$ (The collection is closed under arbitray number of  unions).
+3.  If $A_1, A_2, \dots$ are in $\mathcal{F}$, then 
+$$
+\bigcup_i A_i \in \mathcal{F}
+$$ 
+
+that is, the collection is closed under arbitray number of  unions.
 
 
 :::
@@ -182,11 +189,19 @@ A collection $\mathcal{F}$ of subsets of $\Omega$ is a **sigma algebra** (or $\s
 :::
 
 
-Note the definition of sigma-algebra does not explicitly require that the intersection of two sets in $\mathcal F$ is also in $\mathcal F$. However, this property follows from the other properties and De Morgan's laws. For example, if $A,B \in \mathcal F$, then
+Note the definition of sigma-algebra does not explicitly require that the intersection of two sets in $\mathcal F$ is also in $\mathcal F$. However, this property follows from the other properties and De Morgan's laws. If $A,B \in \mathcal F$, then
 
 $$
-A\cup B \in \mathcal F \implies (A\cup B)^c = A^c \cap B^c \in \mathcal F \implies (A^c \cap B^c)^c = A \cup B \in \mathcal F
+\cancel{A\cup B \in \mathcal F \implies (A\cup B)^c = A^c \cap B^c \in \mathcal F \implies (A^c \cap B^c)^c = A \cup B \in \mathcal F}
 $$
+
+$$
+A^c \in \mathcal F\,,B^c \in \mathcal F
+\implies A^c \cup B^c \in \mathcal F
+\implies (A^c \cup B^c)^c= A \cap B\in \mathcal F
+$$
+
+(corrected from previous version)
 
 ::: {.callout-note icon="false"}
 
@@ -219,7 +234,7 @@ $$
 \mathcal G =\{\emptyset,\Omega,\{HT\},\{TH\},\{HH\},\{TT\}\}
 $$
 
-is neither a  partition  nor a sigma algebra as it is not closed under union. For example, $\{HT\}\cup \{TH\}=\{HT,TH\}\notin \mathcal G$. However, if we add all possible unions of the elements of $\mathcal G$ we obtain the **power set** of $\Omega$, that is the set of all subsets of $\Omega$: 
+obatined from $\mathcal P_1$ is neither a  partition  nor a sigma algebra as it is not closed under union. For example, $\{HT\}\cup \{TH\}=\{HT,TH\}\notin \mathcal G$. However, if we add all possible unions of the elements of $\mathcal G$ we obtain the **power set** of $\Omega$, that is the set of all subsets of $\Omega$: 
 
 $$
 \begin{aligned}
@@ -236,6 +251,16 @@ Also generally, if
 we have a finite  partition of $\Omega$ then the collection of all unions of sets in the partition (including the empty set) is a sigma-algebra.
 
 Note that different sigma algebras serve for different purposes. For example, the sigma algebra $\mathcal F_{equal}$ is useful if we are only interested in whether the two coin flips are the same or different. The sigma algebra $\mathcal F_{heads}$ is useful if we areinterested in the number of heads.  The power set $\mathcal F_{max}$ is a sigma algebra that me be more useful if we are interested in all possible events.
+
+In this example we also observe that:
+
+$$
+\mathcal F_0 \subset \mathcal F_{equal}
+\subset \mathcal F_{heads}
+\subset \mathcal F_{max}
+$$
+
+so that $\mathcal F_0$ and $\mathcal F_{max}$ are the smallest and largest sigma algebras possible for this sample space.
 
 :::
 
@@ -500,7 +525,7 @@ $$
 P(A|B) = \frac{P(A \cap B)}{P(B)} =\frac{P(A)}{P(B)}= \frac{P(\{HT,HH\})}{P(\{HT,TH,HH\})} 
 $$
 
-since $A\subset B$ in  this case. We  notice a subtlety here. The event $A =\{HT,HH\}$ (head on the first flip) is not a member of the sigma-algebra $\mathcal F_{heads}$. So cannot use the probability measure $P_{heads}$ to compute this conditional probability.  However, it is a member of the sigma algebra (the power set) $\mathcal F_{max}$ so we might need to define probabilities using such sigma algebra as follows:
+since $A\subset B$ in  this case. We  notice a subtlety here. The event $A =\{HT,HH\}$ (head on the first flip) is not a member of the sigma-algebra $\mathcal F_{heads}$. So cannot use the probability measure $P$ from @exm-probability-measure-heads to compute this conditional probability.  However, it is a member of the sigma algebra (the power set) $\mathcal F_{max}$ so we might need to use the probabilities using such sigma algebra (see @exm-probability-measure-power-set) as follows:
 
 $$
 P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{P(\{HT,HH\})}{P(\{HT,TH,HH\})} = 
@@ -534,8 +559,8 @@ Two very useful  consequences of the above are:   the law of total probability t
 ::: {#prp-total-probability}
 
 
-Let $B_1, B_2, \dots, B_n$ be a partition of the sample space $\Omega$ (i.e., they are disjoint and their union is $\Omega$). Then for any event $A \in \mathcal{F}$:
-$$ P(A) = \sum_{i=1}^n P(A|B_i) P(B_i) $$
+Let $A_1, A_2, \dots$ be a partition of the sample space $\Omega$ (recall @def-disjoint-partition). Then for any event $B \in \mathcal{F}$:
+$$ P(B) = \sum_{i} P(B|A_i) P(A_i) $$
 
 :::
 :::
@@ -550,8 +575,8 @@ $$ P(A) = \sum_{i=1}^n P(A|B_i) P(B_i) $$
 
 For events $A$ and $B$ where $P(B) > 0$:
 $$ P(A|B) = \frac{P(B|A) P(A)}{P(B)} $$
-If $B_1, \dots, B_n$ form a partition of $\Omega$, and $P(B_i) > 0$ for all $i$, then Bayes' Rule can be written using the Law of Total Probability for the denominator:
-$$ P(A|B) = \frac{P(B|A) P(A)}{\sum_{i=1}^n P(B|B_i) P(B_i)} $$
+If $A_1, \dots, A_n$ form a partition of $\Omega$, and $P(A_i) > 0$ for all $i$, then Bayes' Rule can be written using the Law of Total Probability for the denominator:
+$$ P(A|B) = \frac{P(B|A) P(A)}{\sum_{i=1}^n P(B|A_i) P(A_i)} $$
 
 
 
@@ -632,11 +657,11 @@ The Law of Total probability allows us to calculate the probability of an event 
 
 :::{#exm-total-probability-data-science}
 
-Suppose we have three models, M1, M2, and M3, that are used to predict customer churn. Let $P(M1)=0.5$, $P(M2)=0.3$, $P(M3)=0.2$ be the probabilities that each model is the "best" for a given customer. Let $A$ be the event "customer churns". If we know the probability of churn given each best model (e.g., $P(A|M1)=0.1$, $P(A|M2)=0.2$, $P(A|M3)=0.15$), the Law of Total Probability allows us to find the overall probability of churn: 
+Suppose we have three models, $M_1$, $M_2$, and $M_3$, that are used to predict customer churn. Let $P(M_1)=0.5$, $P(M_2)=0.3$, $P(M_3)=0.2$ be the probabilities that each model is the "best" for a given customer. Let $A$ be the event "customer churns". If we know the probability of churn given each best model (e.g., $P(A|M_1)=0.1$, $P(A|M_2)=0.2$, $P(A|M_3)=0.15$), the Law of Total Probability allows us to find the overall probability of churn: 
 
 $$
 \begin{aligned}
-P(A) &= P(A|M1)P(M1) + P(A|M2)P(M2) + P(A|M3)P(M3) \\
+P(A) &= P(A|M_1)P(M_1) + P(A|M_2)P(M_2) + P(A|M_3)P(M_3) \\
 &= (0.1)(0.5) + (0.2)(0.3) + (0.15)(0.2)\\
 & = 0.05 + 0.06 + 0.03 = 0.14
 \end{aligned}
@@ -738,7 +763,7 @@ So, the probability of drawing two Hearts in a row is $P(A \cap B) = P(A) \times
 
 :::{.callout-note}
 
-The outcome of flipping a coin maybe independent of the outcome of any previous coin flips. If you flip a coin and get heads, the probability of getting heads on the next flip should remain as before. Of course, this a simplifying assumption that may not hold in practice. In this course we will make these kind of assumption specially when it involves sequences of events. Not assuming independence for sequences of events may things more complicated for what we want to achieve in this course.
+The outcome of flipping a coin maybe independent of the outcome of any previous coin flips. If you flip a coin and get heads, the probability of getting heads on the next flip should remain as before. Of course, this a simplifying assumption that may not hold in practice. In this course we will make these kind of assumption specially when it involves sequences of events. Not assuming independence for sequences of events make things more complicated for what we want to achieve in this course.
 
 
 :::
@@ -759,6 +784,8 @@ A **random variable** $X$ is a function that maps outcomes from the sample space
 :::
 :::
 
+
+
 :::{.callout-note icon="false"}
 ##  Random variable examples
 ::: {#exm-random-variable}
@@ -767,13 +794,20 @@ If $\Omega$ is the set of all possible customer orders, a random variable $X$ co
 :::
 :::
 
-Note a random variable evaluates from the outcomes in the sample space rather than the events defined in the sigma algebra. However, events can be defined in terms of random variables. For example, the event "the total amount spent in an order is greater than 50 dollars" can be expressed as $\{X > 50\}$.
+Note a random variable is a function defined on the sample space $\Omega$ rather than on a sigma algebra, so for each outcome $\omega \in \Omega$, there is a corresponding real number $X(\omega)$. 
+ However, events in a sigma algebra can be defined in terms of random variables. For example, the event "the total amount spent in an order is greater than 50 dollars" can be expressed as $\{X > 50\}$.
+
+ The set of all possible values that $X$ can take is called the **image** or **range** of the random variable, denoted as $X(\Omega)$.
+
+
 
 
 
 :::{.callout-note icon="false"}
+
 ##  Random variable: Number of equal coin flips
-::: {#exm-random-variable-heads}
+
+::: {#exm-random-variable-equals}
 
 When we flip a coin twice, the sample space is $\Omega = \{TT, HT, TH, HH\}$. We can define a very simple random variable $X$ as the "number of times the flips are the same". The mapping would be:
 
@@ -792,7 +826,9 @@ The possible values of $X$ are $\{0, 1\}$.
 
 
 :::{.callout-note icon="false"}
+
 ##  Random variable:  Number of heads in two coin flips 
+
 ::: {#exm-random-variable-heads}
 
 When we flip a coin twice, the sample space is $\Omega = \{TT, HT, TH, HH\}$. We can define a random variable $X$ as the "number of heads" in the two flips. The mapping would be:
@@ -939,7 +975,25 @@ $$
 :::
 :::
 
+We can plot the CDF in Python as follows:
 
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(-1, 4, 1000)
+y = np.piecewise(x, [x < 0, (x >= 0) & (x < 1), (x >= 1) & (x < 2), (x >= 2) & (x < 3), x >= 3], [0, 0.1, 0.4, 0.8, 1.0])
+plt.step(x, y, where='post')
+plt.title('CDF of Discrete Random Variable')
+plt.xlabel('x')
+plt.ylabel('F(x)')
+plt.grid()
+plt.yticks(np.array([0,0.1, 0.4, 0.8, 1.0]))
+plt.show()
+
+```
+
+
+Is a step function with  jumps  at the points where the random variable takes values.
 
 ::: {.callout-note icon="false"}
 ## Properties of Cumulative Distribution Functions 
