@@ -1,0 +1,35 @@
+{
+  "index.qmd": {
+    "index.html": "8b01f880"
+  },
+  "intro.qmd": {
+    "intro.html": "0ffd7cf5"
+  },
+  "summary.qmd": {
+    "summary.html": "c54e3c62"
+  },
+  "references.qmd": {
+    "references.html": "9b3ce6ce"
+  },
+  "lec1.qmd": {
+    "lec1.html": "84c35a7d"
+  },
+  "lec2.qmd": {
+    "lec2.html": "df1cf0fd"
+  },
+  "06-prerequisites.qmd": {
+    "06-prerequisites.html": "6ddd94e9"
+  },
+  "07-optimisation-in-R.qmd": {
+    "07-optimisation-in-R.html": "280fe6fe"
+  },
+  "lec0.qmd": {
+    "lec0.html": "56f6e5b0"
+  },
+  "lec00.qmd": {
+    "lec00.html": "0bb450a1"
+  },
+  "lec01.qmd": {
+    "lec01.html": "e12a4c9f"
+  }
+}

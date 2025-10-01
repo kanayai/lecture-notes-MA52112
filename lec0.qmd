@@ -1,0 +1,361 @@
+---
+title: "Introduction to Probability for Data Science"
+subtitle: "Lecture 1: Basic Concepts"
+author: "Dr Karim, Anaya"
+date: "September 23, 2025"
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+
+---
+
+## 1. Introduction
+
+
+
+Welcome to the introduction to probability for data science! Probability is a fundamental tool in data science, enabling us to understand uncertainty, model random phenomena, and make informed decisions based on data. In this course, we will cover the core concepts of probability theory and explore their applications in various data science contexts.
+
+## 2. What is Probability?
+
+At its heart, probability is the measure of the likelihood that an event will occur. It quantifies uncertainty.
+
+*   **Experiment:** A process that results in one of several possible outcomes.
+*   **Outcome:** a single possible result of an experiment.
+*   **Sample Space ($\mathcal{S}$):** The set of all possible outcomes of an experiment.
+*   **Event:** A subset of the sample space. It's a collection of one or more outcomes.
+
+
+
+### Example: Rolling a Die
+
+*   **Experiment:** Rolling a standard six-sided die.
+*   **Sample Space:** $\mathcal{S} = \{1, 2, 3, 4, 5, 6\}$
+*   **Events:**
+    *   The event of rolling an even number: $E = \{2, 4, 6\}$
+    *   The event of rolling a number greater than 4: $G = \{5, 6\}$
+    *   The event of rolling a 3: $T = \{3\}$
+
+## 3. Types of Probability
+
+There are several ways to think about probability:
+
+*   **Classical Probability:** Assumes all outcomes are equally likely.
+    *   For an event $A$ with $n(A)$ outcomes in a sample space $\mathcal{S}$ with $n(\mathcal{S})$ equally likely outcomes, the probability of $A$ is:
+        $$ P(A) = \frac{n(A)}{n(\mathcal{S})} $$
+    *   *Example:* The probability of rolling a 4 on a fair die is $P(\text{rolling a 4}) = \frac{1}{6}$.
+
+*   **Empirical (or Frequentist) Probability:** Based on observed frequencies from experiments or data.
+    *   As the number of trials ($N$) of an experiment increases, the probability of an event $A$ approaches the true probability:
+        $$ P(A) \approx \frac{\text{Number of times A occurred}}{N} $$
+    *   *Example:* If we flip a coin 100 times and it lands heads 53 times, the empirical probability of heads is $\frac{53}{100} = 0.53$.
+
+*   **Subjective Probability:** Based on personal belief or judgment, often used when objective data is scarce.
+
+In data science, we often work with empirical probabilities derived from datasets.
+
+## 4. Basic Probability Rules
+
+Let $A$ and $B$ be events in a sample space $\mathcal{S}$.
+
+*   **Rule 1: Probability of the Sample Space:** The probability of the entire sample space is 1.
+    $$ P(\mathcal{S}) = 1 $$
+
+*   **Rule 2: Complementary Events:** The probability of an event not occurring is 1 minus the probability that it does occur. The complement of event $A$ is denoted by $A^c$.
+    $$ P(A^c) = 1 - P(A) $$
+    *   *Example:* The probability of *not* rolling a 6 on a die is $1 - P(\text{rolling a 6}) = 1 - \frac{1}{6} = \frac{5}{6}$.
+
+*   **Rule 3: Addition Rule (for mutually exclusive events):** If two events $A$ and $B$ cannot occur at the same time (they are mutually exclusive, $A \cap B = \emptyset$), then the probability that either $A$ or $B$ occurs is the sum of their individual probabilities.
+    $$ P(A \cup B) = P(A) + P(B) \quad \text{if } A \cap B = \emptyset $$
+    *   *Example:* The probability of rolling a 1 or a 2 on a die is $P(1) + P(2) = \frac{1}{6} + \frac{1}{6} = \frac{2}{6} = \frac{1}{3}$.
+
+*   **Rule 4: General Addition Rule:** For any two events $A$ and $B$, the probability that either $A$ or $B$ (or both) occurs is:
+    $$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
+    where $P(A \cap B)$ is the probability that both $A$ and $B$ occur. This rule accounts for the overlap between events.
+    *   *Example:* Consider drawing a card from a standard deck of 52 cards. Let $H$ be the event of drawing a Heart and $K$ be the event of drawing a King.
+        *   $P(H) = \frac{13}{52}$
+        *   $P(K) = \frac{4}{52}$
+        *   $P(H \cap K) = P(\text{King of Hearts}) = \frac{1}{52}$
+        *   $P(H \cup K) = P(H) + P(K) - P(H \cap K) = \frac{13}{52} + \frac{4}{52} - \frac{1}{52} = \frac{16}{52} = \frac{4}{13}$.
+
+## 5. Conditional Probability
+
+Conditional probability is the probability of an event occurring given that another event has already occurred. It is denoted as $P(A|B)$, read as "the probability of A given B".
+
+The formula for conditional probability is:
+$$ P(A|B) = \frac{P(A \cap B)}{P(B)} \quad \text{provided } P(B) > 0 $$
+
+This formula tells us that we are narrowing our focus to the outcomes where $B$ has occurred, and then finding the proportion of those outcomes where $A$ also occurs.
+
+
+---
+
+This is a starting point. We can add more sections on:
+
+*   Independence of Events
+*   Multiplication Rule
+*   Bayes' Theorem in detail
+*   Random Variables (Discrete and Continuous)
+*   Common Probability Distributions (Binomial, Poisson, Normal, etc.)
+
+Let me know what you'd like to expand on or what topics to cover next!
+
+---
+title: "Introduction to Probability for Data Science"
+subtitle: "Lecture 1: Basic Concepts (Continued)"
+author: "Your Name"
+date: "September 23, 2025"
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+
+---
+
+## 5. Conditional Probability (Recap)
+
+We previously defined conditional probability as $P(A|B) = \frac{P(A \cap B)}{P(B)}$. This is crucial for understanding how new information updates our beliefs.
+
+
+
+## 9. Random Variables
+
+A **random variable** is a variable whose value is a numerical outcome of a random phenomenon. It associates a number with each outcome in the sample space.
+
+There are two main types:
+
+### 9.1. Discrete Random Variables
+
+A discrete random variable can only take on a finite or countable number of distinct values. These values are often integers.
+
+*   **Probability Mass Function (PMF):** For a discrete random variable $X$, the PMF, denoted by $P(X=x)$, gives the probability that $X$ is exactly equal to some value $x$. The sum of probabilities for all possible values must equal 1.
+*   **Examples:**
+    *   The number of heads when flipping a coin 3 times (possible values: 0, 1, 2, 3).
+    *   The number of customer arrivals in an hour.
+    *   The score on a single roll of a die (possible values: 1, 2, 3, 4, 5, 6).
+
+### 9.2. Continuous Random Variables
+
+A continuous random variable can take on any value within a given range or interval. There are infinitely many possible values between any two given values.
+
+*   **Probability Density Function (PDF):** For a continuous random variable $X$, the PDF, denoted by $f(x)$, describes the relative likelihood that $X$ will take on a given value. The probability of $X$ falling within a specific range $[a, b]$ is found by integrating the PDF over that range: $P(a \leq X \leq b) = \int_{a}^{b} f(x) dx$.
+    *   The total area under the PDF curve must equal 1.
+    *   The probability of a continuous random variable taking on any *exact* single value is 0 ($P(X=x) = 0$).
+*   **Cumulative Distribution Function (CDF):** The CDF, $F(x) = P(X \leq x)$, gives the probability that the random variable takes on a value less than or equal to $x$.
+*   **Examples:**
+    *   The height of a person.
+    *   The temperature at a specific location.
+    *   The time it takes to complete a task.
+
+## 10. Common Probability Distributions
+
+Probability distributions are mathematical functions that describe the likelihood of different outcomes for a random variable. They are essential for modeling real-world data.
+
+### 10.1. For Discrete Random Variables
+
+*   **Binomial Distribution:** Models the number of successes in a fixed number ($n$) of independent Bernoulli trials, where each trial has only two outcomes (success/failure) with a constant probability of success ($p$).
+    *   *Use Case:* Number of heads in 10 coin flips, number of defective items in a batch.
+*   **Poisson Distribution:** Models the number of events occurring within a fixed interval of time or space, given a constant average rate ($\lambda$) and independence of events.
+    *   *Use Case:* Number of customer arrivals per hour, number of typos on a page.
+
+### 10.2. For Continuous Random Variables
+
+*   **Normal Distribution (Gaussian Distribution):** A symmetric, bell-shaped curve defined by its mean ($\mu$) and standard deviation ($\sigma$). It's ubiquitous in nature and statistics.
+    *   *Use Case:* Heights, weights, measurement errors, financial data distributions.
+*   **(Other common continuous distributions include Uniform, Exponential, Beta, Gamma, etc., which might be covered later.)**
+
+
+
+---
+title: "Introduction to Probability for Data Science"
+subtitle: "Lecture 1: Basic Concepts (Continued)"
+author: "Your Name"
+date: "September 23, 2025"
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: true
+
+---
+
+## 0. Introduction: Types of Uncertainty
+
+Before diving into the mechanics of probability, it's important to distinguish between two fundamental types of uncertainty that probability helps us model:
+
+*   **Aleatoric Uncertainty (or Statistical Uncertainty):** This type of uncertainty arises from the inherent randomness or variability in a system or process. It is the uncertainty due to chance.
+    *   *Example:* The outcome of a fair coin flip, the exact time a radioactive atom will decay, or the exact number of customer arrivals in the next hour. This is the kind of uncertainty that probability distributions are designed to capture.
+
+*   **Epistemic Uncertainty (or Ignorance Uncertainty):** This type of uncertainty arises from a lack of knowledge or incomplete information about a system. It can, in principle, be reduced by gathering more data or improving our models.
+    *   *Example:* Not knowing the precise probability of a coin landing heads (if the coin might be biased), not knowing the exact physical constants governing a system, or not knowing the true parameters of a statistical model. Bayesian approaches often aim to quantify and reduce epistemic uncertainty.
+
+In data science, we often use probability to model both aleatoric uncertainty (e.g., inherent noise in data) and to represent our epistemic uncertainty about model parameters or predictions.
+
+## 1. What is Probability? (Recap)
+
+At its heart, probability is the measure of the likelihood that an event will occur. It quantifies uncertainty.
+
+*   **Experiment:** A process that results in one of several possible outcomes.
+*   **Outcome:** a single possible result of an experiment.
+*   **Sample Space ($\mathcal{S}$):** The set of all possible outcomes of an experiment.
+*   **Event:** A subset of the sample space. It's a collection of one or more outcomes.
+
+### Example: Rolling a Die
+
+*   **Experiment:** Rolling a standard six-sided die.
+*   **Sample Space:** $\mathcal{S} = \{1, 2, 3, 4, 5, 6\}$
+*   **Events:**
+    *   The event of rolling an even number: $E = \{2, 4, 6\}$
+    *   The event of rolling a number greater than 4: $G = \{5, 6\}$
+    *   The event of rolling a 3: $T = \{3\}$
+
+## 2. Types of Probability (Recap)
+
+*   **Classical Probability:** Assumes all outcomes are equally likely. $P(A) = \frac{n(A)}{n(\mathcal{S})}$.
+*   **Empirical (or Frequentist) Probability:** Based on observed frequencies from experiments or data. $P(A) \approx \frac{\text{Number of times A occurred}}{N}$.
+*   **Subjective Probability:** Based on personal belief or judgment.
+
+## 3. Basic Probability Rules (Recap)
+
+*   $P(\mathcal{S}) = 1$
+*   $P(A^c) = 1 - P(A)$
+*   **Addition Rule (Mutually Exclusive):** $P(A \cup B) = P(A) + P(B)$ if $A \cap B = \emptyset$.
+*   **General Addition Rule:** $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+
+## 4. Conditional Probability (Recap)
+
+$P(A|B) = \frac{P(A \cap B)}{P(B)}$ for $P(B) > 0$.
+
+## 5. Independence of Events
+
+Two events, $A$ and $B$, are independent if the occurrence of one does not affect the probability of the other.
+$$ P(A|B) = P(A) \quad \text{and} \quad P(B|A) = P(B) $$
+
+### Example: Coin Flips
+
+The outcome of flipping a fair coin is independent of previous flips.
+
+## 6. Multiplication Rule
+
+Used to find $P(A \cap B)$:
+*   **Independent Events:** $P(A \cap B) = P(A) \times P(B)$
+*   **Dependent Events:** $P(A \cap B) = P(A) \times P(B|A)$ or $P(A \cap B) = P(B) \times P(A|B)$
+
+#### Example: Drawing Cards without Replacement
+
+$P(\text{two Hearts}) = P(\text{1st is Heart}) \times P(\text{2nd is Heart | 1st is Heart}) = \frac{13}{52} \times \frac{12}{51}$.
+
+## 7. Bayes' Theorem
+
+Updates beliefs based on new evidence:
+$$ P(A|B) = \frac{P(B|A) \times P(A)}{P(B)} $$
+*   $P(A|B)$: Posterior (updated belief)
+*   $P(B|A)$: Likelihood (probability of evidence given hypothesis)
+*   $P(A)$: Prior (initial belief)
+*   $P(B)$: Marginal probability of evidence
+
+#### Example: Medical Diagnosis (Revisited)
+
+Quantifies how a positive test result ($T^+$) updates our belief about having a disease ($D$), i.e., $P(D|T^+)$.
+
+## 8. Random Variables
+
+A variable whose value is a numerical outcome of a random phenomenon.
+
+### 8.1. Discrete Random Variables
+
+Take on a finite or countable number of values.
+*   **Probability Mass Function (PMF):** $P(X=x)$.
+*   *Examples:* Number of heads, score on a die.
+
+### 8.2. Continuous Random Variables
+
+Take on any value within a range.
+*   **Probability Density Function (PDF):** $f(x)$. $P(a \leq X \leq b) = \int_{a}^{b} f(x) dx$.
+*   **Cumulative Distribution Function (CDF):** $F(x) = P(X \leq x)$.
+*   *Examples:* Height, temperature.
+
+## 9. Common Probability Distributions
+
+Mathematical functions describing outcome likelihoods.
+
+### 9.1. Discrete Distributions
+
+*   **Binomial Distribution:** Successes in $n$ independent Bernoulli trials (prob $p$).
+    *   *Use Case:* Number of heads in 10 flips.
+*   **Poisson Distribution:** Events in a fixed interval at rate $\lambda$.
+    *   *Use Case:* Customer arrivals per hour.
+
+### 9.2. Continuous Distributions
+
+*   **Normal Distribution:** Symmetric, bell-shaped ($\mu$, $\sigma$).
+    *   *Use Case:* Heights, measurement errors.
+
+## 10. Probability Rules in Large Language Models (LLMs)
+
+Probability is fundamental to how LLMs generate text. They predict the next word (or token) in a sequence based on the preceding text. This prediction is essentially a probabilistic process.
+
+LLMs work by estimating the probability distribution over the vocabulary for the next token, given the current context.
+
+*   **Vocabulary:** The set of all possible tokens the LLM can output.
+*   **Context:** The sequence of tokens already generated.
+*   **Probability Distribution:** For each possible next token, the LLM assigns a probability.
+
+Let $V$ be the vocabulary, and $C$ be the current context. The LLM outputs a probability distribution $P(\text{next token} = w | \text{context}=C)$ for each word $w \in V$.
+
+### 10.1. Temperature Parameter
+
+The **temperature** parameter controls the randomness of the output by scaling the logits (raw scores) before they are converted into probabilities using the softmax function.
+
+*   **Softmax Function:** $P(w_i | C) = \frac{\exp(z_i / T)}{\sum_{j} \exp(z_j / T)}$, where $z_i$ are the logits for word $w_i$, and $T$ is the temperature.
+
+    *   **High Temperature ($T > 1$):** The probabilities become more uniform (closer to each other). This makes the distribution flatter. Less likely words have a higher chance of being selected. This leads to more diverse, creative, and sometimes less coherent outputs.
+        *   *Probability Rule Connection:* This can be thought of as making the distribution over the vocabulary more uniform, increasing the probability of less likely events occurring, akin to drawing from a "flatter" or more spread-out probability distribution.
+
+    *   **Low Temperature ($T < 1$, e.g., $T \approx 0.2$):** The probabilities become more peaked. The most likely words get an even higher probability, and less likely words get very low probabilities. This leads to more focused, deterministic, and often repetitive outputs.
+        *   *Probability Rule Connection:* This sharpens the distribution, making the most probable events (as determined by the model's learned probabilities) significantly more likely to be chosen, essentially amplifying the effect of $P(\text{high probability words})$ while suppressing $P(\text{low probability words})$. This is like taking the most probable outcomes from an initial distribution and making them even *more* probable.
+
+    *   **Temperature $T=1$:** The standard softmax, probabilities are used as calculated by the model.
+
+### 10.2. Top-p (Nucleus) Sampling
+
+**Top-p sampling** (also known as nucleus sampling) selects the next token from a *subset* of the vocabulary, chosen by cumulatively adding up the probabilities of the most likely tokens until their sum reaches a predefined threshold $p$.
+
+*   **Process:**
+    1.  Sort all possible next tokens by their probabilities in descending order.
+    2.  Select the smallest set of tokens whose cumulative probability is greater than or equal to $p$.
+    3.  Rescale the probabilities of the tokens in this subset so they sum to 1.
+    4.  Sample the next token from this rescaled distribution.
+
+*   **Example:** If $p=0.9$, and the top tokens have probabilities: $w_1=0.5, w_2=0.3, w_3=0.2, w_4=0.1$.
+    *   $w_1$: $0.5 < 0.9$
+    *   $w_1, w_2$: $0.5 + 0.3 = 0.8 < 0.9$
+    *   $w_1, w_2, w_3$: $0.8 + 0.2 = 1.0 \geq 0.9$.
+    *   The nucleus is $\{w_1, w_2, w_3\}$. The probabilities are then rescaled: $P'(w_1) = 0.5/1.0 = 0.5$, $P'(w_2) = 0.3/1.0 = 0.3$, $P'(w_3) = 0.2/1.0 = 0.2$. The model then samples from this $\{w_1, w_2, w_3\}$ with these new probabilities.
+
+*   **Probability Rule Connection:** This directly uses the concept of **cumulative probabilities** and **conditional probability** (by implicitly conditioning on the selected nucleus set). We are essentially defining a new, smaller sample space based on a cumulative probability threshold and then sampling from it.
+
+### 10.3. Top-k Sampling
+
+**Top-k sampling** is simpler: it selects the next token from the $k$ most likely tokens in the vocabulary.
+
+*   **Process:**
+    1.  Identify the $k$ tokens with the highest probabilities.
+    2.  Rescale their probabilities so they sum to 1.
+    3.  Sample the next token from this rescaled distribution.
+
+*   **Example:** If $k=3$, and the top probabilities are $w_1=0.5, w_2=0.3, w_3=0.2, w_4=0.1$.
+    *   The top 3 tokens are $\{w_1, w_2, w_3\}$.
+    *   Rescaled probabilities: $P'(w_1) = 0.5/1.0 = 0.5$, $P'(w_2) = 0.3/1.0 = 0.3$, $P'(w_3) = 0.2/1.0 = 0.2$.
+    *   Sample from $\{w_1, w_2, w_3\}$.
+
+*   **Probability Rule Connection:** This is a direct application of defining a restricted sample space (the top $k$ tokens) and then applying **conditional probability** to rescale the probabilities within that subset. It's like saying, "Given that the next word must be one of these top $k$ most probable words, what is the probability of each?"
+
+By adjusting these parameters, users can guide the LLM's output from highly deterministic and factual to more creative and surprising, all by manipulating the underlying probability distributions.
+
+---

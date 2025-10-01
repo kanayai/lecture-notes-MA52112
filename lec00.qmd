@@ -1,0 +1,120 @@
+---
+title: "Probability Theory for Data Scientists"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    code-fold: false
+  pdf:
+    toc: true
+    toc-depth: 3
+execute:
+  echo: false # Set to false to hide code in the output, as requested.
+---
+
+# Chapter 1: Set Theory
+
+## 1.1 Foundational Concepts
+
+### 1.1.1 Sample Space, Event, and Empty Set
+
+*   **Sample Space ($\Omega$)**: The set of all possible outcomes of a random experiment or a data-generating process.
+    *   *Data Science Example*: If we are analyzing customer purchase behavior, the sample space could be the set of all possible combinations of products a customer might buy in a single transaction.
+
+*   **Event ($E$)**: A subset of the sample space. It represents a specific outcome or a collection of outcomes of interest.
+    *   *Data Science Example*: In the customer purchase scenario, an event could be "customer buys product A", or "customer buys product A and product B".
+
+*   **Empty Set ($\emptyset$)**: A set containing no elements. It represents an impossible event.
+    *   *Data Science Example*: An event such as "a customer buys a product that is out of stock" would correspond to the empty set, assuming valid transactions.
+
+### 1.1.2 Basic Set Operations
+
+Given two events $A$ and $B$:
+
+*   **Union ($A \cup B$)**: The event that either $A$ occurs, or $B$ occurs, or both occur.
+    *   *Data Science Example*: If $A$ is "customer clicks on an ad" and $B$ is "customer makes a purchase", then $A \cup B$ is the event that "customer clicks on an ad OR makes a purchase (or both)".
+
+*   **Intersection ($A \cap B$)**: The event that both $A$ and $B$ occur.
+    *   *Data Science Example*: Using the above events, $A \cap B$ is the event that "customer clicks on an ad AND makes a purchase".
+
+*   **Complement ($A^c$)**: The event that $A$ does not occur. It is the set of all outcomes in $\Omega$ that are not in $A$.
+    *   *Data Science Example*: If $A$ is "customer clicks on an ad", then $A^c$ is the event that "customer does NOT click on an ad".
+
+### 1.1.3 Properties of Set Operations
+
+Let $A, B, C$ be events in the sample space $\Omega$.
+
+*   **Commutativity**:
+    *   Union: $A \cup B = B \cup A$
+    *   Intersection: $A \cap B = B \cap A$
+
+*   **Associativity**:
+    *   Union: $(A \cup B) \cup C = A \cup (B \cup C)$
+    *   Intersection: $(A \cap B) \cap C = A \cap (B \cap C)$
+
+*   **Distributive Laws**:
+    *   Intersection over Union: $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+    *   Union over Intersection: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+*   **De Morgan's Laws**:
+    *   $(A \cup B)^c = A^c \cap B^c$
+    *   $(A \cap B)^c = A^c \cup B^c$
+
+### 1.1.4 Disjoint Sets and Partitions
+
+*   **Disjoint Sets (Mutually Exclusive Events)**: Two sets $A$ and $B$ are disjoint if they have no elements in common, i.e., $A \cap B = \emptyset$.
+    *   *Data Science Example*: If $A$ is "customer is male" and $B$ is "customer is female" (assuming binary gender classification), then $A$ and $B$ are disjoint events.
+
+*   **Partition**: A collection of non-empty, disjoint subsets of $\Omega$ whose union is $\Omega$.
+    *   *Data Science Example*: The sets {Male Customers}, {Female Customers} form a partition of the set of all customers if every customer belongs to exactly one of these groups. Another example: {Customers who bought Product X}, {Customers who bought Product Y but not X}, {Customers who bought neither X nor Y} could form a partition of the customer base based on purchasing behavior.
+
+### 1.1.5 Sigma Algebra (Finite Case)
+
+A collection $\mathcal{F}$ of subsets of $\Omega$ is a **sigma algebra** (or $\sigma$-algebra) if it satisfies the following properties:
+1.  $\Omega \in \mathcal{F}$ (The sample space is in the collection).
+2.  If $A \in \mathcal{F}$, then $A^c \in \mathcal{F}$ (The collection is closed under complementation).
+3.  If $A_1, A_2, \dots, A_n$ are in $\mathcal{F}$, then $A_1 \cup A_2 \cup \dots \cup A_n \in \mathcal{F}$ (The collection is closed under finite unions).
+
+*   *Data Science Example*: In a simple experiment like flipping a coin twice, $\Omega = \{HH, HT, TH, TT\}$. A sigma algebra could be $\mathcal{F} = \{\emptyset, \{HH, HT, TH, TT\}, \{HH, HT\}, \{TH, TT\}\}$. This $\mathcal{F}$ contains $\Omega$, is closed under complementation (e.g., $\{HH, HT\}^c = \{TH, TT\}$), and is closed under finite unions (e.g., $\{HH, HT\} \cup \{TH, TT\} = \Omega$). The sigma algebra represents all possible events we can consider meaningful to assign probabilities to.
+
+# Chapter 2: Probability
+
+## 2.1 Probability Measure and Axioms
+
+A **probability measure** $P$ on a sample space $\Omega$ with a $\sigma$-algebra $\mathcal{F}$ is a function $P: \mathcal{F} \to [0, 1]$ that assigns a probability to each event in $\mathcal{F}$ and satisfies the following three axioms (Kolmogorov's Axioms):
+
+1.  **Non-negativity**: For any event $A \in \mathcal{F}$, $P(A) \ge 0$.
+    The probability of any event is non-negative.
+
+2.  **Normalization**: $P(\Omega) = 1$.
+    The probability of the entire sample space (the certain event) is 1.
+
+3.  **Additivity (for disjoint events)**: If $A_1, A_2, \dots, A_n$ are disjoint events in $\mathcal{F}$ (i.e., $A_i \cap A_j = \emptyset$ for $i \ne j$), then
+    $$ P\left(\bigcup_{i=1}^n A_i\right) = \sum_{i=1}^n P(A_i) $$
+    For a countably infinite sequence of disjoint events, this extends to:
+    $$ P\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P(A_i) $$
+    The probability of the union of disjoint events is the sum of their individual probabilities.
+
+### 2.1.1 Simple Probability Operations
+
+From the axioms, we can derive several useful properties:
+
+*   **Probability of the Complement**: For any event $A \in \mathcal{F}$,
+    $$ P(A^c) = 1 - P(A) $$
+    *   *Data Science Example*: If the probability that a user clicks an ad is $P(\text{Click}) = 0.15$, then the probability that a user does *not* click the ad is $P(\text{Click}^c) = 1 - 0.15 = 0.85$.
+
+*   **Probability of the Empty Set**: $P(\emptyset) = 0$.
+    *   *Data Science Example*: The probability of an impossible event, such as a customer completing a purchase without providing any payment information, is 0.
+
+*   **Probability of the Union of Two Events (General)**: For any two events $A, B \in \mathcal{F}$:
+    $$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $$
+    This is also known as the addition rule for probabilities. It accounts for the possibility that $A$ and $B$ might overlap (i.e., $A \cap B$ is not empty).
+    *   *Data Science Example*: Suppose the probability a customer visits website A is $P(A)=0.3$, and the probability they visit website B is $P(B)=0.4$. If the probability they visit both is $P(A \cap B)=0.1$, then the probability they visit A or B (or both) is $P(A \cup B) = 0.3 + 0.4 - 0.1 = 0.6$.
+
+### 2.1.2 Bonferroni Inequality
+
+The **Bonferroni inequality** relates the probability of the intersection of two events to their individual probabilities. For any two events $A$ and $B$:
+$$ P(A \cap B) \le \min(P(A), P(B)) $$
+A more general form (one-sided Bonferroni inequality) states:
+$$ P(A \cap B) \ge P(A) + P(B) - 1 $$
+*   *Data Science Example*: If the probability that a machine learning model correctly classifies a 'spam' email is $P(\text{Correct} | \text{Spam}) = 0.99$, and the probability of an email being 'spam' is $P(\text{Spam}) = 0.1$, then the probability that an email is *both* 'spam' AND correctly classified as 'spam' is $P(\text{Correct} \cap \text{Spam}) \ge 0.99 + 0.1 - 1 = 0.09$. This gives a lower bound for the true positive rate among spam emails.

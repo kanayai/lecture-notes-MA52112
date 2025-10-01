@@ -1,0 +1,33 @@
+# Overview of Statistics for Data Science {.unnumbered}
+
+## Synopsis {.unnumbered}
+
+In this unit you will develop your understanding of the basic theory of probability and statistics and recognise when this theory can be applied in practice.   
+
+
+## Learning outcomes {.unnumbered}
+
+By the end of the unit you will be able to:
+
+* perform elementary mathematical operations in probability and statistics
+
+* translate real-world problems into a probabilistic or statistical framework
+
+* solve statistical problems in abstract form
+
+* critically interpret the outcomes of statistical analysis in a real-world context
+
+* relate underlying theory to requirements in practical data science
+
+## Content {.unnumbered}
+
+The laws of probability. Discrete and continuous random variables. Expectation, variance and correlation. Conditional and marginal distributions. Common distributions including the normal, binomial and Poisson. Statistical estimation including maximum likelihood. Hypothesis testing and confidence intervals.
+
+
+## Summative assessment {.unnumbered}
+
+-   **Exam:** 100% of unit mark.
+
+## Moodle page {.unnumbered}
+
+Please see the [Moodle page](https://moodle.bath.ac.uk/course/view.php?id=62904) for this unit for more a more detailed overview on the organisation and expectations for Statistics for Data Science this year.
