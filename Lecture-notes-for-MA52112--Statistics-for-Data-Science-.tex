@@ -230,11 +230,11 @@
 \theoremstyle{definition}
 \newtheorem{example}{Example}[chapter]
 \theoremstyle{plain}
-\newtheorem{theorem}{Theorem}[chapter]
-\theoremstyle{plain}
 \newtheorem{proposition}{Proposition}[chapter]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -257,7 +257,7 @@
 \makeatletter
 \makeatother
 \makeatletter
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, boxrule=0pt, enhanced, breakable, sharp corners, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, frame hidden, interior hidden, breakable, sharp corners, enhanced]}{\end{tcolorbox}}\fi
 \makeatother
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -275,7 +275,7 @@
 
 \title{Lecture notes for MA52112 (Statistics for Data Science)}
 \author{Karim Anaya-Izquierdo (based on notes by Vangelis Evangelou)}
-\date{2025-10-01}
+\date{2025-10-02}
 \begin{document}
 \maketitle
 
@@ -366,7 +366,7 @@ Scientists}\label{probability-theory-for-data-scientists}
 
 \section{Set theory Concepts}\label{set-theory-concepts}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Definition: Sample Space, Event, and Empty Set}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Definition: Sample Space, Event, and Empty Set}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-1.1.1}{}\label{def-1.1.1}
 
@@ -447,7 +447,7 @@ Events can be described in many different ways. We will use set theory
 and notation to describe events and operations on events. This can help
 later in the computation of probabilities.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Basic Set Operations}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Basic Set Operations}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-set-ops}{}\label{def-set-ops}
 
@@ -517,7 +517,7 @@ The following propertties hold for any events \(A, B, C\):
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Disjoint Sets and Partitions of Sample Space}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Disjoint Sets and Partitions of Sample Space}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-disjoint-partition}{}\label{def-disjoint-partition}
 
@@ -542,7 +542,7 @@ The following propertties hold for any events \(A, B, C\):
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Representation of events using set operations}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Representation of events using set operations}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-union}{}\label{exm-union}
 
@@ -594,7 +594,7 @@ two heads.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Sigma Algebra}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Sigma Algebra}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-sigma-algebra}{}\label{def-sigma-algebra}
 
@@ -639,7 +639,7 @@ A^c \in \mathcal F\,,B^c \in \mathcal F
 
 (corrected from previous version)
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Examples of sigma-algebras}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Examples of sigma-algebras}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-sigma-algebra}{}\label{exm-sigma-algebra}
 
@@ -787,7 +787,7 @@ After we have chosen a sigma algebra \(\mathcal F\) that contains events
 we are interested in, we can define probabilities for all the events in
 a more formal way.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Probability Measure (Kolmogorov's Axioms)}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Probability Measure (Kolmogorov's Axioms)}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-probability-measure}{}\label{def-probability-measure}
 
@@ -819,7 +819,7 @@ in \(\mathcal{F}\) and satisfies the following three axioms:
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Probability measure for the equality of two coin flips}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Probability measure for the equality of two coin flips}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-probability-measure-equal}{}\label{exm-probability-measure-equal}
 
@@ -854,7 +854,7 @@ valid probability measure as it satisfies all three axioms.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Probability measure for the number of heads in two coin flips}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Probability measure for the number of heads in two coin flips}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-probability-measure-heads}{}\label{exm-probability-measure-heads}
 
@@ -896,7 +896,7 @@ satisfies all three axioms.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Probability measure for power set}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Probability measure for power set}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-probability-measure-power-set}{}\label{exm-probability-measure-power-set}
 
@@ -951,7 +951,7 @@ satisfies all three axioms.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Simple Probability Operations}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Simple Probability Operations}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{proposition}[]\protect\hypertarget{prp-probability-operations}{}\label{prp-probability-operations}
 
@@ -974,7 +974,7 @@ From the axioms, we can derive several useful properties:
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Probability of the union}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Probability of the union}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-probability-operations}{}\label{exm-probability-operations}
 
@@ -992,7 +992,7 @@ clearly this is correct as the union of these two events is \(\Omega\).
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Boole and Bonferroni inequalities}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Boole and Bonferroni inequalities}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{theorem}[]\protect\hypertarget{thm-boole-bonferroni}{}\label{thm-boole-bonferroni}
 
@@ -1024,7 +1024,7 @@ facts can be verified by the reader.
 
 \section{Conditional Probability}\label{conditional-probability}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Conditional Probability}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Conditional Probability}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-cond-probability}{}\label{def-cond-probability}
 
@@ -1038,7 +1038,7 @@ measures the probability of event \(A\) occurring, knowing that event
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Example of Conditional Probability}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Example of Conditional Probability}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-cond-probability}{}\label{exm-cond-probability}
 
@@ -1080,7 +1080,7 @@ probability that combines the notion of partition with that of
 conditional probability and Bayes rule that allows us to reverse
 conditional probabilities.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Law of Total Probability}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Law of Total Probability}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{proposition}[]\protect\hypertarget{prp-total-probability}{}\label{prp-total-probability}
 
@@ -1092,7 +1092,7 @@ Let \(A_1, A_2, \dots\) be a partition of the sample space \(\Omega\)
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Bayes' Rule}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Bayes' Rule}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{proposition}[]\protect\hypertarget{prp-bayes-rule}{}\label{prp-bayes-rule}
 
@@ -1109,7 +1109,7 @@ denominator:
 
 The proof of this result is staightforward and left to the reader.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Example of Law of Total Probability and Bayes' Rule}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Example of Law of Total Probability and Bayes' Rule}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[Medical
 Testing]\protect\hypertarget{exm-total-probability-bayes}{}\label{exm-total-probability-bayes}
@@ -1194,11 +1194,59 @@ interpreting results.
 
 \end{tcolorbox}
 
+Lets now code the previous example in Python. We code a function that
+returns \(P(D|T^+)\) given the prevalence of the disease, the
+sensitivity and the specificity of the test. WE vary the prevalence to
+see how it affects the result.
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\KeywordTok{def}\NormalTok{ bayes\_medical\_test(prevalence, sensitivity, specificity):}
+\NormalTok{    P\_D }\OperatorTok{=}\NormalTok{ prevalence  }\CommentTok{\# Prevalence of the disease}
+\NormalTok{    P\_T\_given\_D }\OperatorTok{=}\NormalTok{ sensitivity  }\CommentTok{\# Sensitivity (True Positive Rate)}
+\NormalTok{    P\_T\_given\_not\_D }\OperatorTok{=} \DecValTok{1} \OperatorTok{{-}}\NormalTok{ specificity  }\CommentTok{\# False Positive Rate}
+\NormalTok{    P\_not\_D }\OperatorTok{=} \DecValTok{1} \OperatorTok{{-}}\NormalTok{ P\_D  }\CommentTok{\# Probability of not having the disease}
+    \CommentTok{\# Calculate P(T+)}
+\NormalTok{    P\_T }\OperatorTok{=}\NormalTok{ (P\_T\_given\_D }\OperatorTok{*}\NormalTok{ P\_D) }\OperatorTok{+}\NormalTok{ (P\_T\_given\_not\_D }\OperatorTok{*}\NormalTok{ P\_not\_D)}
+    \CommentTok{\# Calculate P(D|T+) using Bayes\textquotesingle{} Theorem}
+\NormalTok{    P\_D\_given\_T }\OperatorTok{=}\NormalTok{ (P\_T\_given\_D }\OperatorTok{*}\NormalTok{ P\_D) }\OperatorTok{/}\NormalTok{ P\_T}
+    \ControlFlowTok{return}\NormalTok{ P\_D\_given\_T}
+\CommentTok{\# Example usage}
+\NormalTok{prevalence }\OperatorTok{=} \DecValTok{1} \OperatorTok{/} \DecValTok{10000}  \CommentTok{\# 1 in 10,000}
+\NormalTok{sensitivity }\OperatorTok{=} \FloatTok{0.99}  \CommentTok{\# 99\% sensitivity}
+\NormalTok{specificity }\OperatorTok{=} \FloatTok{0.99}  \CommentTok{\# 99\% specificity}
+\NormalTok{result\_10k }\OperatorTok{=}\NormalTok{ bayes\_medical\_test(prevalence, sensitivity, specificity)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"P(D|T+) = }\SpecialCharTok{\{}\NormalTok{result\_10k}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{prevalence }\OperatorTok{=} \DecValTok{1} \OperatorTok{/} \DecValTok{1000}  \CommentTok{\# 1 in 1,000}
+
+\NormalTok{result\_1k }\OperatorTok{=}\NormalTok{ bayes\_medical\_test(prevalence, sensitivity, specificity)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"P(D|T+) = }\SpecialCharTok{\{}\NormalTok{result\_1k}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+
+\NormalTok{prevalence }\OperatorTok{=} \DecValTok{1} \OperatorTok{/} \DecValTok{100}  \CommentTok{\# 1 in 100}
+
+\NormalTok{result\_100 }\OperatorTok{=}\NormalTok{ bayes\_medical\_test(prevalence, sensitivity, specificity)}
+\BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"P(D|T+) = }\SpecialCharTok{\{}\NormalTok{result\_100}\SpecialCharTok{:.4f\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+P(D|T+) = 0.0098
+P(D|T+) = 0.0902
+P(D|T+) = 0.5000
+\end{verbatim}
+
+We can see how the prevalence of the disease affects the probability
+\(P(D|T^+)\) significantly. As the disease becomes more common, the
+probability that a person actually has the disease given a positive test
+result increases.
+
 The Law of Total probability allows us to calculate the probability of
 an event \(A\) by considering the different ways it can occur through
 the events in a partition.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Customer churn}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Customer churn}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-total-probability-data-science}{}\label{exm-total-probability-data-science}
 
@@ -1230,7 +1278,7 @@ First intuitively, two events, \(A\) and \(B\), are considered
 \textbf{independent} if the occurrence of one event does not affect the
 probability of the other event occurring. Formally,
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Independent Events}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Independent Events}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-independent-events}{}\label{def-independent-events}
 
@@ -1253,7 +1301,7 @@ This means that knowing that event \(B\) has occurred gives us no new
 information about the probability of event \(A\) occurring, and vice
 versa.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Independent event when flipping a coin twice}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Independent event when flipping a coin twice}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 Consider the following events when flipping a coin twice:
 
@@ -1281,7 +1329,7 @@ assigned \(P(\{HH\})=0.2\) then the events would have been independent.
 An obvious consequence of Definition~\ref{def-cond-probability} of
 conditional probability is the so-called multiplication rule.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Multiplication Rule}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Multiplication Rule}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{proposition}[]\protect\hypertarget{prp-multiplication-rule}{}\label{prp-multiplication-rule}
 
@@ -1292,7 +1340,7 @@ For any two events \(A\) and \(B\)
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Drawing Cards without Replacement}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Drawing Cards without Replacement}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-drawing-cards-dependence}{}\label{exm-drawing-cards-dependence}
 
@@ -1311,7 +1359,7 @@ the probability of drawing two Hearts in a row is
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 The outcome of flipping a coin maybe independent of the outcome of any
 previous coin flips. If you flip a coin and get heads, the probability
@@ -1330,7 +1378,7 @@ space. In many applications, especially in data science, we are
 interested in quantifying outcomes numerically. This is where random
 variables come into play.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Random Variable}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Random Variable}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-random-variable}{}\label{def-random-variable}
 
@@ -1339,11 +1387,15 @@ the sample space \(\Omega\) to real numbers. That is,
 \(X: \Omega \to \mathbb{R}\). It quantifies the outcomes of a random
 phenomenon numerically.
 
+The set of all possible values that \(X\) can take is called the
+\textbf{image} or \textbf{range} of the random variable, denoted as
+\(X(\Omega)\).
+
 \end{definition}
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Random variable examples}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Random variable examples}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-random-variable}{}\label{exm-random-variable}
 
@@ -1366,11 +1418,7 @@ terms of random variables. For example, the event ``the total amount
 spent in an order is greater than 50 dollars'' can be expressed as
 \(\{X > 50\}\).
 
-The set of all possible values that \(X\) can take is called the
-\textbf{image} or \textbf{range} of the random variable, denoted as
-\(X(\Omega)\).
-
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Random variable: Number of equal coin flips}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Random variable: Number of equal coin flips}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-random-variable-equals}{}\label{exm-random-variable-equals}
 
@@ -1391,13 +1439,13 @@ mapping would be:
   \(X(\{HH\}) = 1\) (both flips are the same)
 \end{itemize}
 
-The possible values of \(X\) are \(\{0, 1\}\).
+The possible values of \(X\) are \(X(\Omega)=\{0, 1\}\).
 
 \end{example}
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Random variable: Number of heads in two coin flips}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Random variable: Number of heads in two coin flips}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-random-variable-heads}{}\label{exm-random-variable-heads}
 
@@ -1431,7 +1479,7 @@ take on a finite or countable number of values, that is \(X(\Omega)\) is
 finite or countable. There are also continuous random variables that can
 take on any value in a continuous range.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Continuous vs Discrete Random Variables}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Continuous vs Discrete Random Variables}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-time-website-random-variable}{}\label{exm-time-website-random-variable}
 
@@ -1452,7 +1500,7 @@ simply having an uncountably infinite image set \(X(\Omega)\) . The
 definition is a bit thechnical as it involves the notion of probability
 density function.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Discrete and continuous random variables}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Discrete and continuous random variables}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-discrete-continuous-random-variable}{}\label{def-discrete-continuous-random-variable}
 
@@ -1503,7 +1551,7 @@ is \(P(X=x)=0\) for all \(x\) but there is a positive probability that
 its value will lie in particular intervals which can be arbitrarily
 small.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Cumulative Distribution Function (CDF)}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Cumulative Distribution Function (CDF)}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{definition}[]\protect\hypertarget{def-cdf}{}\label{def-cdf}
 
@@ -1535,7 +1583,7 @@ so that
 f_X(x) = \frac{d}{dx} F_X(x)\qquad \forall x \in \mathbb R
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={CDF of a discrete random variable}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={CDF of a discrete random variable}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-cdf-discrete}{}\label{exm-cdf-discrete}
 
@@ -1575,24 +1623,40 @@ We can plot the CDF in Python as follows:
 \begin{Highlighting}[numbers=left,,]
 \ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
 \ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+
 \NormalTok{x }\OperatorTok{=}\NormalTok{ np.linspace(}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
 \NormalTok{y }\OperatorTok{=}\NormalTok{ np.piecewise(x, [x }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{, (x }\OperatorTok{\textgreater{}=} \DecValTok{0}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (x }\OperatorTok{\textless{}} \DecValTok{1}\NormalTok{), (x }\OperatorTok{\textgreater{}=} \DecValTok{1}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (x }\OperatorTok{\textless{}} \DecValTok{2}\NormalTok{), (x }\OperatorTok{\textgreater{}=} \DecValTok{2}\NormalTok{) }\OperatorTok{\&}\NormalTok{ (x }\OperatorTok{\textless{}} \DecValTok{3}\NormalTok{), x }\OperatorTok{\textgreater{}=} \DecValTok{3}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{1.0}\NormalTok{])}
 \NormalTok{plt.step(x, y, where}\OperatorTok{=}\StringTok{\textquotesingle{}post\textquotesingle{}}\NormalTok{)}
+\CommentTok{\# emphasize the continuity from the right}
+\NormalTok{plt.scatter([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{], [}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{1.0}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)  }\CommentTok{\# filled circles}
+\NormalTok{plt.scatter([}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\FloatTok{0.1}\NormalTok{, }\FloatTok{0.4}\NormalTok{,}\FloatTok{0.8}\NormalTok{], color}\OperatorTok{=}\StringTok{\textquotesingle{}white\textquotesingle{}}\NormalTok{, edgecolor}\OperatorTok{=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)  }\CommentTok{\# open circles}
 \NormalTok{plt.title(}\StringTok{\textquotesingle{}CDF of Discrete Random Variable\textquotesingle{}}\NormalTok{)}
 \NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
 \NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}F(x)\textquotesingle{}}\NormalTok{)}
 \NormalTok{plt.grid()}
-\NormalTok{plt.yticks(np.array([}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{1.0}\NormalTok{]))}
+\NormalTok{plt.yticks(np.array([}\DecValTok{0}\NormalTok{,}\FloatTok{0.1}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.8}\NormalTok{, }\FloatTok{1.0}\NormalTok{]))}
 \NormalTok{plt.show()}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{lec01_files/figure-pdf/cell-2-output-1.pdf}}
+\begin{figure}[H]
 
-Is a step function with jumps at the points where the random variable
-takes values.
+\centering{
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={Properties of Cumulative Distribution Functions}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\pandocbounded{\includegraphics[keepaspectratio]{lec01_files/figure-pdf/fig-cdf-discrete-output-1.pdf}}
+
+}
+
+\caption{\label{fig-cdf-discrete}CDF of a discrete random variable. Note
+the function is defined over all real numbers}
+
+\end{figure}%
+
+Figure~\ref{fig-cdf-discrete} show the CDF is a step function with jumps
+at the points where the random variable takes values and is continuos
+from the right
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Properties of Cumulative Distribution Functions}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \phantomsection\label{properties-cdf}
 For any random variable \(X\), its CDF \(F_X(x)\) has the following
@@ -1600,7 +1664,6 @@ properties:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
-\tightlist
 \item
   \textbf{Monotonicity}: \(F_X(x)\) is non-decreasing. For any
   \(x_1 < x_2\), \(F_X(x_1) \le F_X(x_2)\).
@@ -1619,7 +1682,7 @@ variables. For discrete random variables, the CDF is a step function
 (continuous from the right), while for continuous random variables, the
 CDF is a continuous function.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomtitle=1mm, opacityback=0, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, colback=white, left=2mm, title={CDF of a continuous random variable}, breakable, rightrule=.15mm, leftrule=.75mm, titlerule=0mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, toptitle=1mm, bottomrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={CDF of a continuous random variable}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
 
 \begin{example}[]\protect\hypertarget{exm-cdf-continuous}{}\label{exm-cdf-continuous}
 
@@ -1651,6 +1714,449 @@ server operates for at most \(y\) hours. For instance, \(F_Y(10)\) would
 be the probability the server fails within the first 10 hours.
 
 \end{example}
+
+\end{tcolorbox}
+
+We can plot the CDF and the PDF in Python as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\ImportTok{import}\NormalTok{ numpy }\ImportTok{as}\NormalTok{ np}
+\ImportTok{import}\NormalTok{ matplotlib.pyplot }\ImportTok{as}\NormalTok{ plt}
+\NormalTok{x }\OperatorTok{=}\NormalTok{ np.linspace(}\OperatorTok{{-}}\DecValTok{50}\NormalTok{, }\DecValTok{400}\NormalTok{, }\DecValTok{1000}\NormalTok{)}
+\NormalTok{pdf }\OperatorTok{=}\NormalTok{ np.piecewise(x, [x }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{, x }\OperatorTok{\textgreater{}=} \DecValTok{0}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\KeywordTok{lambda}\NormalTok{ x: (}\DecValTok{1}\OperatorTok{/}\DecValTok{100}\NormalTok{) }\OperatorTok{*}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{x}\OperatorTok{/}\DecValTok{100}\NormalTok{)])}
+\NormalTok{cdf }\OperatorTok{=}\NormalTok{ np.piecewise(x, [x }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{, x }\OperatorTok{\textgreater{}=} \DecValTok{0}\NormalTok{], [}\DecValTok{0}\NormalTok{, }\KeywordTok{lambda}\NormalTok{ x: }\DecValTok{1} \OperatorTok{{-}}\NormalTok{ np.exp(}\OperatorTok{{-}}\NormalTok{x}\OperatorTok{/}\DecValTok{100}\NormalTok{)])}
+\NormalTok{plt.subplots(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{, sharex}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
+\NormalTok{plt.subplot(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{plt.plot(x, pdf, label}\OperatorTok{=}\StringTok{\textquotesingle{}PDF\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}PDF\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}f(x)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.grid()}
+\NormalTok{plt.subplot(}\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\NormalTok{plt.plot(x, cdf, label}\OperatorTok{=}\StringTok{\textquotesingle{}CDF\textquotesingle{}}\NormalTok{, color}\OperatorTok{=}\StringTok{\textquotesingle{}orange\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.title(}\StringTok{\textquotesingle{}CDF\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.xlabel(}\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.ylabel(}\StringTok{\textquotesingle{}F(x)\textquotesingle{}}\NormalTok{)}
+\NormalTok{plt.grid()}
+\NormalTok{plt.show()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{lec01_files/figure-pdf/fig-pdf-cdf-exponential-output-1.pdf}}
+
+}
+
+\caption{\label{fig-pdf-cdf-exponential}PDF and CDF of of an Exponential
+Random Variable}
+
+\end{figure}%
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Common Probability Distributions}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{definition}[]\protect\hypertarget{def-probability-distributions}{}\label{def-probability-distributions}
+
+Some common discrete probability distributions include:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Bernoulli Distribution}: Models a single binary outcome
+  (success/failure) with parameter \(p\) (probability of success). The
+  PMF is given by: \[
+  f_X(x) =
+  \begin{cases}
+  p & \text{if } x = 1 \\
+  1 - p & \text{if } x = 0 \\
+  0 & \text{otherwise}
+  \end{cases}
+  \]
+\end{itemize}
+
+We only need to specify \(p\) to specify the distribution.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Binomial Distribution}: Models the number of successes in
+  \(n\) independent Bernoulli trials with success probability \(p\). The
+  PMF is given by: \[
+  f_X(x) = \binom{n}{k} p^x (1 - p)^{n-x} \quad \text{for } x = 0, 1, \ldots, n
+  \]
+\end{itemize}
+
+We only need to specify \(n\) and \(p\) to specify the distribution.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Poisson Distribution}: Models the number of events occurring
+  in a fixed interval of time or space, given the average rate
+  \(\lambda\). The PMF is given by: \[
+  f_X(x) = \frac{\lambda^x e^{-\lambda}}{x!} \quad \text{for }x = 0, 1, 2, \ldots
+  \]
+\end{itemize}
+
+We only need to specify the rate \(\lambda\) to specify the
+distribution.
+
+Some common continuous probability distributions include:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Uniform Distribution}: Models a continuous random variable
+  that is equally likely to take any value within an interval
+  \([a, b]\). The PDF is given by: \[
+  f_X(x) =
+  \begin{cases}
+  \frac{1}{b - a} & \text{if } a \le x \le b \\
+  0 & \text{otherwise}
+  \end{cases}
+  \]
+\end{itemize}
+
+We only need to specify \(a\) and \(b\) to specify the distribution. The
+CDF for this distribution is given by: \[
+F_X(x) =
+\begin{cases}
+0 & \text{if } x < a \\
+\frac{x - a}{b - a} & \text{if } a \le x \le b \\
+1 & \text{if } x > b
+\end{cases}
+\]
+
+\begin{itemize}
+\item
+  \textbf{Normal (Gaussian) Distribution}: Models a continuous random
+  variable with a bell-shaped curve, characterized by its mean \(\mu\)
+  and standard deviation \(\sigma\). The PDF is given by: \[
+  f_X(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x - \mu)^2}{2\sigma^2}} \quad \text{for } x \in \mathbb{R}
+  \] The CDF for this distribution is given by: \[
+  F_X(x) = \int_{-\inf}^x f_X(u)\,du = \frac{1}{2} \left[ 1 + \text{erf}\left( \frac{x - \mu}{\sigma \sqrt{2}} \right) \right]
+  \] where \(\text{erf}\) is the
+  \href{https://en.wikipedia.org/wiki/Error_function}{error function}.
+  Usually, we will express this CDF in terms of the CDF of the standard
+  normal distribution (mean 0 and standard deviation 1) that we will
+  denote by \(\Phi(x)\). Then we can write: \[
+  F_X(x) = \Phi\left( \frac{x - \mu}{\sigma} \right)
+  \] where \(\Phi(x)\) is the CDF of the standard normal distribution.
+\item
+  \textbf{Exponential Distribution}: Models the time between events in a
+  Poisson process, characterized by the rate parameter \(\lambda\). The
+  PDF is given by: \[
+  f_X(x) =
+  \begin{cases}
+  \lambda e^{-\lambda x} & \text{if } x \ge 0 \\
+  0 & \text{if } x < 0
+  \end{cases}
+  \]
+\end{itemize}
+
+The CDF for this distribution is given by: \[
+F_X(x) =
+\begin{cases}
+0 & \text{if } x < 0 \\
+1 - e^{-\lambda x} & \text{if } x \ge 0
+\end{cases}
+\]
+
+\end{definition}
+
+\end{tcolorbox}
+
+\subsection{Joint Distributions}\label{joint-distributions}
+
+We can define more than one random variable on the same sample space.
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Joint Distribution in the case of two coin flips}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{example}[]\protect\hypertarget{exm-joint-distribution-coin-flips}{}\label{exm-joint-distribution-coin-flips}
+
+When flipping a coin twice, we can define two random variables: *
+\(X_1\): outcome of the first flip (1 for heads, 0 for tails) * \(X_2\):
+outcome of the second flip (1 for heads, 0 for tails)
+
+Following from Example~\ref{exm-probability-measure-power-set} The joint
+distribution of \(X_1\) and \(X_2\) can be represented in a table:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\(X_1 \backslash X_2\) & 0 (Tails) & 1 (Heads) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 (Tails) & 0.1 & 0.4 \\
+1 (Heads) & 0.2 & 0.3 \\
+\end{longtable}
+
+The joint probabilities are:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X_1=0, X_2=0) = P(\{TT\}) = 0.1\)
+\item
+  \(P(X_1=0, X_2=1) = P(\{TH\}) = 0.4\)
+\item
+  \(P(X_1=1, X_2=0) = P(\{HT\}) = 0.2\)
+\item
+  \(P(X_1=1, X_2=1) = P(\{HH\}) = 0.3\)
+\end{itemize}
+
+Now consider another random variable \(Z\) be the indicator that the two
+flips are the same, that is \(Z=1\) if \(X_1=X_2\) and \(Z=0\)
+otherwise. The joint distribution of \(X_1\) and \(Z\) can be
+represented in a table:
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+\(X_1 \backslash Z\) & 0 (Different) & 1 (Same) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+0 (Tails) & 0.4 & 0.1 \\
+1 (Heads) & 0.2 & 0.3 \\
+\end{longtable}
+
+The joint probabilities are:
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X_1=0, Z=0) = P(\{TH\}) = 0.4\)
+\item
+  \(P(X_1=0, Z=1) = P(\{TT\}) = 0.1\)
+\item
+  \(P(X_1=1, Z=0) = P(\{HT\}) = 0.2\)
+\item
+  \(P(X_1=1, Z=1) = P(\{HH\}) = 0.3\)
+\end{itemize}
+
+\end{example}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Independent Random Variables}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{definition}[]\protect\hypertarget{def-independent-random-variables}{}\label{def-independent-random-variables}
+
+Two discrete random variables \(X\) and \(Y\) are independent if for all
+\(x\) and \(y\) in their respective image sets:
+\[ P(X = x, Y = y) = P(X = x) \times P(Y = y) \] or equivalently, if
+either of the following conditions hold for all \(x\) and \(y\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(P(X = x | Y = y) = P(X = x)\)
+\item
+  \(P(Y = y | X = x) = P(Y = y)\)
+\end{itemize}
+
+for all \(x\) and \(y\).
+
+For the case of continuous random variables, \(X\) and \(Y\) are
+independent if for all \(x\) and \(y\) in their respective image sets:
+\[ f_{X,Y}(x, y) = f_X(x) \times f_Y(y) \] where \(f_{X,Y}(x, y)\) is
+the joint probability density function of \(X\) and \(Y\), and
+\(f_X(x)\) and \(f_Y(y)\) are the marginal probability density functions
+of \(X\) and \(Y\), respectively.
+
+The marginals can be computed as follows: \[
+f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x, y) \, dy
+\] \[
+f_Y(y) = \int_{-\infty}^{\infty} f_{X,Y}(x, y) \, dx
+\]
+
+\end{definition}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Example of Independent Random Variables}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{example}[]\protect\hypertarget{exm-independent-random-variables}{}\label{exm-independent-random-variables}
+
+We can check if \(X_1\) and \(X_2\) define d in
+Example~\ref{exm-joint-distribution-coin-flips} are independent random
+variables. We have: \[
+P(X_1=0, X_2=0) = 0.1 \neq P(X_1=0)P(X_2=0) = 0.5\times 0.4 = 0.2
+\] so they are not independent.
+
+We can check if \(X_1\) and \(Z\) defined in
+Example~\ref{exm-joint-distribution-coin-flips} are independent random
+variables. We have: \[
+P(X_1=0, Z=0) = 0.4 = P(X_1=0)P(Z=0) = 0.5\times 0.6 = 0.3
+\] so they are not independent.
+
+\end{example}
+
+\end{tcolorbox}
+
+\section{Moments, Variance, covariance and
+correlation}\label{moments-variance-covariance-and-correlation}
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={EXpectation and Variance of a Random Variable}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{definition}[]\protect\hypertarget{def-expectation-variance}{}\label{def-expectation-variance}
+
+The \textbf{expectation}, \textbf{expected value} or \textbf{mean} of a
+random variable \(X\), denoted by \(E[X]\) or \(\mu_X\), is defined as:
+
+\begin{itemize}
+\tightlist
+\item
+  For a discrete random variable:
+  \[ E[X] = \sum_{x \in X(\Omega)} x \cdot P(X = x) = \sum_{x \in X(\Omega)} x \cdot f_X(x) \]
+\item
+  For a continuous random variable:
+  \[ E[X] = \int_{-\infty}^{\infty} x \cdot f_X(x) \, dx \]
+\end{itemize}
+
+The \textbf{variance} of a random variable \(X\), denoted by \(Var(X)\)
+is defined as: \[
+ Var(X) = E[(X - E[X])^2] 
+\]
+
+It is easy to show that:
+
+\[
+Var(X) = E[X^2] - (E[X])^2
+\]
+
+The standard deviation of \(X\), is the square root of the variance:
+\(\sigma_X = \sqrt{Var(X)}\)
+
+\end{definition}
+
+\end{tcolorbox}
+
+The variance measures the spread or dispersion of the random variable
+around its mean. A higher variance indicates that the values of the
+random variable are more spread out, while a lower variance indicates
+that they are more concentrated around the mean.
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Examples of Expectation and Variance}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{example}[]\protect\hypertarget{exm-expectation-variance}{}\label{exm-expectation-variance}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  For a bernoulli random variable with parameter \(p\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(E[X] = p\)
+  \item
+    \(Var(X) = p(1 - p)\)
+  \end{itemize}
+\item
+  For a binomial random variable with parameters \(n\) and \(p\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(E[X] = np\)
+  \item
+    \(Var(X) = np(1 - p)\)
+  \end{itemize}
+\item
+  For a Poisson random variable with parameter \(\lambda\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(E[X] = \lambda\)
+  \item
+    \(Var(X) = \lambda\)
+  \end{itemize}
+\item
+  For a uniform random variable on the interval \([a, b]\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(E[X] = \frac{a + b}{2}\)
+  \item
+    \(Var(X) = \frac{(b - a)^2}{12}\)
+  \end{itemize}
+\item
+  For a normal random variable with mean \(\mu\) and standard deviation
+  \(\sigma\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(E[X] = \mu\)
+  \item
+    \(Var(X) = \sigma^2\)
+  \end{itemize}
+\item
+  For an exponential random variable with rate parameter \(\lambda\):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(E[X] = \frac{1}{\lambda}\)
+  \item
+    \(Var(X) = \frac{1}{\lambda^2}\)
+  \end{itemize}
+\end{itemize}
+
+These can be easily derived from the definitions above and the
+corresponding probability mass or density functions.
+
+\end{example}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Covariance and Correlation}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{definition}[]\protect\hypertarget{def-covariance-correlation}{}\label{def-covariance-correlation}
+
+The \textbf{covariance} between two random variables \(X\) and \(Y\),
+denoted by \(Cov(X, Y)\), is defined as: \[
+Cov(X, Y) = E[(X - E[X])(Y - E[Y])]
+\] It is easy to show that: \[
+Cov(X, Y) = E[XY] - E[X]E[Y]
+\] The covariance measures the linear relationship between two random
+variables. A positive covariance indicates that the variables tend to
+increase or decrease together, while a negative covariance indicates
+that one variable tends to increase when the other decreases. The
+\textbf{correlation coefficient} between two random variables \(X\) and
+\(Y\), denoted by \(\rho_{X,Y}\) or \(Corr(X, Y)\), is defined as: \[
+\rho_{X,Y} = \frac{Cov(X, Y)}{\sigma_X \sigma_Y}
+\] where \(\sigma_X\) and \(\sigma_Y\) are the standard deviations of
+\(X\) and \(Y\), respectively. The correlation coefficient measures the
+strength and direction of the linear relationship between two random
+variables. It ranges from -1 to 1, where 1 indicates a perfect positive
+linear relationship, -1 indicates a perfect negative linear
+relationship, and 0 indicates no linear relationship.
+
+\end{definition}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, breakable, opacityback=0, leftrule=.75mm, colback=white, bottomtitle=1mm, coltitle=black, toptitle=1mm, titlerule=0mm, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title={Covariance and correlation under independence}, opacitybacktitle=0.6, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, arc=.35mm, toprule=.15mm, left=2mm]
+
+\begin{proposition}[]\protect\hypertarget{prp-covariance-correlation-independence}{}\label{prp-covariance-correlation-independence}
+
+If \(X\) and \(Y\) are independent random variables, then: *
+\(Cov(X, Y) = 0\) * \(\rho_{X,Y} = 0\)
+
+In particular, if \(X\) and \(Y\) are independent, then
+\(E[XY] = E[X]E[Y]\).
+
+\end{proposition}
 
 \end{tcolorbox}
 

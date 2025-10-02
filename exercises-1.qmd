@@ -1,0 +1,350 @@
+---
+title: "Probability Exercises"
+format: html
+---
+
+1. Recall that the set difference of two sets A and B is defined as:
+$$
+B\setminus A=\{x\in B: x\notin A\}=
+B \cap A^c
+$$
+
+Show that for any events A and B, the following holds:
+
+ $$P(B\setminus A)=P(B)-P(A\cap B)$$
+
+**Solution**
+
+Note we can write $B$ as follows
+
+$$
+B=(B\cap A)\cup (B\cap A^c)
+$$
+Since the two sets on the right hand side are disjoint, we have
+$$
+P(B)=P(B\cap A)+P(B\cap A^c)
+$$
+Rearranging the equation, we get
+$$
+P(B\cap A^c)=P(B)-P(B\cap A)
+$$
+which is what we wanted to show.
+
+
+2. Show that for any events A and B, the following holds:
+$$
+P(B \setminus A)= P(A \cup B) - P(A)
+$$
+
+**Solution**
+
+NOte we can write $A\cup B$ as follows
+$$
+A\cup B = A \cup (B \cap A^c)
+$$
+Since the two sets on the right hand side are disjoint, we have
+$$
+P(A \cup B) = P(A) + P(B \cap A^c)
+$$
+Rearranging the equation, we get
+$$
+P(B \cap A^c) = P(A \cup B) - P(A)
+$$
+which is what we wanted to show.
+
+
+3 Show that for any events A and B such that $A \subseteq B$ we have
+$P(A) \leq P(B)$.
+
+**Solution**
+Since $A \subseteq B$, we can write $B$ as follows
+$$
+B = A \cup (B \cap A^c)
+$$
+Since the two sets on the right hand side are disjoint, we have
+$$
+P(B) = P(A) + P(B \cap A^c)
+$$
+Since probabilities are non-negative, we have $P(B \cap A^c) \geq 0$, and therefore
+$$
+P(B) \geq P(A)
+$$
+which is what we wanted to show.
+
+
+
+
+
+
+
+
+4. Show that if two events A and B are independent, then their complements A^c and B^c are also independent.
+
+
+**Solution**
+
+
+To show that if two events A and B are independent, then their complements A^c and B^c are also independent, we start with the definition of independence. Two events A and B are independent if:
+$$
+P(A \cap B) = P(A) \times P(B)$$
+We need to show that:
+$$
+P(A^c \cap B^c) = P(A^c) \times P(B^c)$$
+Using the properties of complements, we know that:
+$$
+P(A^c) = 1 - P(A)$$
+$$
+P(B^c) = 1 - P(B)$$
+Now, we can express \( P(A^c \cap B^c) \) in terms of \( P(A) \) and \( P(B) \):
+$$
+P(A^c \cap B^c) = P((A \cup B)^c) = 1 - P(A \cup B)$$
+Using the formula for the union of two events, we have:
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+Substituting this into our expression for \( P(A^c \cap B^c) \):
+$$
+P(A^c \cap B^c) = 1 - [P(A) + P(B) - P(A \cap B)] = 1 - P(A) - P(B) + P(A \cap B)$$
+Now, substituting the independence condition \( P(A \cap B) = P(A) \times P(B) \):
+$$
+P(A^c \cap B^c) = 1 - P(A) - P(B) + P(A) \times P(B)$$
+Now, we can factor this expression:
+$$
+P(A^c \cap B^c) = (1 - P(A))(1 - P(B)) = P(A^c) \times P(B^c)$$
+Thus, we have shown that:
+$$
+P(A^c \cap B^c) = P(A^c) \times P(B^c)$$
+Therefore, the complements A^c and B^c are also independent.
+
+
+
+5. THree events A, B, and C are said to be mutually independent if the following conditions hold:
+1. $P(A \cap B) = P(A)P(B)$
+2. $P(A \cap C) = P(A)P(C)$
+3. $P(B \cap C) = P(B)P(C)$
+4. $P(A \cap B \cap C) = P(A)P(B)P(C)$
+
+
+Consider  the experiment of tossing two dice. 
+Assume that each outcome is equally likely.
+Define the following events:
+
+- A: The two throws give the same result
+
+- B: the sum of the numbers is between 7 and 10 (inclusive)
+
+- C: the sum is 2 or 7 or 8
+
+Show that the events A, B, and C are not mutually independent.
+
+**Solution**
+
+The sample space is given by
+$$
+\begin{aligned}
+\Omega &= \{(1,1), (1,2), (1,3), (1,4), (1,5), (1,6),  \\
+&  (2,1), (2,2), (2,3), (2,4), (2,5), (2,6), \\
+&  (3,1), (3,2), (3,3), (3,4), (3,5), (3,6),\\
+&  (4,1), (4,2), (4,3), (4,4), (4,5), (4,6),\\
+&  (5,1), (5,2), (5,3), (5,4), (5,5), (5,6),\\
+&  (6,1), (6,2), (6,3), (6,4), (6,5), (6,6)\}
+\end{aligned}
+$$
+
+
+List the outcomes in each event and compute their probabilities.
+The outcomes in each event are as follows:
+$$
+\begin{aligned}
+A &= \{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\} \\
+ &\\
+B &= \{(1,6), (2,5), (3,4), (4,3), (5,2), (6,1), \\
+  &    (2,6), (3,5), (4,4), (5,3), (6,2), (3,6), \\
+  &    (4,5), (5,4), (6,3), (4,6), (5,5), (6,4)\}\\
+  &\\
+C  &=\{(1,1),(1,6),(2,5),(3,4),(4,3),(5,2),\\
+  &     (6,1),(2,6),(6,2),(3,5),(5,3),(4,4)\}
+\end{aligned}
+$$
+
+
+The probabilities of each event are as follows:
+
+$$P(A) = 6/36 = 1/6\,,\quad P(B) = 18/36 = 1/2\,,\quad P(C) = 12/36 = 1/3$$
+
+WE also have that $A\cap B \cap C=\{(4,4)\}$ and therefore 
+
+$$
+P(A\cap B \cap C)=1/36=\frac{1}{6}\times \frac{1}{2} \times\frac{1}{3}=
+P(A)P(B)P(C)
+$$
+
+Hpowever, we have that
+$$
+A\cap B=\{(4,4),(5,3),(3,5)\}
+$$
+and therefore
+$$
+P(A\cap B)=3/36 \neq P(A)P(B)
+$$
+Similarly, we have that
+$$
+A\cap C=\{(1,1),(4,4)\}
+$$
+and therefore
+$$
+P(A\cap C)=2/36 \neq P(A)P(C)
+$$
+Finally, we have that
+$$
+B\cap C=\{(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\}
+$$
+and therefore
+$$
+P(B\cap C)=6/36 \neq P(B)P(C)
+$$
+Thus, we have shown that the events A, B, and C are not mutually independent.
+
+
+
+6. Consider the experiment of tossing three coins. Assume that each outcome is equally likely.
+
+Define the following events:
+- A: The first coin is a head
+- B: The second coin is a head
+- C: The third coin is a head
+Show that the events A, B, and C are mutually independent.
+**Solution**
+The sample space is given by
+$$
+\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+$$
+List the outcomes in each event and compute their probabilities.
+The outcomes in each event are as follows:
+$$
+\begin{aligned}
+A &= \{HHH, HHT, HTH, HTT\} \\
+ &\\
+B &= \{HHH, HHT, THH, THT\} \\
+ &\\
+C &= \{HHH, HTH, THH, TTH\}
+\end{aligned}
+$$
+The probabilities of each event are as follows:
+
+$$P(A) = 4/8 = 1/2\,,\quad P(B) = 4/8 = 1/2\,,\quad P(C) = 4/8 = 1/2$$
+We also have that $A\cap B \cap C=\{HHH\}$ and therefore
+$$
+P(A\cap B \cap C)=1/8=\frac{1}{2}\times \frac{1}{2} \times\frac{1}{2}=
+P(A)P(B)P(C)
+$$
+Similarly, we have that
+$$
+A\cap B=\{HHH, HHT\}
+$$
+and therefore
+$$
+P(A\cap B)=2/8 = 1/4 = P(A)P(B)
+$$
+We also have that
+$$
+A\cap C=\{HHH, HTH\}
+$$
+and therefore
+$$
+P(A\cap C)=2/8 = 1/4 = P(A)P(C)
+$$
+Finally, we have that
+$$
+B\cap C=\{HHH, THH\}
+$$
+and therefore
+$$
+P(B\cap C)=2/8 = 1/4 = P(B)P(C)
+$$
+Thus, we have shown that the events A, B, and C are mutually independent.
+
+
+
+7. Again consider the experiment of tossing three coins. Assume that each outcome is equally likely. Define the random variable X as the number of heads obtained. Find the probability mass function of X as well as its cumulative distribution function.
+**Solution**
+The sample space is given by
+$$
+\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+$$
+Under assumption, the probability of each outcome is $1/8$.
+
+The random variable X can take the values 0, 1, 2, or 3. We can compute the probabilities as follows:
+- $P(X=0)$: This occurs when we get TTT. So, $P(X=0) = 1/8$.
+- $P(X=1)$: This occurs when we get HTT, THT, or TTH. So, $P(X=1) = 3/8$.
+- $P(X=2)$: This occurs when we get HHT, HTH, or THH. So, $P(X=2) = 3/8$.
+- $P(X=3)$: This occurs when we get HHH. So, $P(X=3) = 1/8$.
+Thus, the probability mass function of X is given by:
+$$
+\begin{aligned}
+P(X=0) &= 1/8 \\
+P(X=1) &= 3/8 \\
+P(X=2) &= 3/8 \\
+P(X=3) &= 1/8
+\end{aligned}
+$$
+The cumulative distribution function (CDF) of X is given by:
+$$
+\begin{aligned}
+F(x) &= P(X \leq x) \\
+F(0) &= P(X=0) = 1/8 \\
+F(1) &= P(X=0) + P(X=1) = 1/8 + 3/8 = 4/8 = 1/2 \\
+F(2) &= P(X=0) + P(X=1) + P(X=2) = 1/8 + 3/8 + 3/8 = 7/8 \\
+F(3) &= P(X=0) + P(X=1) + P(X=2) + P(X=3) = 1/8 + 3/8 + 3/8 + 1/8 = 8/8 = 1
+\end{aligned}
+
+$$
+Thus, the cumulative distribution function of X is given by:
+
+
+$$
+F_X(x)=
+\begin{cases}
+0 & x < 0 \\
+1/8 & 0 \leq x < 1 \\
+1/2 & 1 \leq x < 2 \\
+7/8 & 2 \leq x < 3 \\
+1 & x \geq 3
+\end{cases}
+$$
+
+
+
+
+8. Consider now the experiment that consists in tossing a coin until we get a head. Assume that the coin is biased and that the probability of getting a head is 0.6. Define the random variable $X$ as the number of tosses before we get the first head. Find the probability mass function of X.
+
+**Solution**
+The random variable X can take the values 0, 1, 2, 3, and so on. We can compute the probabilities as follows:
+- $P(X=0)$: This occurs when we get a head on the first toss. So, $P(X=0) = 0.6$.
+- $P(X=1)$: This occurs when we get a tail on the first toss and a head on the second toss. So, $P(X=1) = 0.4 \times 0.6 = 0.24$.
+- $P(X=2)$: This occurs when we get tails on the first two tosses and a head on the third toss. So, $P(X=2) = 0.4 \times 0.4 \times 0.6 = 0.096$.
+- $P(X=3)$: This occurs when we get tails on the first three tosses and a head on the fourth toss. So, $P(X=3) = 0.4 \times 0.4 \times 0.4 \times 0.6 = 0.0384$.
+Thus, the probability mass function of X is given by:
+
+$$
+\begin{aligned}
+P(X=0) &= 0.6 \\
+P(X=1) &= 0.24 \\
+P(X=2) &= 0.096 \\
+P(X=3) &= 0.0384 \\
+P(X=n) &= 0.4^n \times 0.6 \quad \text{for } n = 0, 1, 2, \ldots
+\end{aligned}
+$$
+
+
+BUt we can get a formula for the probability mass function of X as follows:
+$$
+P(X=x) = (1-p)^x \times p \quad \text{for } x = 0, 1, 2, \ldots
+$$
+where $p$ is the probability of getting a head (in this case, $p=0.6$) and $(1-p)$ is the probability of getting a tail (in this case, $(1-p)=0.4$).
+This is a geometric distribution with parameter $p$.
+
+
+
+
+
+
