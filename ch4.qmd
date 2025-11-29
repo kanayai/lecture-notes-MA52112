@@ -1,0 +1,515 @@
+# Parameter Estimation
+
+In statistical inference we are interested in making conclusions about
+the population of interest. Often this means making a statement about an
+unknown parameter describing the population. In this chapter we discuss
+methods using data that can infer the value of the unknown parameter.
+
+## Point estimation {#sec-estim}
+
+Suppose we are given a random sample from a population $f(x|\theta)$
+depending on an unknown parameter $\theta$ with values in the parameter
+space $\Theta$, i.e., $\theta \in \Theta$. We wish to use the sample to
+infer the value of $\theta$ within $\Theta$. Any function of the sample
+which can be used for this purpose is an estimator for $\theta$.
+
+::: {.callout-note icon="false"}
+
+## Estimator 
+
+::: {#def-estimator}
+
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$
+be a random sample from a population which depends on a parameter
+$\theta \in \Theta$. Any statistic $T = T(X_1,\ldots,X_n)$ taking values
+in a subset of $\Theta$, i.e., $T \in \Theta$, is called an
+**estimator** for the parameter $\theta$. Suppose we observe
+$X_1 = x_1,\ldots, X_n = x_n$ and evaluate $t = T(x_1,\ldots,x_n)$. The
+value $t$ corresponding to the observed values $x_1,\ldots,x_n$ is
+called an **estimate** of $\theta$.
+:::
+:::
+
+Note that an estimator, being a function of the random sample, is itself
+a random variable. We can therefore talk about the distribution of this
+estimator. We can potentially come up with several estimators so using
+their distribution we can evaluate their performance. Two of the most
+commonly used criteria for evaluating estimators are the **bias** and
+the **mean squared error** which we define below.
+
+::: {.callout-note icon="false"}
+
+##  Bias
+
+::: {#def-bias}
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$
+and let $T = T(X_1,\ldots,X_n)$ be an estimator for $\theta$. The
+difference
+$$\mathrm{Bias}_\theta(T) = \mathop{\mathrm{{\mathsf E}}}T - \theta ,$$
+is called the **bias** of the estimator $T$ for the parameter $\theta$.
+If $\mathrm{Bias}_\theta(T) = 0$, then the estimator $T$ is called
+**unbiased** for $\theta$, otherwise it is called **biased** for
+$\theta$.
+:::
+:::
+
+A desirable property for an estimator is to be unbiased.
+
+::: {.callout-note icon="false"}
+
+##  Mean squared error (MSE)
+
+::: {#def-mse}
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$
+and let $T = T(X_1,\ldots,X_n)$ be an estimator for $\theta$. The **mean
+squared error (MSE)** of the estimator $T$ for the parameter $\theta$ is
+defined by
+$$\mathrm{MSE}_\theta(T) = \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \theta)^2 \right\}.$$
+:::
+:::
+
+The MSE is always non-negative. It is desirable that the MSE be small.
+@fig-biasvar illustrates the bias and variability of four different estimators. The
+estimator with low bias and variability is in fact the one with the
+lowest MSE as the following lemma tells us.
+
+
+
+![Illustration of the bias and variability of an
+estimator.](images/bias_var.png){#fig-biasvar}
+
+
+
+
+
+:::{.callout-note icon="false"} 
+
+## Mean squared error decomposition
+
+::: {#prp-mse-decomp}
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$
+and let $T = T(X_1,\ldots,X_n)$ be an estimator for $\theta$. Then
+$$\mathrm{MSE}_\theta(T) = \mathop{\mathrm{{\mathsf Var}}}T + (\mathrm{Bias}_\theta(T))^2$$
+:::
+:::
+
+
+::: {.proof}
+
+By the definition of MSE, add and subtract
+$\mathop{\mathrm{{\mathsf E}}}T$ in the brackets, and note that
+$\mathop{\mathrm{{\mathsf E}}}T$ and $\theta$ are not random,
+
+$$\begin{aligned}
+    \mathrm{MSE}_\theta(T)
+    &= \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \theta)^2 \right\} \\
+    &= \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \mathop{\mathrm{{\mathsf E}}}T + \mathop{\mathrm{{\mathsf E}}}T - \theta)^2 \right\} \\
+    &= \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \mathop{\mathrm{{\mathsf E}}}T)^2 + 2 (T - \mathop{\mathrm{{\mathsf E}}}T) (\mathop{\mathrm{{\mathsf E}}}T - \theta) + (\mathop{\mathrm{{\mathsf E}}}T -
+      \theta)^2 \right\} \\
+    &= \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \mathop{\mathrm{{\mathsf E}}}T)^2 \right\} + 2 \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \mathop{\mathrm{{\mathsf E}}}T) (\mathop{\mathrm{{\mathsf E}}}T -
+      \theta) \right\} + \mathop{\mathrm{{\mathsf E}}}\left\{ (\mathop{\mathrm{{\mathsf E}}}T - \theta)^2 \right\} \\
+    &= \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \mathop{\mathrm{{\mathsf E}}}T)^2 \right\} + 2 (\mathop{\mathrm{{\mathsf E}}}T -
+      \theta) \mathop{\mathrm{{\mathsf E}}}\left\{ (T - \mathop{\mathrm{{\mathsf E}}}T) \right\} + (\mathop{\mathrm{{\mathsf E}}}T - \theta)^2 \\
+    &= \mathop{\mathrm{{\mathsf Var}}}T + 0 + (\mathrm{Bias}_\theta(T))^2 .  
+\end{aligned}
+$$
+
+:::
+
+According to @prp-mse-decomp , the MSE incorporates two components, one measuring
+the variability of the estimator and the other measuring its bias
+(accuracy). An estimator with low MSE has low combined variance and
+bias.
+
+::: {#exm-4-1}
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta) {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{N}(\mu,\sigma^2)$.
+The parameter space for $\mu$ is $\mathbb{R}$ and for $\sigma^2$ is
+$[0,\infty)$. Then $\bar X$ is an estimator for $\mu$ because
+$\bar X \in \mathbb{R}$. Its bias is
+$\mathrm{Bias}_\mu(\bar X) = \mathop{\mathrm{{\mathsf E}}}\bar X - \mu = \mu - \mu = 0$
+and its variance is
+$\mathop{\mathrm{{\mathsf Var}}}\bar X = \sigma^2/n$. Therefore, its MSE
+is
+$\mathrm{MSE}_\mu(\bar X) = \mathop{\mathrm{{\mathsf Var}}}\bar X + \mathrm{Bias}_\mu(\bar X)^2 =
+  \sigma^2/n$.
+:::
+
+::: {#exm-4-2}
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Bernoulli}(p)$.
+The parameter space for $p$ is $[0,1]$. Then $\bar X$ is an estimator
+for $p$ because $\bar X \in \{0, 1/n, 2/n,
+  \ldots, 1\} \subset [0,1]$. Its bias is
+$\mathrm{Bias}_p(\bar X) = \mathop{\mathrm{{\mathsf E}}}\bar X - p = p - p = 0$
+and its variance is $\mathop{\mathrm{{\mathsf Var}}}\bar X = p(1-p)/n$.
+Therefore, its MSE is $\mathrm{MSE}_p(\bar X) = p(1-p)/n$. Because
+$p(1-p) \in [0,\frac 14]$, with the lower bound attained when $p=0$ or 1
+and the upper bound attained when $p = {\frac 12}$,
+$\mathrm{MSE}_p(\bar X) \in [0, \frac 1{4n}]$.
+
+Consider a different estimator given by
+$T = \dfrac{2\sum X_i + \sqrt{n}}{2n + 2\sqrt{n}}$. Because
+$\sum X_i \in \{0,1,\ldots,n\}$, $T \in [0,1]$ so it is an estimator for
+$p$. Its bias is
+$\mathrm{Bias}_p(T) = \dfrac{2np + \sqrt{n}}{2n + 2\sqrt{n}} - p = (1-2p)
+  \dfrac{\sqrt{n}}{2n + 2\sqrt{n}} = \dfrac{{\frac 12}- p}{\sqrt{n}+1}$.
+So this estimator has no bias if $p={\frac 12}$ but has positive bias
+(overestimates $p$) if $p < {\frac 12}$ and negative bias
+(underestimates $p$) if $p>{\frac 12}$. The variance of this estimator
+is $\mathop{\mathrm{{\mathsf Var}}}T =
+  \dfrac{np(1-p)}{(n + \sqrt{n})^2} = \dfrac{p(1-p)}{(\sqrt{n}+1)^2}$ so
+$\mathrm{MSE}_p(T) = \dfrac{p(1-p) + ({\frac 12}- p)^2}{(\sqrt{n}+1)^2} =
+  \dfrac{\frac 14}{(\sqrt{n}+1)^2}$.
+
+If we wish to choose between $\bar X$ and $T$ in terms of their MSE, we
+see that for all $n \geq 1$, $0 < \mathrm{MSE}_p(T) < \frac 1{4n}$ so it
+falls between the values of $\mathrm{MSE}_p(\bar X)$. In particular, if
+in reality $p={\frac 12}$, then $T$ will always have lower MSE than
+$\bar X$. For some other value of $p$, say $p = \frac 15$ then $T$ has
+lower MSE if $n \leq 16$ but otherwise $\bar X$ has lower MSE (see
+@fig-MSEB).
+
+:::
+
+
+![Comparison of $MSE_p(
+\bar{X})$ and $MSE_p(T)$ for @exm-4-2 for
+diﬀerent values of the parameter p.](images/mseb.png){#fig-MSEB}
+
+We discuss next a few classical estimation methods.
+
+### Method of moments estimator {#sec-momest}
+
+The method of moments estimation is the simplest method for finding
+estimators. Consider a population $f(x|\theta)$, $\theta \in \Theta$ and
+define the $r$th moment by
+$$\mu_r = \mathop{\mathrm{{\mathsf E}}}(X^r),\ \text{for $r=1,2,\ldots$},$$
+i.e., the expectation of the $r$th power of $X$. In the case $r=1$,
+$\mu_1
+= \mathop{\mathrm{{\mathsf E}}}X$ corresponds to the mean of the
+population, while for $r=2$, $\mu_2
+= \mathop{\mathrm{{\mathsf E}}}X^2$, so
+$\mathop{\mathrm{{\mathsf Var}}}X = \mathop{\mathrm{{\mathsf E}}}X^2 - (\mathop{\mathrm{{\mathsf E}}}X)^2 = \mu_2 - \mu_1^2$.
+
+
+A convenient method for computing the moments is through the moment
+generating function (mgf). Recall
+$M_X(t) = \mathop{\mathrm{{\mathsf E}}}\exp(tX)$ and
+$$\mu_r = \dfrac{d^r}{dt^r} M_X(t) |_{t=0} .$$
+
+
+::: {#exm-4-3}
+Let $X \sim \mathrm{Exponential}(\mu)$, i.e., $f(x|\mu) = (1/\mu)
+\exp(-x/\mu)$. Then 
+$$
+\begin{aligned}
+  M_X(t)
+  &= \int_0^\infty e^{tx} \frac{1}{\mu} e^{-\frac{x}{\mu}} {\,\mathrm{d}}x \\
+  &= \frac{1}{\mu} \int_0^\infty e^{-x(\frac 1\mu - t)} {\,\mathrm{d}}x \\
+  &= \frac{1}{\mu} (\frac 1\mu - t)^{-1} \left[ -e^{-x(\frac 1\mu - t)}
+    \right]_0^\infty \\
+  &= (1 - t\mu)^{-1} ,\ \text{assuming $t < 1/\mu$}.\\
+  \Rightarrow M_X^{(1)}(t)
+  &= \frac{d}{dt} M_X(t) = \mu (1 - t\mu)^{-2} \\
+  \Rightarrow \mu_1
+  &= M_X^{(1)}(0) = \mu \\
+  \Rightarrow M_X^{(2)}(t)
+  &= \frac{d^2}{dt^2} M_X(t) = 2\mu^2 (1 - t\mu)^{-3} \\
+  \Rightarrow \mu_2
+  &= M_X^{(2)}(0) = 2\mu^2 
+\end{aligned}
+$$
+:::
+
+It is apparent that the $r$th moment is a function of the parameter
+$\theta$ which we write as $\mu_r(\theta)$ to make this dependence
+explicit. Note that $\theta$ may be a scalar or a $\kappa$-dimensional
+vector $\theta = (\theta_1,\ldots,\theta_\kappa)$.
+
+Now suppose
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$
+and consider the $r$th *sample* moment
+$$m_r = \frac{1}{n} \sum_{i=1}^n X_i^r,\ \text{for $r=1,2,\ldots$}.$$ In
+particular $m_1 = \bar X$ and $m_2 = \frac 1n \sum X_i^2$. The sample
+moments are functions of the sample $\mathbf{X} = \{ X_1,\ldots,X_n \}$
+and we write $m_r(\mathbf{X})$ to make this dependence explicit.
+
+::: {.callout-note icon="false"}
+## Method of moments estimator (MoM)
+::: {#def-mom-est}
+
+
+The method of moments estimates the $r$th moment by the corresponding
+sample moment, i.e., the method of moments estimator (MoM) for $\theta$,
+which we denote by $\hat{\theta}$, is given by the solution of the
+following system of equations,
+$$\mu_r(\hat{\theta}) = m_r(\mathbf{X}),\ \text{for $r=1,2,\ldots$}.$$
+Because there are $\kappa$ unknown parameters, we need $\kappa$
+equations to be able to identify $\hat{\theta}$ uniquely. These are
+selected among those equations corresponding to the lowest moments up to
+as many as needed to be able to solve for $\hat{\theta}$.
+:::
+:::
+
+::: {#exm-4-4}
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Exponential}(\mu)$,
+$\mu > 0$. Then $\mu_1 = \mu$ so $\hat{\mu} = \bar X$ is the method of
+moments estimator.
+:::
+
+::: {#exm-4-5} 
+Let $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{N}(0,\sigma^2)$,
+i.e., normal with known mean 0 and unknown variance $\sigma^2>0$. Then
+$\mu_1 = 0$ and $\mu_2 = \sigma^2$. Note that the first moment does not
+depend on the parameter so the first equation, $\mu_1 = \bar X$, is not
+helpful for estimating $\sigma^2$. Using the second equation we have
+$\hat{\sigma}^2 = m_2$.
+:::
+
+::: {#exm-4-6}
+Let $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{U}(0,\theta)$,
+i.e., uniform with known lower bound 0 and unknown upper bound
+$\theta>0$. The pdf is $f(x|\theta) = \theta^{-1}$, $x\in(0,\theta)$, so
+$\mu_1 = \int_0^\theta x \theta^{-1} {\,\mathrm{d}}x = \theta^{-1} \left[
+    \frac{x^2}{2} \right]_0^\theta = \theta/2$. Using the first moment
+equation we have $\hat{\theta}/2 = \bar X \Rightarrow \hat{\theta} =
+  2\bar X$.
+:::
+
+::: {#exm-4-7}
+Let $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Gamma}(\alpha,\beta)$,
+i.e., gamma with shape $\alpha>0$ and rate $\beta>0$ (this distribution was defined in @exm-sum-exponential). In this case there
+are two parameters to estimate, i.e., $\kappa=2$. The mgf of this
+distribution is given by $M_X(t) = (1-\frac{t}{\beta})^{-\alpha}$. Then
+$\mu_1 =
+  \alpha/\beta$ and $\mu_2 = \alpha/\beta^2 +\alpha^2/\beta^2$. This
+leads to the following system of equations
+$$\hat{\alpha}/\hat{\beta} = m_1, \qquad \hat{\alpha}/\hat{\beta}^2 +
+    \hat{\alpha}^2/\hat{\beta}^2 = m_2.$$ By substituting
+$\hat{\alpha} = \hat{\beta}m_1$ from the first equation into the second,
+we have $m_1/\hat{\beta} + m_1^2 = m_2 \Rightarrow
+\hat{\beta} = m_1/(m_2 - m_1^2)$ and
+$\hat{\alpha} = m_1^2/(m_2 - m_1^2)$.
+
+
+An obvious question to ask is are these actual estimators? In other
+words, are $\hat{\alpha}$ and $\hat{\beta}>0$? To check this we need to
+check whether $m_2 > m_1^2$ for all possible samples. But
+$0 < \sum (X_i - \bar X)^2 = \sum (X_i^2 - 2X_i\bar X + \bar X^2) = \sum
+X_i^2 - 2 \bar X \sum X_i + n\bar X^2 = \sum X_i^2 - n\bar X^2$. So
+$\sum X_i^2 > n\bar X^2 \Rightarrow \frac{1}{n} \sum X_i^2 > n\bar X^2
+\Rightarrow m_2 > m_1^2$ as required.
+:::
+
+### Maximum likelihood estimator {#sec-mleest}
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$,
+$\theta \in \Theta$. Then, the joint density/mass function of
+${\mathbf{X}}= (X_1,\ldots,X_n)$ is given by 
+$$
+  f({\mathbf{x}}|\theta) = \prod_{i=1}^n f(x_i|\theta).
+$${#eq-1}
+```{tex}
+
+```
+
+In (-@eq-1), we see
+the parameter $\theta$ as fixed and evaluate the function at a given
+${\mathbf{x}}$. If instead(-@eq-1) is viewed as a function of $\theta$ for a given sample
+${\mathbf{x}}$, then it is called a **likelihood function** and is
+denoted by $L(\theta|{\mathbf{x}})$. We have the following definition.
+
+::: {.callout-note icon="false"}
+
+##  Likelihood function
+
+::: {#def-likelihood}
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$,
+$\theta \in \Theta$. Suppose we observe data
+${\mathbf{x}}= (x_1,\ldots,x_n)$. Then, the likelihood function for
+$\theta$ is $$L(\theta|{\mathbf{x}}) = \prod_{i=1}^n f(x_i|\theta).$$
+:::
+:::
+
+
+Intuitively, the likelihood function tells us how likely the observed
+data are for that value of $\theta$. Therefore it makes sense to
+estimate $\theta$ by that value which makes the observed data appear
+more likely. Therefore we define the **maximum likelihood estimator**
+for the parameter $\theta$, the value $\hat{\theta}$ for which
+$L(\theta|{\mathbf{x}})$ is maximised, i.e.,
+$$\hat{\theta} = \mathop{\mathrm{argmax}}_{\theta \in \Theta} L(\theta|{\mathbf{x}}) .$$
+
+
+In practice, it is usually easier to maximise the logarithm of the
+likelihood function instead of the likelihood function itself. We define
+the **log-likelihood function**,
+$\ell(\theta|{\mathbf{x}}) = \log L(\theta|{\mathbf{x}})$. In this case
+the **maximum likelihood estimator** (MLE) becomes
+$$\hat{\theta} = \mathop{\mathrm{argmax}}_{\theta \in \Theta} \ell(\theta|{\mathbf{x}}) .$$
+
+Note that $\theta$ could be a vector, i.e., $\theta =
+(\theta_1,\ldots,\theta_\kappa)$. In some cases (but not always) the MLE
+can be obtained by solving a system of equations
+$$\frac{\partial}{\partial \theta_r} \ell(\theta|{\mathbf{x}}) = 0,\ r = 1,\ldots,
+  \kappa.$$
+
+
+::: {.callout-note icon="false"}
+
+It is custom when writing the log-likelihood function to omit additive
+constants which do not depend on the parameters. This makes the
+expression for the log-likelihood brief and does not affect the MLE. It
+is important however to remain consistent throughout our calculations to
+avoid errors.
+:::
+
+::: {#exm-4-8} 
+Let $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Exponential}(\mu)$,
+$\mu > 0$. Then $f(x|\mu) = (1/\mu) \exp(-x/\mu)$ so\
+$L(\mu|{\mathbf{x}}) = \prod \{ (1/\mu)
+  \exp(-x_i/\mu) \} = (1/\mu^n) \exp(-\sum x_i /
+  \mu)$ and\
+$\ell(\mu|{\mathbf{x}}) = -n\log \mu -\sum x_i / \mu$.
+
+In this case we can find the MLE by solving $\frac{d\ell}{d\mu}=0$:\
+$\frac{d\ell}{d\mu}= -n/\hat\mu + \sum x_i / \hat\mu^2 = 0 \Rightarrow -n
+  + \sum x_i/\hat{\mu} = 0 \Rightarrow \hat{\mu} = \sum x_i/n = \bar x$.
+Note that this is identical to the MoM estimator in
+@exm-4-4.
+:::
+
+::: {#exm-4-9}
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{N}(0,\sigma^2)$,
+i.e., normal with known mean 0 and unknown variance $\sigma^2>0$. Then\
+$L(\sigma^2|{\mathbf{x}}) = \prod (2\pi\sigma^2)^{-{\frac 12}}
+  \exp (-\frac{x_i^2}{2\sigma^2}) = (2\pi\sigma^2)^{-\frac{n}{2}} \exp
+  (-\frac{1}{2\sigma^2} \sum x_i^2)$, so\
+$\ell(\sigma^2|{\mathbf{x}}) = -\frac{n}{2} \log(2\pi\sigma^2)
+  -\frac{1}{2\sigma^2} \sum x_i^2$.
+
+Again we solve for $\frac{d\ell}{d\sigma^2}=0$:\
+$\frac{d\ell}{d\sigma^2}= -\frac{n}{2} \frac{1}{\hat{\sigma}^2} +
+  \frac{1}{2(\hat{\sigma}^2)^2} \sum x_i^2 = 0 \Rightarrow -n+
+  \frac{1}{\hat{\sigma}^2} \sum x_i^2 = 0 \Rightarrow \hat{\sigma}^2 = \sum
+  x_i^2/n$. Note that this is identical to the MoM estimator in
+@exm-4-5.
+:::
+
+::: {#exm-4-10}
+Let $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{U}(0,\theta)$,
+i.e., uniform with known lower bound 0 and unknown upper bound
+$\theta>0$. The pdf is $f(x|\theta) = \theta^{-1}$ for $x\in(0,\theta)$,
+i.e., 
+$$\begin{aligned}
+    f(x|\theta) &= \begin{cases} \theta^{-1} & 0<x<\theta, \\ 0 &
+    \text{otherwise}. \end{cases}
+\end{aligned}
+$$ 
+Then, 
+$$\begin{aligned}
+    L(\theta|{\mathbf{x}}) &= \displaystyle\prod_{i=1}^n f(x_i|\theta)\\
+    &= \begin{cases} \theta^{-n} & 0<x_1,\ldots,x_n <\theta \\ 0 &
+      \text{otherwise} \end{cases} \\ &= \begin{cases} \theta^{-n} & 0<x_{(n)}
+      <\theta \\ 0 & \text{otherwise} \end{cases} \\
+    &=    \begin{cases}
+      0 & \text{if $\theta < x_{(n)}$}, \\
+      \theta^{-n}  & \text{if $\theta \geq x_{(n)}$} ,
+    \end{cases}  
+\end{aligned}
+$$
+
+where $x_{(n)} = \max\{x_1,\ldots,x_n\}$. In other
+words, the likelihood is 0 if at least one of the $x_i$'s falls outside
+the interval $(0,\theta)$. If all of the $x_i$'s fall within
+$(0,\theta)$, then the likelihood is $\theta^{-n}$. The statement "all
+of the $x_i$'s fall within $(0,\theta)$" is equivalent to "the largest
+of the $x_i$'s falls within $(0,\theta)$". Because $\theta^{-n}$ is a
+decreasing function in $\theta$, the likelihood is then maximised when
+$\hat{\theta} = x_{(n)}$. This can be verified by the plot in @fig-unifmle
+
+
+![Demonstration of the MLE for @exm-4-10](images/unifmle.png){#fig-unifmle}
+
+
+:::
+
+::: {#exm-4-11}
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Gamma}(\alpha,\beta)$,
+i.e., gamma with shape $\alpha>0$ and rate $\beta>0$. In this case there
+are two parameters to estimate, i.e., $\kappa=2$. The pdf is given by
+$$f(x|\alpha,\beta) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1}
+    e^{-\beta x}.$$ Then,
+$$L(\alpha,\beta|{\mathbf{x}}) = \frac{\beta^{n\alpha}}{\Gamma(\alpha)^n} \left(\prod
+    x_i \right)^{\alpha-1} e^{-\beta \sum x_i},$$ so
+$$\ell(\alpha,\beta|{\mathbf{x}}) = n\alpha \log \beta -n \log\Gamma(\alpha) +
+    (\alpha-1) \log\left(\prod x_i \right) -\beta \sum x_i.$$ In this
+case we have a system of 2 equations: $\frac{d\ell}{d\alpha}=0$ and
+$\frac{d\ell}{d\beta}=0$:\
+$\frac{d\ell}{d\beta} = \frac{n\alpha}{\beta} - \sum x_i = 0$, and\
+$\frac{d\ell}{d\alpha} = n\log\beta - n \psi(\alpha) + \log\left(\prod x_i
+\right) = 0$, where $\psi(\alpha)$ denotes the *digamma function*,
+$\psi(\alpha) = \frac{d}{d\alpha} \log \Gamma(\alpha)$.\
+From the first equation we have $\beta = \alpha/ \bar x$ so if $\alpha$
+were known we could estimate $\beta$ in this way. If $\alpha$ were
+unknown, we could substitute the expression for $\beta$ into the second
+equation to get an equation in terms of $\alpha$ only. This becomes\
+$\log\alpha - \log \bar x - \psi(\alpha) + \sum \log x_i/n
+ = 0$ which does not have a closed form solution. In this case the MLE
+for $\alpha$ can be obtained numerically. Once the solution is computed,
+say $\hat{\alpha}$, then it is plugged in the expression for $\beta$ to
+get $\hat{\beta} = \hat{\alpha}/\bar x$.
+:::
+
+
+## Connection with decision theory{#sec-conn-with-decis}
+
+Parameter estimation can be put into a decision-theory framework, where the
+decision problem becomes estimating the unknown parameter. In this case,
+the action space $\mathcal{A} = \Theta$, i.e., the available actions are
+the possible values of the parameter and the action we take is the estimate
+of the parameter. Estimators, $T(\boldsymbol{x})$, map the data to an estimate, so an
+estimator is a type of decision rule.
+
+Consider the squared-error loss, $L(\theta,a) = (\theta - a)^2$. Under this
+loss, the further $a$ is from $\theta$, the higher the loss. The risk
+associated with the estimator $T$ under the squared-error loss is
+$R(\theta,T) = E[L(\theta,T(\boldsymbol{x}))] = E[(\theta - T(\boldsymbol{x}))^2] =
+\mathrm{MSE}_\theta(T)$. This result provides an alternative interpretation
+of the mean squared error, as the risk of an estimator for $\theta$ under
+squared-error loss.
+
+
+
+## Exercises {#sec-exercises}
+P
+1.  Consider the method of moments estimator of
+    @exm-4-6.
+    Identify potential drawbacks of this estimator.
+
+2.  Verify the formula from the mgf of the gamma distribution in
+    @exm-4-7
+    and use it to derive its mean and variance.
+
+3.  Explain why the MLE of
+    @exm-4-10
+    is biased but do not derive its bias.
+
+4.  Let
+    $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Bernoulli}(\theta)$,
+    $\theta \in (0,1)$. Derive the MLE for $\theta$.
+

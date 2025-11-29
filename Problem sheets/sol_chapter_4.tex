@@ -1,0 +1,262 @@
+\documentclass[oneside,11pt]{article}
+
+%\usepackage[british]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+% \usepackage{bm}
+%\usepackage{dsfont}
+%\usepackage{titling}
+%\usepackage{enumitem}
+%\usepackage{titletoc}
+\usepackage{lmodern}
+\usepackage{textcomp} % Required by listings
+%\usepackage{listings}
+%\usepackage{thmtools}
+%\usepackage{memhfixc}
+\usepackage{hyperref}
+%\usepackage[all]{xy}
+
+
+\usepackage[T1]{fontenc}
+%\usepackage[scaled=0.8]{DejaVuSansMono}
+% \usepackage[charter]{mathdesign}
+% \def\rmdefault{bch} % not scaled
+% \def\ttdefault{blg}
+% \usepackage[scaled=0.9]{inconsolata}
+% \usepackage[scaled=0.8]{luximono}
+
+%\nonzeroparskip
+\raggedbottom
+
+%% Shaded environment
+\usepackage{framed}
+\usepackage{xcolor}
+\definecolor{shadecolor}{gray}{0.9}
+\setlength{\FrameSep}{3pt}
+\setlength{\OuterFrameSep}{3pt}
+
+
+%%% Floats
+%\setfloatlocations{figure}{tbhp}
+%\setfloatlocations{table}{tbhp}
+%\captionnamefont{\bfseries}
+% \captiontitlefont{\itshape}
+% \captionstyle[\centering]{\raggedright}
+% \captionwidth{\linewidth} \changecaptionwidth
+\renewcommand{\topfraction}{0.9}        % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}     % max fraction of floats at bottom
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+\setcounter{dbltopnumber}{2}    % for 2-column pages
+\renewcommand{\dbltopfraction}{0.9}     % fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}      % allow minimal text w. figs
+\renewcommand{\floatpagefraction}{0.7}  % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.7}       % require fuller float pages
+
+
+%%% Commands
+\DeclareMathOperator*{\E}{{\mathsf E}} % expectation
+\DeclareMathOperator*{\Var}{{\mathsf Var}} % variance
+\DeclareMathOperator*{\Cov}{{\mathsf Cov}} % covariance
+\DeclareMathOperator*{\argmin}{argmin} % argmin
+\DeclareMathOperator*{\argmax}{argmax} % argmax
+\newcommand{\iid}{{{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}}
+\renewcommand{\Pr}{{\mathbb{P}}}
+\newcommand{\half}{{\frac 12}}
+\newcommand{\ud}{{\,\mathrm{d}}}
+\newcommand{\xbf}{{\mathbf{x}}}
+\newcommand{\Xbf}{{\mathbf{X}}}
+
+%%% Theorems
+%\renewenvironment{proof}[1][Proof]{\noindent{\bfseries #1.}\hspace*{1em}}{\qed\\}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.\newline}]{clearprint}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.}]{clearexc}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.},qed=$\blacktriangleright$]{clearexm}
+%\declaretheoremstyle[spaceabove=10pt,headpunct={.\newline},
+%headfont={\normalfont\itshape}]{remarkmy}
+%%
+%\declaretheorem[style=clearprint,within=chapter,name=Definition]{definition}
+%\declaretheorem[style=clearexm,within=chapter,name=Example]{example}
+%\declaretheorem[style=clearexc,within=chapter,name=Exercise]{exercise}
+%\declaretheorem[style=clearprint,within=chapter,name=Theorem]{theorem}
+%\declaretheorem[style=clearprint,name=Lemma,sibling=theorem]{lemma}
+%\declaretheorem[style=clearprint,name=Proposition,sibling=theorem]{proposition}
+%\declaretheorem[style=clearexc,numbered=no,name=Corollary]{corollary}
+%\declaretheorem[style=clearexc,numbered=no,name=Remark]{remark}
+
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength{\emergencystretch}{.5ex}
+
+% \hypersetup{
+%   colorlinks,%
+%   citecolor=black,%
+%   filecolor=black,%
+%   linkcolor=black,%
+%   urlcolor=black,
+%   linktoc=none
+% }
+
+% Page style
+\pagestyle{plain}
+
+%%% Page size
+% \setstocksize{297mm}{210mm} % A4 paper
+% \settypeblocksize{258mm}{160mm}{*} % A4 paper
+%\setstocksize{10.3in}{7.3in}
+% \settypeblocksize{217mm}{140mm}{*}
+%\settypeblocksize{230mm}{160mm}{*}
+%\settrimmedsize{\stockheight}{\stockwidth}{*}
+%\setlength{\trimtop}{0pt}
+%\setlength{\trimedge}{\stockwidth}
+%\addtolength{\trimedge}{-\paperwidth}
+%\setulmargins{*}{*}{1.5}
+%\setlrmargins{*}{*}{1}
+\addtolength{\footskip}{.25cm}
+%\checkandfixthelayout
+
+
+
+
+
+\setcounter{tocdepth}{2}
+
+\allowdisplaybreaks
+
+\usepackage{xr}
+\externaldocument[lec1:]{../1_sampling/lec1}
+\externaldocument[lec2:]{../2_estimation/lec2}
+\externaldocument[lec3:]{../3_hypothesis/lec3}
+
+
+
+
+\begin{document}
+
+Chapter 4 Solutions
+
+\begin{enumerate}
+\item Consider the method of moments estimator of Example 4.6
+  \begin{enumerate}
+  \item The following data were observed: $x_1 = 1$, $x_2 = 1$, $x_3 = 7$
+    from the $\mathrm{U}(0,\theta)$ distribution.
+    Compute the method of moments estimator for $\theta$.
+
+  \begin{shaded}
+    Given the data $x_1 = 1$, $x_2 = 1$, $x_3 = 7$ we find $\bar x = 3$ and so
+    $\hat{\theta} = 2 \bar x = 6$.
+  \end{shaded}
+    
+  \item Identify potential drawbacks of this estimator.
+
+  \begin{shaded}
+    This estimator can sometimes be nonsense. For example, using the data
+    from the previous part, $\hat{\theta} = 6$. However we know that
+    $\theta$ must be bigger than all $x_i$'s so $\theta > 7$ which
+    contradicts $\hat{\theta} < 7$.
+  \end{shaded}
+\end{enumerate}
+
+\item Verify the formula from the mgf of the gamma distribution in
+  Example 4.7 and use it to derive its mean and variance.
+
+  \begin{shaded}
+    For the $\mathrm{Gamma}(\alpha,\beta)$ distribution,
+    \begin{equation*}
+      f(x|\alpha,\beta) = \dfrac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1}
+      e^{-\beta x}.
+    \end{equation*}
+    Then
+    \begin{align*}
+      M_X(t)
+      &= \int_0^\infty e^{tx} \dfrac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1}
+        e^{-\beta x} \ud x \\
+      &= \int_0^\infty \dfrac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1}
+        e^{-(\beta-t) x} \ud x \\
+      &= \dfrac{\beta^\alpha}{(\beta-t)^\alpha} \int_0^\infty \dfrac{(\beta-t)^\alpha}{\Gamma(\alpha)} x^{\alpha-1}
+        e^{-(\beta-t) x} \ud x \\
+      &= \dfrac{\beta^\alpha}{(\beta-t)^\alpha} ,\ \text{for $t < \beta$}.\\
+      &= (1-t/\beta)^{-\alpha} ,\ \text{for $t < \beta$}.\\
+      \Rightarrow M_X^{(1)}(t)
+      &= \frac{d}{dt} M_X(t) = \dfrac{\alpha}{\beta} (1-t/\beta)^{-\alpha-1}\\
+      \Rightarrow \mu_1
+      &= M_X^{(1)}(0) = \dfrac{\alpha}{\beta} \\
+      \Rightarrow M_X^{(2)}(t)
+      &= \frac{d^2}{dt^2} M_X(t) = \dfrac{\alpha(\alpha+1)}{\beta^2} (1-t/\beta)^{-\alpha-2} \\
+      \Rightarrow \mu_2
+      &= M_X^{(2)}(0) = \dfrac{\alpha(\alpha+1)}{\beta^2} \\
+      \Rightarrow \Var(X)
+      &= \mu_2 - \mu_1^2 = \dfrac{\alpha(\alpha+1)}{\beta^2} -
+        \dfrac{\alpha^2}{\beta^2} = \dfrac{\alpha}{\beta^2}.
+    \end{align*}
+  \end{shaded}
+
+
+\item Explain why the MLE of Example 4.10 is biased but do not
+  derive its bias.  \textit{Hint.} Think why $\max\{X_i\} < \theta$, and what
+  this means about $\E [ \max\{X_i\} ]$.
+
+  \begin{shaded}
+    Because each $X_i < \theta$, then $X_{(n)} = \max\{X_1,\ldots,X_n\} <
+    \theta$, so $\E X_{(n)} < \theta$. Therefore
+    $\mathrm{Bias}_\theta(X_{(n)}) = \E X_{(n)} - \theta < 0$. So
+    $\mathrm{Bias}_\theta(X_{(n)}) \neq 0$ which means that $X_{(n)}$ is
+    biased for $\theta$.
+  \end{shaded}
+
+\item Let $X_1,\ldots,X_n \iid \mathrm{Bernoulli}(\theta)$,
+  $\theta \in (0,1)$.
+  \begin{enumerate}
+  \item Derive the MLE for $\theta$.
+
+  \begin{shaded}
+    The pmf for $X$ is
+    \begin{equation*}
+      f(x|\theta) = \theta^x (1-\theta)^{1-x},\ x \in \{0,1\},\ \theta \in
+      [0,1].
+    \end{equation*}
+    Taking logarithms,
+    \begin{align*}
+      \log f(x|\theta)
+      &= x \log \theta + (1-x) \log (1-\theta) \\
+      \Rightarrow \ell(\theta|\xbf)
+      &= \sum_{i=1}^n \log f(x_i|\theta) \\
+      &= \sum_{i=1}^n \left\{ x_i \log \theta + (1-x_i) \log (1-\theta)
+        \right\} \\
+      &= \log \theta \sum_{i=1}^n x_i  + \log (1-\theta) (n - \sum_{i=1}^n
+        x_i) \\
+      \Rightarrow \ell'(\theta|\xbf)
+      &= \frac 1 \theta \sum_{i=1}^n x_i  - \frac{1}{1-\theta} (n - \sum_{i=1}^n
+        x_i) \\
+      0
+      &= \frac{1}{ \hat \theta} \sum_{i=1}^n x_i  - \frac{1}{1-\hat\theta} (n
+        - \sum_{i=1}^n  x_i) \\
+      0
+      &= \frac{n}{ \hat \theta} \bar x  - \frac{n}{1-\hat\theta} (1
+        - \bar x) \\
+      0
+      &= \frac{\bar x}{ \hat \theta}  - \frac{1-\bar x}{1-\hat\theta} \\
+      \hat{\theta} &= \bar x
+    \end{align*}
+    Evaluating the second derivative of $ \ell(\theta|\xbf)$ at $\theta=\bar{x}$ is negative which confirms this is a maximum.
+    
+  \end{shaded}
+\end{enumerate}
+
+
+\end{enumerate}
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex/m
+%%% TeX-PDF-mode: t
+%%% TeX-source-correlate-mode: t
+%%% End:

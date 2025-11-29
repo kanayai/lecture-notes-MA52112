@@ -9,7 +9,12 @@ book:
   search: true
   chapters:
     - index.qmd
-    - lec01.qmd
+    - ch1.qmd
+    - ch2.qmd
+    - ch3.qmd
+    - ch4.qmd
+    - ch5.qmd
+
   page-navigation: true
   downloads: pdf
   

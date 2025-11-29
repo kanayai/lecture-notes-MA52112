@@ -1,0 +1,92 @@
+---
+title: "MA52112: Statistics for Data Science"
+subtitle: "Exercise sheet 2 (Probability)"
+format: 
+  html:
+    embed-resources: true
+---
+
+
+1. Let the joint PDF of a random vector $(X,Y)$ be given by:
+$$
+f(x,y) = 
+\begin{cases} 
+      1 & 0 < x< 1 \,,\quad x <  y < x+1 \\
+      0 & \text{otherwise}
+\end{cases}
+$$
+
+    a) Sketch the support of the joint distribution.
+
+    b) Verify that $f(x,y)$ is a valid joint PDF.
+
+    c) Find the marginal PDFs of $X$ and $Y$.
+    
+    d) Are $X$ and $Y$ independent? Justify your answer.
+
+    e) Find the conditional distribution of $Y$ given $X=x$.
+
+    f) Calculate the correlation coefficient between $X$ and $Y$.
+
+
+
+2. A random point $(X,Y)$ is distributed uniformly on the square with vertices at $(1,1)$, $(1,-1)$, $(-1,1)$ and $(-1,-1)$. That is, the joint PDF of $(X,Y)$ is:
+$$
+f(x,y) =
+\begin{cases} 
+      \frac{1}{4} & -1 < x < 1 \,,\quad -1 < y < 1 \\
+      0 & \text{otherwise}
+\end{cases}
+$$
+Determine the probabilities of the following events:
+
+    a) $P(X^2 + Y^2 < 1)$
+    b) $P(X-Y>0)$
+    c) $P(|X + Y| < 2)$
+
+
+
+3. A pdf of a random vector $(X,Y)$ is given by:
+$$
+f(x,y) =
+\begin{cases} 
+      k(x+2y) & 0<x<2\,,\,0<y<1\\
+      0 & \text{otherwise}
+\end{cases}
+$$
+
+    a) Find the value of $k$ that makes $f(x,y)$ a valid PDF.
+    b) Find the marginal PDFs of $X$ and $Y$.
+    c) Find the conditional distribution of $Y$ given $X=x$.
+
+
+
+4.  A woman leaves for work between 8 AM and 8:30 AM and takes between 40 and 50
+minutes to get there. Let the random variable X denote her time of departure, and
+the random variable Y the travel time. Assuming that these variables are independentand uniformly distributed, find the probability that the woman arrives at work before 9 AM.
+
+
+
+
+5. Consider a continuous random variable $X$ that follows a Normal distribution with mean $\mu=4$ and variance $\sigma^2=4$. That is, $X \sim N(10, 4)$.
+    a) What is the probability that $X$ takes negative values?
+
+    b) What is the probability that $X$ takes values between 5 and 10?
+
+6. Show that the Moment Generating Function (MGF) of a Geometric distribution with parameter $p$ is given by:
+$$
+M_X(t) = \frac{pe^t}{1-(1-p)e^t} \quad \text{for } t < -\ln(1-p)
+$$
+
+
+7. Show that the MFG of the Normal distribution with parameters $\mu$ and $\sigma^2$ is given by:
+$$
+M_X(t) = \exp\left(\mu t + \frac{1}{2
+}\sigma^2 t^2\right)
+$$
+(Hint: Complete the square in the exponent of the integral defining the MGF.)
+
+
+
+
+

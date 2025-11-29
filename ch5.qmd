@@ -1,0 +1,848 @@
+# Confidence Intervals and Hypothesis Testing
+
+::: {#exm-5-1}
+"Paul" was an octopus who achieved worldwide fame after consistently
+making correct predictions of the outcomes of the 2008 UEFA Euro and the
+2010 FIFA World Cup football matches. Before a football match, Paul was
+offered food in two different boxes, where one box was decorated with
+the flag of one of the playing teams and the second box with the flag of
+the other team. Whichever box Paul chose to eat from, was considered his
+prediction for the match. Paul correctly predicted the winner in 4 out
+of 6 games of the 2008 Euro and in 8 out of 8 games of the World Cup,
+including the semifinal and final games. Overall Paul correctly
+predicted the winner in 12 out of 14 matches!
+
+If Paul was choosing the winner without any prejudice, i.e., each box
+was chosen with probability $p=0.5$, then the probability of 12 or more
+correct predictions in 14 matches is less than 0.7%, which is calculated
+as ${\mathbb{P}}(X \geq 12)$ where $X \sim \mathrm{Bin}(14,0.5)$. Such a
+rare phenomenon can lead one to think that perhaps Paul was not choosing
+randomly after all!
+:::
+
+## Confidence intervals {#sec-confint}
+
+Consider a random sample
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$.
+An estimator $T=T(X_1,\ldots,X_n)$ of the parameter $\theta$, whatever
+its properties, will provide only a point estimate, $\hat{\theta}$ which
+is likely to differ from the true value of $\theta$. The point estimator
+does not provide any information about the deviation of our estimator
+from the true parameter value. Ideally we would like to provide a range
+of values which we believe to contain the true parameter value with some
+known probability. This range of values is called a **confidence
+interval** and the probability that the interval contains the parameter
+is called the **confidence level**.
+
+::: {.callout-note icon="false"}
+
+## Confidence interval
+
+:::{#def-confint}
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}f(x|\theta)$,
+$\theta \in \Theta$. The random interval $[L,U]$ with bounds the
+statistics $L=L(X_1,\ldots,X_n)$ and $U=U(X_1,\ldots,X_n)$ such that
+$L \leq U$ and $L,U \in \Theta$ is called a **confidence interval** for
+the parameter $\theta$. If 
+$$
+ {\mathbb{P}}(L \leq \theta \leq U) = 1-\alpha,
+$$ 
+for all $\theta \in \Theta$, the number $1-\alpha$,
+$\alpha \in (0,1)$ is called the **confidence level** of the interval.
+:::
+
+::: 
+
+Typical choices for the confidence level are 90%, 95%, or 99%, which
+correspond to $\alpha$ being 10%, 5%, and 1% respectively.
+
+::: {.callout-note}
+Although in @def-confint we define the confidence interval as a closed
+interval $[L,U]$, it will sometimes be more natural to quote the open
+interval $(L,U)$ when the random variables $L$ and $U$ are continuous
+and $L<U$.
+:::
+
+A useful quantity for deriving confidence intervals is defined next.
+
+::: {.callout-note icon="false"}
+
+# Pivot quantity
+
+:::{#def-pivot}
+
+
+Let ${\mathbf{X}}= \{X_1,\ldots,X_n\}$ be a random sample for a
+population depending on an unknown parameter $\theta$, and
+$T = T(X_1,\ldots,X_n)$ is some function of the sample. The random
+variable $Y = g(T,\theta)$, which is a function of $T$ and $\theta$, is
+called a **pivot quantity** if its distribution does not depend on
+$\theta$.
+:::
+
+:::
+
+
+A general procedure for constructing a confidence interval for a given
+confidence level $1-\alpha$, which is applicable in many problems can be
+summarised in the following steps.
+
+1.  Derive a point estimator $T=T(X_1,\ldots,X_n)$ of the parameter
+    $\theta$ and come up with a pivot quantity 
+    
+    $$
+          Y = g(T,\theta)
+    $$ of $T$ and $\theta$ whose distribution does not
+    depend of $\theta$.
+
+2.  Using the distribution of $Y$, derive two quantiles, $c_1$ and $c_2$
+    with $c_1 \leq c_2$ such that 
+    $$
+          {\mathbb{P}}(c_1 \leq Y \leq c_2) = 1-\alpha ,    
+    $$ 
+    i.e., the probability that $Y$ falls within $c_1$
+    and $c_2$ is $1-\alpha$, or equivalently, the probability that $Y$
+    falls outside $c_1$ and $c_2$ is $\alpha$, i.e., 
+    $$
+          {\mathbb{P}}(Y < c_1) + {\mathbb{P}}(Y > c_2) = \alpha.
+    $$ 
+Note that the choice of $c_1$ and $c_2$ is not
+    unique. We usually choose them so that 
+    $$
+          {\mathbb{P}}(Y<c_1) = {\mathbb{P}}(Y>c_2) = \alpha/2.   
+    $$
+
+3.  Rearrange the inequality $c_1 \leq g(T,\theta) \leq c_2$ so that it
+    has the form $L \leq \theta \leq U$, where $L=L(X_1,\ldots,X_n)$ and
+    $U=U(X_1,\ldots,X_n)$ do not depend on $\theta$ but do depend on
+    $c_1$ and $c_2$, and $\theta$ is only in the middle. Then,
+    $$
+          {\mathbb{P}}(L \leq \theta \leq U) = {\mathbb{P}}(c_1 \leq Y \leq c_2) = 1-\alpha,        
+    $$ so $[L,U]$ is a confidence interval for $\theta$
+    with significance level $1-\alpha$.
+
+
+::: {#exm-5-2}
+
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{Exponential}(\mu)$,
+$\mu>0$. As shown in
+@exm-4-8, the MLE for $\mu$ is $\bar X$. To get a
+confidence interval, note that $\bar X = \sum X_i/n$ and the
+distribution of $W = n\bar X$ is $\mathrm{Gamma}(n,1/\mu)$, i.e., with
+shape $n$ and scale $\mu$, so
+$Y = n\bar X/\mu \sim \mathrm{Gamma}(n,1)$. Here the parametrisation of the Gamma is the same as in @exm-4-7, that is Gamma($\alpha,\beta$) where $\alpha$ is the shape parameter and $\beta$ is the rate parameter. 
+
+For a given significance level $1-\alpha$, let $c_1$ and $c_2$ be the
+$\alpha/2$ and $1-\alpha/2$ quantiles of $\mathrm{Gamma}(n,1)$
+respectively which can be obtained in Python using\
+`scipy.stats.gamma.ppf([alpha/2,1-alpha/2],a=n,scale=1)`.
+
+
+![Illustration of the choice for $c_1$ and $c_2$ for
+@exm-5-2](images/gamma_quant.png){#fig-gamma_quant}
+
+Then,
+$c_1 \leq \dfrac {n\bar X} \mu \leq c_2 \Rightarrow \dfrac{1}{c_2} \leq
+  \dfrac \mu {n\bar X} \leq 
+  \dfrac{1}{c_1} \Rightarrow \dfrac{n\bar X}{c_2} \leq \mu \leq
+  \dfrac{n\bar X}{c_1} \Rightarrow \left[ \dfrac{n\bar X}{c_2} ,\
+    \dfrac{n\bar X}{c_1}\right]$ is the confidence interval for $\mu$.
+
+Suppose that we observe the following sample
+
+$$
+0.02, 0.11, 0.11, 0.26, 0.28, 0.44, 0.81, 0.93.
+$$
+
+Then, $n=8$, and $\bar x = 0.37$. For a 95% confidence interval, using
+Python, we find:
+
+
+```{python}   
+#| echo: true 
+#| code-fold: false
+import scipy.stats
+scipy.stats.gamma.ppf([0.025,0.975],a=8,scale=1)
+```
+
+
+so $c_1 = 3.45$ and $c_2 = 14.42$. We then calculate 
+$$\begin{aligned}
+    L &= \frac{n\bar x}{c_2} = \frac{8 (0.37)}{14.42} = 0.21 \\
+    U &= \frac{n\bar x}{c_1} = \frac{8 (0.37)}{3.45} = 0.86
+\end{aligned}
+$$ so the 95% confidence interval is $[0.21,0.86]$.
+:::
+
+::: {#exm-5-3} 
+Let
+$X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{N}(\mu,1)$,
+i.e., the normal distribution with unknown mean $\mu$ and known variance
+$\sigma^2=1$. We wish to derive a confidence interval for $\mu$.
+
+An estimator for $\mu$ is $\bar X$. The distribution of $\bar X$ is
+$\bar X \sim \mathrm{N}(\mu, \sigma^2/n)$ so 
+$$
+Y = \frac{\bar X - \mu}{\sigma/\sqrt{n}} \sim \mathrm{N}(0,1),  
+$$ 
+which is a pivot quantity. Let $z_p$ denote the
+argument in the CDF of the $\mathrm{N}(0,1)$ distribution, $\Phi(z)$
+such that $\Phi(z_p) = p$ (see
+@fig-zp). This
+can by obtained using `scipy.stats.norm.ppf` in Python, or using the
+standard normal distribution table. Note that, because of the symmetry
+of the standard normal distribution around 0, $z_p = -z_{1-p}$.
+
+
+![Illustration of the standard normal quantile $z_p$ corresponding to
+left-tail probability $p$. The plotted curve corresponds to the N(0,1) pdf and
+for given p, $z_p$ satisfies $p= \Phi(z_p)$ where $\Phi(z)$ is the CDF of N(0,1).](images/zp.png){#fig-zp}
+
+If we let $c_1 = z_{\alpha/2} = -z_{1-\alpha/2}$,
+$c_2 = z_{1-\alpha/2}$, then, with probability $1-\alpha$,
+$$
+\begin{aligned}
+    &-z_{1-\alpha/2} \leq \frac{\bar X - \mu }{\sigma/\sqrt{n}} \leq
+    z_{1-\alpha/2} \\
+    \Rightarrow{}& -\bar X - z_{1-\alpha/2} \times \sigma/\sqrt{n}
+    \leq -\mu \leq -\bar X + z_{1-\alpha/2} \times
+    \sigma/\sqrt{n}\\
+    \rule{0in}{3ex}\Rightarrow{}& \bar X - z_{1-\alpha/2} \times \sigma/\sqrt{n}
+    \leq \mu \leq \bar X + z_{1-\alpha/2} \times
+    \sigma/\sqrt{n}.
+\end{aligned}
+$$ 
+So, 
+$$\begin{aligned}
+    \left[ \bar X - z_{1-\alpha/2} \times \frac{\sigma}{\sqrt{n}},\
+      \bar X + z_{1-\alpha/2} \times \frac{\sigma}{\sqrt{n}} \right]  
+\end{aligned}
+$${#eq-confint-normal-known} 
+
+is a level $1-\alpha$ confidence interval for $\mu$ when $\sigma$ is known. 
+
+Suppose that we observe the sample
+$$
+-1.90,-0.89,-0.87,-0.65,-0.32,-0.25, 0.90, 1.00, 1.18
+$$
+
+
+Then, $n=9$ and $\bar x = -0.2$ and recall we are assuming $\sigma=1$. For a 95% confidence interval, we find,
+using the standard normal distribution table (z table) that $z_{0.975} =
+  1.96$ (see @fig-ztable). Then, 
+$$\begin{aligned}
+    L &= \bar x - z_{0.975} \frac{\sigma}{\sqrt{n}} = -0.2 -(1.96)
+    \frac{1}{3} = -0.85 \\
+    U &= \bar x + z_{0.975} \frac{\sigma}{\sqrt{n}} = -0.2 +(1.96)
+    \frac{1}{3} = 0.45.  
+\end{aligned}$$ 
+So, a 95% confidence interval for $\mu$ is
+$[-0.85,0.45]$.
+
+
+![Calculation of standard normal distribution quantiles. The
+circled number shows that $P(X<1.96)=0.975$ when $Z\sim N(0,1)$ i.e., $\Phi(1.96)=0.975$ so $z_p=1.96$ ](images/ztable.png){#fig-ztable}
+
+:::
+
+::: {.callout-note}
+The lower and upper bounds of the confidence interval depend on the data
+as well as the desired significance level. The latter dependence is
+through the numbers $c_1$ and $c_2$. To make this dependence explicit,
+we can write $L({\mathbf{X}},\alpha)$ and $U({\mathbf{X}},\alpha)$ for
+the lower and upper bounds respectively. The width of the confidence
+interval is affected by the variation in the population, the sample
+size, and the desired confidence level.
+
+1.  The population variance, $\sigma^2$, is a measure of how different
+    the members of the population are. If the population variance is
+    large, then the variation within our sample will also be large, so
+    the confidence interval will be wider.
+
+2.  If we take a large sample, i.e. if $n$ is large, then the sample is
+    more representative of the population, so we reduce the variability
+    in the sample. Therefore, the confidence interval will be narrower.
+
+3.  If we decrease $\alpha$, i.e., if we desire a higher confidence
+    level for our confidence interval, then the confidence interval
+    should become wider.
+:::
+
+
+Suppose now that $\sigma^2$ is  unknown. Recall that 
+$$
+S^2=\frac{1}{n-1} \sum_{i=1}^n (X_i - \bar X)^2
+$$
+can be used as its estimator and 
+$$\frac{(n-1) S^2}{\sigma^2} \sim \mathcal{X}^2_{n-1}\,.
+$$
+(see @exm-1-4). We consider the following statistic
+$$Y = \frac{\bar X-\mu}{S/\sqrt{n}},$$ i.e., the same as before but with
+$\sigma$ replaced by $S = \sqrt{S^2}$. To derive the distribution of
+$Y$, we use the following definition.
+
+::: {.callout-note icon="false"}
+
+##  Student's t distribution
+
+::: {#def-student-t}
+Let $Z \sim \textrm{N}(0,1)$ and let $W \sim
+    \mathcal{X}^2_\nu$ and suppose that $Z$ and $W$ are independent.
+Then the distribution of the random variable 
+$$
+Y =\frac{Z}{\sqrt{W/\nu}}
+$$ 
+is called the Student's $\textrm{t}$
+distribution with $\nu$ degrees of freedom, written as $\textrm{t}_\nu$.
+:::
+:::
+
+
+::: {.callout-note}
+The $\textrm{t}_\nu$ distribution has similar shape as the
+$\textrm{N}(0,1)$ distribution. In particular it is symmetric around 0
+and converges to $\textrm{N}(0,1)$ as $\nu \rightarrow \infty$. This is
+demonstrated in @fig-dt_bw.
+:::
+
+In Python this distribution is given by `scipy.stats.t`.
+
+
+![Density curves of the standard normal and $t_{\nu}$ distributions with
+degrees of freedom $\nu = 2,5$.](images/dt_bw.png){#fig-dt_bw}
+
+
+
+We can apply this definition in our problem. We know that
+$Z = \frac{\bar X-\mu}{\sigma/\sqrt{n}} \sim \mathrm{N}(0,1)$ and that
+$W = (n-1) S^2/\sigma^2 \sim \mathcal{X}^2_{n-1}$ and that they are
+independent, so 
+
+$$
+\begin{aligned}
+    Y
+    &= \frac{Z}{\sqrt{W/(n-1)}} \\
+    &= \frac{\frac{\bar X - \mu}{\sigma/\sqrt{n}}}{\sqrt{S^2/\sigma^2}}\,, \quad \mbox{(note $\sigma$ cancels out)} \\
+    &= \frac{\bar X - \mu}{S/\sqrt{n}} \sim \mathrm{t}_{n-1}.
+\end{aligned}
+$$ 
+
+Proceeding similarly with the known-variance case, we
+let 
+$$c_1 =t_{n-1;\alpha/2} = -t_{n-1;1-\alpha/2}
+$$
+and
+$$c_2 = t_{n-1;1-\alpha/2}\,$$ 
+i.e., the $\alpha/2$ and $1-\alpha/2$
+quantiles of $\textrm{t}_{n-1}$, then
+$$
+\bar X - t_{n-1;1-\alpha/2} \times \frac{S}{\sqrt{n}}\leq \mu \leq \bar X + t_{n-1;1-\alpha/2} \times \frac{S}{\sqrt{n}}
+$$ 
+and therefore
+$$
+\left[ \bar X - t_{n-1;1-\alpha/2} \times \frac{S}{\sqrt{n}},\ \bar X + t_{n-1;1-\alpha/2} \times \frac{S}{\sqrt{n}} \right]
+$$
+is a level $1-\alpha$ confidence interval for $\mu$ when $\sigma$ is unknown. Compare with the confidence for $\mu$ when $\sigma$ is known in @eq-confint-normal-known.
+
+
+## Hypothesis testing
+
+In this section we discuss how, by using data, we can prove statements
+about the parameters of interest.
+
+Consider for instance the following scenario. Train companies regularly
+collect passenger data on customer satisfaction. One may ask whether the
+frequent ticket price increases cause any drop in average customer
+satisfaction. The population of interest is the train passengers and the
+parameter of interest is the average customer satisfaction. We are
+interested in assessing whether the ticket price increase has an impact
+on the average customer satisfaction.
+
+::: {.callout-note icon="false"}
+## Statistical hypothesis 
+:::{#def-hypothesis}
+
+A **statistical hypothesis** is a statement about the parameter value of
+the population under study.
+:::
+:::
+
+::: {.callout-note icon="false"}
+## Test of significance
+
+:::{#def-test-significance}
+
+The **test of significance** is a rule, based on data, for deciding
+which hypothesis is true between two competing hypotheses: 
+
+* the *null hypothesis* (denoted by H$_0$), and 
+* the *alternative hypothesis* (denoted by H$_1$).
+
+The **null hypothesis** corresponds to the common belief about the
+parameter in question. It is interpreted as *no change* in the value of
+the parameter (the _status quo_).
+
+The **alternative hypothesis** corresponds to a new claim which we wish
+to prove. It is interpreted as *a change* in the value of the parameter.
+
+The outcome of a test of significance is the decision whether to reject
+or not the null hypothesis.
+:::
+:::
+
+::: {#exm-5-4}
+ A company is selling bathroom toiletries and
+cosmetics. Their daily sales is a normally distributed random variable
+$\mathrm{N}(\mu,\sigma^2)$ with mean $\mu = 2000$ products. They believe
+that their plan of giving a free sample of one type of their products
+when you buy another of their products will increase their average daily
+sales by 100.
+
+- What are the null and alternative hypotheses?
+
+  *The claim is that with the offer the average daily sales will become
+  2100 (increase by 100). This statement determines the alternative
+  hypothesis (a new claim). The null hypothesis corresponds to no change
+  in the average daily sales, i.e. they will remain at 2000. Therefore,
+  the two hypotheses are: H$_0$: $\mu=2000$ and H$_1$: $\mu=2100$.*
+
+- If the claim was that the new offer will increase the sales (without
+  saying by how much), what would the two hypotheses be?
+
+  *In this case the claim is that the average daily sales will be some
+  number $\mu > 2000$ while the null hypothesis is as before. Then
+  H$_0$: $\mu=2000$ and H$_1$: $\mu>2000$.*
+
+- If the claim was that the new offer will have some impact on the
+  sales, what would the two hypotheses be?
+
+  *In this case the claim is that the average daily sales will be some
+  number different from $2000$ while the null hypothesis is as before.
+  Then H$_0$: $\mu=2000$ and H$_1$: $\mu \neq 2000$.*
+
+- What can a statistician do to confirm the claim that the new offer
+  improves sales?
+
+  *Suppose we want to compare H$_0$: $\mu=2000$ vs H$_1$: $\mu>2000$. The
+  company may consider the following experiment. Introduce the offer for
+  a period of time, say $n=30$ days, and record the number of sales on
+  each day. Let $x_1,\ldots,x_n$ be the number of sales for each day,
+  i.e. the sample, and let $\bar x$ be the sample average. If $\bar x$
+  turns out to be significantly larger than 2000, then there is evidence
+  that the sales have improved.*
+
+  There is no easy answer to what "significantly larger" means. That's a
+  matter of personal opinion. For some people if $\bar x >
+        2010$ is enough to indicate increase in average daily sales but
+  others may require $\bar x > 2100$. If we set this "critical value"
+  for $\bar x$ too low, say 2010, then there is the danger of a false
+  positive conclusion, i.e. claiming that the average sales increased
+  while in reality they stayed the same and the fact that $\bar x >
+        2010$ was just due to variability in the sample. On the other
+  hand, if the critical value is set to a large number, say 2100, then
+  there is the possibility of a false negative conclusion, i.e. claiming
+  that the average daily sales haven't increased when in reality they
+  did but not by that much as to bring $\bar x$ to exceed 2100.
+:::
+
+In order to draw a conclusion in the example above, we had to summarise
+the data into one number, in that case $\bar x$, and compare this number
+against a critical boundary and depending on whether $\bar x$ exceeded
+or not this critical boundary then we decide which hypothesis to accept.
+This brings us to the concept of the *test statistic* and its *critical
+value*.
+
+::: {.callout-note icon="false"}
+# Test statistic and critical value
+:::{#def-test-statistic}
+
+The **test statistic** associated with a hypothesis test is the
+statistic, i.e. a number derived from the sample (see @def-sampling-dist), which is used to make
+a decision in a hypothesis test. The value of the test statistic is
+compared against some predetermined number called the **critical value**
+of the statistic. If the value of the test statistic exceeds the
+critical value then our decision is to reject the H$_0$.
+:::
+:::
+
+As with any decision we make, we may reach the wrong conclusion. These
+are commonly referred to as "false positive" and "false negative"
+conclusions but in the language of statistics they are called *Type I
+error* and *Type II error*.
+
+::: {.callout-note icon="false"}
+
+Type I error
+
+:   Means that our decision is to reject H$_0$ when in reality the
+    H$_0$ is true. We can also say we accept $H_1$ when in reality 
+    H$_0$ is true.
+
+Type II error
+
+:   Means that our decision is to accept H$_0$ when in reality the
+    H$_0$ is false. We can also say we accept $H_0$ when in reality 
+    H$_1$ is true.
+
+:::
+
+We would like to minimise the probability of reaching the wrong decision
+or maximise the probability  of reaching the correct decision. Therefore
+for every hypothesis test we need to know the probabilities
+${\mathbb{P}}(\text{Type~I Error})$ and
+${\mathbb{P}}(\text{Type~II Error})$. We define
+
+::: {.callout-note icon="false"}
+# Power of a test
+:::{#def-power}
+For every hypothesis test, we define the **power** to be
+
+$$
+    \mathrm{power} = 1 - {\mathbb{P}}(\text{Type~II Error}) 
+    =1-P(\mbox{Accept } H_0|H_1 \mbox{ true})=P(\mbox{Accept } H_1|H_1 \mbox{ true}).
+$$
+:::
+:::
+
+
+
+The power can be interpreted as the probability of correctly rejecting
+H$_0$ or correcyly accepting $H_1$. So we want to have a test with high power. When the alternative
+hypothesis is a range of values, the power can be defined for all those
+values, so, in this case, it is represented by a function on $\theta$.
+
+::: {#exm-5-5}
+In the context of  @exm-5-4, suppose that the standard deviation is known to be $\sigma=300$ and we
+want to test 
+
+$$
+H_0:\, \mu=2000\quad \mbox{vs.}\quad H_1:\, \mu> 2000
+$$ 
+
+In a sample of $n=30$ days we decide to use a critical value of 2070, i.e., we
+
+$$
+\mbox{reject the $H_0$ if }\bar{X} > 2070
+$$
+
+- What is the probability of Type I error?
+
+  *By the definition of Type I error, the probability is
+  ${\mathbb{P}}(\text{Type~I error}) = {\mathbb{P}}(\text{Reject H$_0$}|\text{H$_0$ is
+          true})$.*
+
+  The statement "Reject H$_0$" is equivalent to $\bar X > 2070$ and the
+  statement "H$_0$ is true" is equivalent to $\mu=2000$. Therefore,
+  ${\mathbb{P}}(\text{Type~I error}) = {\mathbb{P}}(\bar X > 2070|\mu=2000)$.
+
+  In order to compute this probability, we need to know the distribution
+  of the random variable inside the parentheses, namely $\bar X$. This
+  distribution is:
+  $$
+  \bar{X} \sim \mathrm{N}\left(\mu, \frac{\sigma^2}{n}\right)
+  $$
+  that is, the normal distribution with mean $\mu$ and variance
+  $\sigma^2/n$. In this case $\mu=2000$ and $\sigma^2/n = 300^2/30$.
+  Then we have
+  $$
+  {\mathbb{P}}(\bar X > 2070|\mu=2000) =
+        1-{\mathbb{P}}(\bar X \leq 2070|\mu=2000).
+  $$
+  and
+  $$
+  {\mathbb{P}}(\bar X \leq 2070|\mu=2000) = {\mathbb{P}}\left(\frac{\bar X - 2000}{300/\sqrt{n}} \leq
+        \frac{2070-2000}{300/\sqrt{30}}\right)=\Phi\left(\frac{2070-2000}{300/\sqrt{30}}\right)
+  $$
+  recall @def-normal-random-variable.
+  Then, $z = \frac{2070-2000}{300/\sqrt{30}} = 1.28$, which corresponds
+  to probability $\Phi(1.28) = 0.8997$. Therefore,\
+  $$
+  {\mathbb{P}}(\text{Type~I error}) = 1-0.8997 = \mathbf{0.1003}\,.
+  $$
+
+- What is the probability of Type II error if the true mean is 2100?
+
+  *By the definition of Type II error, the probability is
+  ${\mathbb{P}}(\text{Type~II error}) = {\mathbb{P}}(\text{Accept H$_0$}|\text{H$_0$ is
+          false})$.*
+
+  As before, the statement "Accept H$_0$" is equivalent to $\bar X
+        \leq 2070$ and the statement "H$_0$ is false" in this case is
+  equivalent to $\mu=2100$. Therefore,
+  ${\mathbb{P}}(\text{Type~I error}) =
+        {\mathbb{P}}(\bar X \leq 2070|\mu=2100)$. The distribution of
+  $\bar X$ in this case is normal with mean $\mu=2100$ and variance
+  $\sigma^2/n = 300^2/30$.
+
+  Then, $z = \frac{2070-2100}{300/\sqrt{30}} = -0.55$, which corresponds
+  to probability $\Phi(-0.55) = 0.2912$. Therefore,\
+  ${\mathbb{P}}(\text{Type~II error}) = \mathbf{0.2912}$ and the corresponding
+  $\mathrm{power} = 1-0.2912 = \mathbf{0.7088}$. Note that if we assume a different
+  value for $\mu$ under H$_1$, we will get a different probability of
+  Type II error and therefore a different power.
+
+- What is the power function?
+
+  Take any $\mu$ such that $\mu > 2000$. Then, as before $z =
+        \frac{2070-\mu}{300/\sqrt{30}}$, so, the power function is given by
+  $\mathrm{power}(\mu) = 1 - \Phi(\frac{2070-\mu}{300/\sqrt{30}}) =
+        \Phi(\frac{\mu-2070}{300/\sqrt{30}})$, because of the property $\Phi(z)=1-\Phi(z)$ which is derived from the symmetry of the pdf of the standard normal distribution.      
+        
+
+  This function is plotted in @fig-power.
+  We observe that the further $\mu$ is from 2000, the higher the power.
+  This can be interpreted as being more likely to reject H$_0$ correctly
+  when the true mean is further from 2000.
+
+
+
+![The power function for @exm-5-5](images/power.png){#fig-power}
+
+
+In this example, $\bar X$ is the test statistic and the number 2070 is
+the critical value $c$. The probabilities of Type I and Type II errors
+can be illustrated in @fig-normerror. The bell curve on the left is the
+distribution of $\bar X$ under H$_0$ and the dark grey area is the
+probability of Type I error. Similarly, the bell curve on the right is
+the distribution of $\bar X$ under H$_1$ when the mean is 2100 and the
+light grey area is the probability of Type II error. Both probabilities
+correspond to the critical value $c=2070$.
+
+
+![Illustration of the probabilities of Type I (dark gray area) and
+Type II (light gray area) errors for @exm-5-5](images/normerror.png){#fig-normerror}
+
+
+:::
+
+Now let's see what happens if the critical value of 2070 changes.
+
+If we increase the critical value, the probability of Type I error (dark grey area)
+becomes smaller. This means that it becomes *less likely* to reject
+H$_0$ erroneously (a false positive). However, we also increase the
+probability of Type II error (light grey area) so it becomes *more
+likely* to accept H$_0$ when we shouldn't (a false negative).
+Unfortunately this is a usual impediment when performing hypothesis
+tests. In practice, we demand the probability of Type I error to be
+comfortably small typically around 5% which determines the critical
+value. This concept gives rise to the notion of *significance level* and
+*$p$-value*.
+
+::: {.callout-note icon="false"}
+## Significance level
+:::{#def-significance-level}
+
+
+It is desirable to have a rule for rejecting H$_0$ with small
+probability of Type I error. In practice this probability is set to a
+fixed, prescribed, value denoted by $\alpha$ (the greek letter "alpha")
+called the **level of significance** and a rule with the property
+${\mathbb{P}}(\text{Type~I error}) = \alpha$ is sought.
+
+The smaller the value of $\alpha$, the more evidence needed to reject
+the H$_0$. Typical values for $\alpha$ are 1%, 5% and 10%.
+:::
+:::
+
+::: {#exm-5-6}
+
+In @exm-5-5, we
+say that the rule "reject H$_0$ if $\bar X >
+  2070$" has ${\mathbb{P}}(\text{Type I error}) \approx 10\%$.
+Therefore, if we want a rule with significance level $\alpha = 10\%$, we
+need to choose a critical value of $c = 2070$.
+
+Suppose now that we are seeking for a rule of the form "reject H$_0$ if
+$\bar X > c$", where $c$ must be chosen according to a significance
+level $\alpha = 5\%$. This means that 
+$$
+\begin{aligned}
+    0.05 &= {\mathbb{P}}(\text{Type I error}) \\
+    &= {\mathbb{P}}(\text{Reject H$_0$} \mid \text{H$_0$ true}) \\
+    &= {\mathbb{P}}(\bar X > c \mid \mu = 2000) \\
+    \Rightarrow 0.95 &= {\mathbb{P}}(\bar X \leq c \mid \mu = 2000) \\
+    &= \Phi\left(\frac{c-2000}{300/\sqrt{30}}\right) \\
+    \Rightarrow z_{0.95} &= \frac{c-2000}{300/\sqrt{30}} \\
+    \Rightarrow c &= 2000 + z_{0.95} \times 300/\sqrt{30} \\
+    &= 2090,
+\end{aligned}
+$$ where we used the fact that $z_{0.95} = 1.645$ because
+$\Phi(1.645) =
+  0.95$. Therefore, using a critical value of 2090 produces a test with
+${\mathbb{P}}(\text{Type I error}) = 0.05$, or, in other words, a level
+of significance $\alpha = 5\%$.
+
+Using $c=2090$ instead of $c=2070$ reduces the probability of wrongly
+reject the null hypothesis by half. What about the probability of
+correctly rejecting H$_0$ when the true mean value is $\mu = 2100$? 
+
+As in @exm-5-5,
+${\mathbb{P}}(\text{Type II error}) = \Phi\left(\dfrac{2090 -
+      2100}{300/\sqrt{30}}\right) = \Phi(-0.1826) = 0.4276$ and
+$\text{power} = 1 - 0.4276 = 0.5724$. So as expected, although using the
+critical value $c=2090$ compared to $c=2070$ reduced the probability of
+Type I error, it increases the probability of Type II error, and
+consequently, reduces the power of the test.
+:::
+
+::: {.callout-note icon="false"}
+## P-value
+
+:::{#def-pvalue}
+
+The **$p$-value** is the smallest significance level which we can set
+and still be able to reject H$_0$ with the given data. By definition,
+the $p$-value is a probability which depends on the sample we are
+analysing. If $\text{$p$-value} < \alpha$ then the data provide enough
+evidence to reject H$_0$.
+:::
+:::
+
+The two definitions suggest two paths one can follow to conduct a
+hypothesis test. In both cases, one the data and a significance level
+are provided. Then we could either
+
+- Use the data to derive the test statistic and use the significance
+  level to derive the critical value. If the value of the test statistic
+  exceeds the critical value then we reject H$_0$, otherwise we accept
+  it.
+
+- Use the data to derive the test statistic and from there derive the
+  corresponding $p$-value. If the $p$-value is smaller than the
+  significance level then we reject H$_0$, otherwise we accept it.
+
+These two paths are depicted below.
+
+![](images/path.png){#fig-path}
+
+It shouldn't matter which of the two approaches we take to perform the
+hypothesis test as they are equivalent, meaning that the lead to the
+same conclusion regarding the rejection of the null hypothesis.
+
+::: {#exm-5-7}
+Following
+@exm-5-6,
+suppose we seek to reject the null hypothesis with significant level
+$\alpha = 5\%$. Then, according to that example, we must choose a
+critical value of $c=2090$.
+
+Suppose next that we collect $n=30$ observations and found that the
+average sales were $\bar x = 2050$. Then, according to our hypothesis
+test, we do not reject the null hypothesis because $2050 \ngtr 2090$, so
+we cannot conclude that the average sales increased.
+
+What is the smallest level of significance $\alpha$ that we could set,
+such that, the critical value $c$ that corresponds to that level would
+allow us to reject the null hypothesis? Since $\alpha = 5\%$ does not
+allow us to reject the null hypothesis, it is clear that we should seek
+for a higher significance level, as we are more relaxed about wrongly
+reject the null hypothesis. So we expect to find
+$\text{$p$-value} > 0.05$. Indeed, if we choose a significance level $p$
+such that the corresponding critical value $c$ falls exactly at
+$c=2050$, then $p$ is the $p$-value. This is illustrated in
+Figure [1.6](#fig:pvalueex){reference-type="ref"
+reference="fig:pvalueex"}.
+
+![Illustration of $p$-value for @exm-5-7](images/pvalueex.png){#fig-pvalueex}
+
+
+
+Reversing the calculations in
+@exm-5-6, if
+$p$ is the $p$-value, $z_{1-p}$ is the quantile that achieves a critical
+value of 2050, so 
+$$\begin{aligned}
+    2050 &= 2000 + z_{1-p} \times 300 / \sqrt{30} \\
+    \Rightarrow z_{1-p} &= \frac{2050 - 2000}{300 / \sqrt{30}} \\
+    &= 0.9129 \\
+    \Rightarrow 1-p &= \Phi(0.9129) \\
+    \Rightarrow p &= 1 - \Phi(0.9129) = 1-0.82 = 0.18.  
+\end{aligned}
+$$ 
+So $\text{$p$-value} = 0.18$. Accordingly, we can see
+that, since $\text{$p$-value} > 5\%$, we do not reject the null
+hypothesis at the 5% level. In fact, $\text{$p$-value} > 10\%$, so we do
+not reject the null hypothesis at the 10% level either.
+:::
+
+## Exercises {#sec-exercises-5}
+
+#### Confidence intervals: {#confidence-intervals .unnumbered}
+
+1.  a.  Let
+        $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{N}(\mu,\sigma^2)$
+        where both $\mu$ and $\sigma^2$ are unknown parameters. Using
+        the fact that, the sample variance, $S^2$, is distributed as
+        $(n-1)S^2/\sigma^2 \sim \mathcal{X}^2_{n-1}$, derive a level
+        $1-\alpha$ confidence interval for $\sigma^2$.
+        ($\mathcal{X}^2_{k}$ denotes the *chi-squared distribution with
+        $k$ degrees of freedom*, which is available in python as
+        `scipy.stats.chi2`. It is a special case of the gamma
+        distribution with shape $k/2$ and rate $1/2$.)
+
+    b.  Suppose that the following data were observed
+    $$-1.90,-0.89,-0.87,-0.65,-0.32,-0.25, 0.90, 1.00, 1.18$$
+For these data $n=9$, $\bar x = -0.2$, and $S^2 = 1.073$.
+Calculate a 95% confidence interval for $\sigma^2$.
+
+2.  a.  Let
+        $X_1,\ldots,X_n {{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}\mathrm{U}(0,\theta)$,
+        $\theta > 0$. By considering an appropriate pivot construct a
+        level $1-\alpha$ confidence interval for $\theta$. *Hint.* Let
+        $W_i = X_i/\theta$.
+
+    b.  Suppose that the following data were observed
+    $$0.90, 1.00, 1.18, 1.90, 2.20.$$
+    Calculate a 95% confidence interval for $\theta$. Does the
+    confidence interval contain the maximum likelihood estimator for $\theta$?
+
+#### Hypothesis testing: {#hypothesis-testing-1 .unnumbered}
+
+1.  The author of a weight-loss diet claims that an average adult,
+weighting 100 Kg, who follows the proposed diet, will lose 20 Kg after 1 month. What are the null and alternative hypotheses?
+
+2.  The author of a weight-loss diet claims that an average adult,
+weighting 100 Kg, who follows the proposed diet, will lose weight
+after 1 month. What are the null and alternative hypotheses?
+
+3.  The author of a weight-loss diet claims that an average adult,
+weighting 100 Kg, who follows the proposed diet, will notice a
+change in their weight after 1 month. What are the null and
+alternative hypotheses?
+
+4.  The author of a weight-loss diet claims that an average adult,
+weighting 100 Kg, who follows the proposed diet, will lose weight
+after 1 month. An experiment was conducted to verify this claim.
+Three adults, who weighted 100 Kg, followed the diet for one month
+and their weights at the end of the month were recorded. The
+experimenters would accept the author's claim if the sample mean
+$\bar X$ of the three measured weights is less than 90. Suppose that
+the population standard deviation is $\sigma=15$.
+
+    a.  The three people's weights after the end of the month were: 82,
+        86, and 93. What is the experimenters' conclusion?
+
+    b.  According to the central limit theorem, what is the asymptotic
+        distribution of the sample mean of $n=3$ measurements from a
+        population with mean $\mu=100$ and standard deviation
+        $\sigma=15$?
+
+    c.  []{#item:1 label="item:1"} Use the central limit theorem to
+        calculate the probability of Type I error of the experimenters'
+        decision rule.
+
+    d.  Use the central limit theorem to calculate the probability of
+        Type II error of the experimenters' decision rule assuming that
+        the average weight after one month is 85.
+
+    e.  Propose a rule of the form "accept the author's claim if
+        $\bar X <
+            c$" (in other words find $c$) such that the probability of
+        Type I error is 10%.
+
+    f.  Suppose that in the sample we find that $\bar x = 86$. Find the
+        $p$-value. What is your conclusion at significance level
+        $\alpha = 5\%$?

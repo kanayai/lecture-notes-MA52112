@@ -1,0 +1,551 @@
+# Decision Theory
+
+Decision theory is the branch of statistics and probability concerned
+with making decisions based on data. In many aspects of real life, we
+are asked to make a decision, which will impact our future in some way,
+with limited information. This chapter is about putting a mathematical
+framework around this concept and using that to analyse decisions.
+
+::: {#exm-1}
+Local councils in the UK are responsible for maintaining about 225,000
+miles of road in total. In winter months this means spreading salt on
+the roads (gritting) to prevent frost and keep them safe for driving.
+During the 2011 winter, councils spread 1.2 million tonnes of salt at
+the cost of £30--40 per tonne. Each winter evening local councils must
+decide whether to grit or not, based on the available information. To
+help with their decision, Winter Duty Managers use the national weather
+forecast as well as sensors embedded in roads which measure road and air
+temperatures, rain, dew and salt levels  (see [here](https://www.local.gov.uk/your-winter-weather-questions-answered-0) and @fig-2-1). Due to the high cost of gritting, it is
+important that it is done only when necessary, however, it is impossible
+to know with certainty when to do it.
+
+![The Bath and North-East Somerset council webpage detailing what
+information they use to decide whether to grit the
+roads.](images/bathnes_grit.png){#fig-2-1 width=80% fig-alt="Snapshot of Bath and North East Somerset website, section about griting Bath roads in winter."}
+
+:::
+
+## Mathematical formulation {#sec-math_form}
+
+In decision theory,  the person making the decision, the decision-maker,
+is given a set of possible actions, $\mathcal{A}$, and data,
+${\mathbf{x}}$. It is rarely the case that we can make decisions having
+complete information. The unknown state of nature is represented by a
+parameter, $\theta \in \Theta$, and the task is to choose the best
+possible action $a \in \mathcal{A}$, according to some loss function
+$L(\theta,a)$.
+
+::: {#exm-2}
+Below are some examples of decision problems in various areas.
+
+1.  When building flood defences around rivers, the decision is how high
+    to build them. Higher defences protect against extreme rainfalls,
+    however, they cost more. The decision in this case is the height of
+    the barrier, the loss is a function of the construction cost and the
+    economic damage in the event of barrier failure, while the state of
+    nature would be the probability of flooding in any year. The data in
+    this case consist of river heights in previous years.
+
+2.  When playing poker, the decisions are whether to fold, call, or
+    raise the bid, and if so, by how much (which is a number between 0
+    and our current money). The unknown state of nature is the
+    probability of winning. The data are the player's hand and the bids,
+    while the uncertainty comes from not knowing the opponents' hands.
+    The loss in this case is the money that we will lose from playing
+    the game.
+
+3.  A football coach must decide who and how they should play. The
+    uncertainty comes from how the opposing team plays. The unknown
+    state of nature is the probabilities that each team scores a goal.
+    The data in this case consist of the performances of the teams in
+    previous matches and the loss function represents the final score of
+    the match.
+
+4.  Facing a pandemic, the government must decide what measures are
+    appropriate ranging from complete indifference to total lockdown.
+    The data consist of the daily infection numbers and advice from
+    scientific advisors, while the uncertain parameters are the
+    reproduction rate of the disease. The loss in this case can be
+    measured in terms of the number of deaths combined with the impact
+    of the measures to the economy.
+:::
+
+To set the mathematical framework, we first define the terms that
+comprise a decision problem.
+
+
+
+::: {.callout-note icon="false"}
+
+## Decision problem
+
+::: {#def-decision-problem}
+A decision problem consist of the following elements.
+
+-   A **parameter** $\theta \in \Theta$, where $\Theta$ is the
+    **parameter space**. The parameter represents the unknown state of
+    nature.
+
+-   A set of **data** ${\mathbf{x}}\in \mathcal{X}$, where $\mathcal{X}$
+    is the **sample space**. The data are assumed to be a random sample
+    from a population depended on the unknown parameter $\theta$, with
+    **distribution** $f({\mathbf{x}}|\theta)$.
+
+-   An **action** $a \in \mathcal{A}$, where $\mathcal{A}$ is the
+    **action space**, i.e., the set of possible actions that we can
+    take.
+
+-   A **loss function**
+    $L: \Theta \times \mathcal{A} \mapsto \mathbb{R}$, such that
+    $L(\theta,a)$ denotes the loss when the true parameter value is
+    $\theta$ and the decision-maker chooses action $a$. We prefer lower
+    values of $L$.
+:::
+:::
+
+::: {#exm-3}
+The three classical examples of loss functions are the quadratic,
+absolute, and 0-1 loss. The first two are mainly used in the context of
+parameter estimation, while the latter in hypothesis testing.
+
+1.  The quadratic loss is defined by $$L(\theta,a) = (\theta - a)^2.$$
+
+2.  The absolute loss is defined by $$L(\theta,a) = |\theta - a|.$$
+
+3.  The 0-1 loss is defined by $$L(\theta,a) =
+          \begin{cases}
+            0 & \text{ if $a = \theta$,} \\ 1 & \text{ if $a \neq \theta$.}
+          \end{cases}$$
+
+Of course, other loss functions are possible, depending on the scenario.
+:::
+
+::: {.callout-note}
+Often in life, we evaluate the wisdom of our actions only after
+observing a single outcome. The loss function should *not* capture the
+loss incurred from a single event; instead, it should reflect the
+average loss across multiple occurrences of such events. This means the
+loss function is designed to measure the overall success of an action by
+taking into account repeated outcomes.
+:::
+
+## Decision rule {#sec-decision-rule}
+
+In practice, the true state of nature, $\theta$, is unknown. The data,
+${\mathbf{x}}$ provide some information about $\theta$ that we want to
+utilise to inform about our action. The solution to the decision problem
+is obtained by finding a decision rule
+$d: \mathcal{X} \mapsto \mathcal{A}$, such that $d({\mathbf{x}})$
+incorporates the data in some way to determine the appropriate action to
+take. You can think of the decision rule as the strategy for choosing an
+action, given data ${\mathbf{x}}$.
+
+::: {#exm-4} 
+A traveller buying a flight ticket is
+considering whether to also buy travel insurance that pays up £1000 in
+the event of a flight cancellation. The travel insurance costs £50. In
+the event that the flight is cancelled, she will loose her hotel deposit
+which is £500. The available actions in this case are
+$\mathcal{A} = \{0,1\}$ with 1 representing "buy travel insurance" and 0
+being "don't buy travel insurance".
+
+To assess the probability of her flight being cancelled, $\theta$, she
+decides to look into how many times, in the past 10 years, a similar
+flight was cancelled. Let $x$ be the proportion of times a flight was
+cancelled. A decision rule $d(x)$ may be 
+
+$$
+    d(x) = %% \mathds{1}_{\{x \geq 0.10\}} =
+    \begin{cases}
+      1 & \text{ if $x \geq 0.10$,} \\ 0 & \text{ if $x < 0.10$,}
+\end{cases}
+$${#eq-1} 
+    in other words, the traveller's strategy is to buy
+travel insurance if they find that at least 10% of the past flights were
+cancelled, and not buy travel insurance otherwise.
+
+Let $y$ denote the future event that the flight be cancelled. We set
+$y=1$ if the flight is cancelled, and $y=0$ if the flight is not
+cancelled. We define the function $l(y,a)$ to denote the loss when we
+take action $a$ and the event $y$ occurs. Then, if we do buy insurance
+($a=1$), our loss is $50$ if the flight is not cancelled (the cost of
+the insurance), and $50 + 500 - 1000 = -450$ if the flight is cancelled
+(the cost of the insurance plus the hotel deposit, but we receive a
+payment of 1000). On the other hand, if we do not buy insurance ($a=0$),
+and our flight is not cancelled, our loss is 0, however if the flight is
+cancelled our loss is $500$ (the hotel deposit). Putting these together
+gives 
+
+$$
+\begin{aligned}
+    l(y,a=0) &=
+    \begin{cases}
+      0 & \text{ if $y=0$,} \\ 500 & \text{ if $y=1$,}
+    \end{cases}
+    &
+    l(y,a=1) &=
+    \begin{cases}
+      50 & \text{ if $y=0$,} \\ -450 & \text{ if $y=1$.}
+    \end{cases}
+\end{aligned}
+$$
+
+According to our problem, ${\mathds{P}}(y = 1) = \theta$ and
+${\mathds{P}}(y = 0) =
+  1-\theta$, so the loss function for this problem is computed as the
+expected value of $l(y,a)$ over the distribution of $y$:
+
+$$
+\begin{aligned}
+    L(\theta,0) ={}& \mathop{\mathrm{{\mathsf E}}}l(y,0) = 0 \times \mathds{P}(y=0) + 500 \times {\mathds{P}}(y=1) =
+    0\times(1-\theta) + 500 \times \theta = 500\theta \nonumber \\
+    L(\theta,1) ={}& \mathop{\mathrm{{\mathsf E}}}l(y,1) = 50 \times {\mathds{P}}(y=0) - 450\times {\mathds{P}}(y=1) =
+    50 \times (1-\theta) - 450 \times \theta = 50 - 500  \theta.
+\end{aligned}
+$$
+
+This can be combined as 
+
+$$
+  L(\theta,a) = 
+    \begin{cases}
+      500 \theta & \text{ if $a=0$,} \\ 50 - 500\theta & \text{ if $a=1$.}
+\end{cases}
+$${#eq-2} 
+    
+In other words, if she does not buy insurance ($a=0$),
+the potential loss is $L(\theta,a=0) = 500\times\theta$, so the hotel
+cost times the probability of the flight being cancelled. Note that the
+actual loss is going to be 500 if the flight is cancelled, and 0 if the
+flight is not cancelled, but at this point we don't know whether the
+flight will be cancelled or not, so $500\times\theta$ is in fact the
+expected loss under a future cancellation event. Similarly, if she does
+buy insurance ($a=1$), then the loss is
+$L(\theta,a=1) = 50 + (500 - 1000)\times\theta = 50 - 500\times\theta$,
+where $50$ is the insurance cost and will have to pay $500\times\theta$
+for the hotel cost but receive a payment of $1000\times\theta$ from the
+insurance. The loss functions for the two decisions are shown in @fig-losses .
+
+![Losses for @exm-4. The two lines intersect at $\theta=0.05$. We can see
+that, at $\theta > 0.05$, the losses from not buying insurance are
+greater than the losses from buying, so if we believe that there is a
+greater than 5% chance that the flight is cancelled, we will want to buy
+insurance because in this case we minimise our losses. If we believe
+that $\theta < 0.05$, then it is the other way
+around.](images/ins_loss.png){#fig-losses}
+
+
+It is clear that as $\theta \rightarrow 1$, i.e., there is increasing
+chance that the flight will be cancelled, then
+$L(\theta,a=0) \rightarrow
+  500$ and $L(\theta,a=1) \rightarrow -450$, so the loss in this case is
+minimised when $a=1$. Similarly, as $\theta \rightarrow 0$,
+$L(\theta,a=0) \rightarrow 0$ and $L(\theta,a=1) \rightarrow 50$, so in
+this case the loss is minimised when $a=0$.
+:::
+
+It is also possible for a decision rule to ignore the data, or not use
+any data. One such rule in the context of
+@exm-4 may
+be $d({\mathbf{x}}) =
+0$, i.e. don't buy travel insurance no matter what proportion of flights
+were cancelled in the past.
+
+### Deterministic and randomised decision rules {#sec-determ-rand-decis}
+
+A decision rule is called *deterministic* if it specifies a single
+action to take for given data. The decision rule in
+@exm-4 is
+deterministic because we know which one action the traveller will take
+when $x \geq 0.10$ and which one action she will take when $x < 0.10$.
+However, not all decision rules need to do that. A decision rule may
+specify multiple actions for given data, with corresponding
+probabilities for each action. In this case, we call the decision rule
+*randomised*. An example of a randomised decision rule for
+@exm-4 is
+
+$$
+  d(x) =
+  \begin{cases}
+    \text{0 with probability $1/5$ and 1 otherwise}  & \text{ if $x \geq 0.10$,} \\ \text{0 with probability $3/4$ and 1 otherwise} & \text{ if $x < 0.10$.}
+\end{cases}
+$$ {#eq-3}
+  
+  In other words, if the observed proportion of cancelled
+flights, $x$, turns out to be 0.15, i.e., we are in the case
+$x \geq 0.10$, then the traveller will pick a random integer between 1
+and 5, and if this integer is 1, then she will not buy insurance, but if
+the integer is 2, 3, 4, or 5, she will.
+
+## Risk {#sec-risk}
+
+A decision rule uses the observed data to choose an action. To evaluate
+different decision rules, we want to evaluate how well they fare if
+different data were observed. So we consider the hypothetical scenario
+where new data ${\mathbf{x}}$ are obtained, from the same distribution
+as our observed data. In this case, we compare them in terms of their
+expected loss over repeated observations ${\mathbf{x}}$, which we call
+the **risk**.
+
+
+::: {.callout-note icon="false"}
+## Risk
+
+::: {#def-risk}
+
+The **risk** of a decision rule $d$ for a
+parameter value $\theta$, $R(\theta,d)$, based on data
+${\mathbf{x}}\sim f({\mathbf{x}}|\theta)$ is defined as
+$$R(\theta,d) = \mathop{\mathrm{{\mathsf E}}}_\theta L(\theta, d({\mathbf{x}})),$$
+i.e., the expected loss under the action obtained by following the
+decision rule $d$.
+:::
+:::
+
+The subscript in $\mathop{\mathrm{{\mathsf E}}}_\theta$ indicates that
+the expectation is taken with respect to
+${\mathbf{x}}\sim f({\mathbf{x}}|\theta)$. If the decision rule
+$d({\mathbf{x}})$ does not depend on the data ${\mathbf{x}}$, i.e., it
+ignores the data ${\mathbf{x}}$, then
+$R(\theta,d) = L(\theta,d({\mathbf{x}}))$. For example, if the traveller
+of @exm-4
+is going on a business trip, company policy might dictate that the
+traveller should buy travel insurance regardless of how likely it is for
+the flight to be cancelled. In this case, the traveller's action is
+$d({\mathbf{x}}) = 1$ for all ${\mathbf{x}}\in \mathcal{X}$.
+
+::: {#exm-5}  
+(@exm-4 continued) Suppose there were $n=900$ flights in the past
+10 years that were examined by the traveller. According to our model,
+each flight has a probability $\theta$ of being cancelled. Assuming that
+the event that a flight be cancelled is independent of whether previous
+flights were cancelled, the central limit theorem says that the
+proportion $x$ of cancelled flights is distributed asymptotically as
+$$x \sim N\left(\theta,\frac{\theta(1-\theta)}{n}\right).$$ 
+Therefore,
+$$
+\begin{aligned}
+    {\mathds{P}}(x < 0.10) & \approx \Phi\left(\frac{0.10 -
+        \theta}{\sqrt{\dfrac{\theta(1-\theta)}{n}}}\right) =
+    \Phi\left(\frac{30(0.10 -
+        \theta)}{\sqrt{\theta(1-\theta)}}\right)\\
+    {\mathds{P}}(x \geq 0.10) & \approx 1-\Phi\left(\frac{30(0.10 -
+        \theta)}{\sqrt{\theta(1-\theta)}}\right) =
+    \Phi\left(\frac{30(\theta - 0.10)}{\sqrt{\theta(1-\theta)}}\right)
+\end{aligned}
+$$
+
+Let $d_1$ denote the decision
+rule (-@eq-1).
+According to this rule, the traveller will choose to buy insurance
+($a=1$) with probability
+$\Phi\left(\frac{30(\theta - 0.10)}{\sqrt{\theta(1-\theta)}}\right)$ and
+not buy ($a=0$) with probability
+$\Phi\left(\frac{30(0.10 - \theta)}{\sqrt{\theta(1-\theta)}}\right)$.
+Therefore, the risk of (-@eq-1) according to the loss
+function (-@eq-2) is
+
+$$
+\begin{aligned}
+    R(\theta,d_1) &= L(\theta,0) \times {\mathds{P}}(x < 0.10) + L(\theta,1) \times
+    {\mathds{P}}(x \geq 0.10) \nonumber \\
+    &= (500\theta) \times \Phi\left(\frac{30(0.10 -
+        \theta)}{\sqrt{\theta(1-\theta)}}\right) + (50-500\theta) \times
+    \Phi\left(\frac{30(\theta -
+        0.10)}{\sqrt{\theta(1-\theta)}}\right) 
+\end{aligned}
+$${#eq-5}
+
+Now let $d_2$ denote the randomised
+rule (-@eq-3).
+According to this rule, the traveller will choose to buy insurance with
+probability $4/5$ if $x \geq 0.10$ and with probability $1/4$ if
+$x < 0.10$. So the risk of this rule is 
+
+$$
+\begin{aligned}
+    R(\theta,d_2) = & L(\theta,0) \times \left\{\frac{3}{4}{\mathds{P}}(x < 0.10) +
+    \frac{1}{5}{\mathds{P}}(x \geq 0.10)\right\}  \\
+    & + L(\theta,1) \times
+    \left\{\frac{1}{4}{\mathds{P}}(x < 0.10) + \frac{4}{5}{\mathds{P}}(x \geq 0.10)\right\}
+     \\
+    ={}& (500\theta) \times \left\{\frac{3}{4} \Phi\left(\frac{30(0.10 -
+          \theta)}{\sqrt{\theta(1-\theta)}}\right) + \frac{1}{5}
+      \Phi\left(\frac{30(\theta -
+          0.10)}{\sqrt{\theta(1-\theta)}}\right) \right\} \\
+    &{}+ (50-500\theta) \times
+    \left\{\frac{1}{4}\Phi\left(\frac{30(0.10 -
+          \theta)}{\sqrt{\theta(1-\theta)}}\right)
+      + \frac{4}{5}\Phi\left(\frac{30(\theta -
+          0.10)}{\sqrt{\theta(1-\theta)}}\right)\right\}.
+\end{aligned}
+$$
+
+![Risks for the two decision rules considered in
+@exm-5.](images/ins_risk.png){#fig-risks}
+
+The risks of the two decision rules for different $\theta$ values are
+shown in @fig-risks. Both risks decrease as it becomes more certain
+that the flight will be cancelled. It can be seen that for most values
+of $\theta$, $d_1$ has lower risk than $d_2$, while $d_2$ is better for
+values of $\theta$ between 0.05 and 0.10. In fact, both rules have the
+most risk when $\theta = 0.085$, and in this case $d_1$ has the highest
+risk.
+:::
+
+## Criteria for choosing a good decision rule {#sec:criteria}
+
+Based on the discussion above, it is clear that we want to choose a
+decision rule that has low risk among a choice of different decision
+rules. Let $\mathcal{D}$ denote the set of decision rules that we are
+considering. For @exm-4, there is no reason why we should only consider the
+decision rule ([-@eq-1])
+with a fixed threshold 0.10. We could consider a family of decision
+rules of the form
+$\mathcal{D} = \{d_t(x) = (\text{1 if $x \geq t$, 0 otherwise})\}$,
+$t \in [0,1]$. The problem then reduces to finding the optimal threshold
+according to some criterion.
+
+It is apparent from @def-risk and @exm-5
+that the risk of a decision rule is a function of the
+parameter $\theta$. It is possible that we are not able to find a
+decision rule that uniformly dominates all other decision rules for all
+values of $\theta$. On the other hand, we want to choose a decision rule
+that is optimal regardless of the true value of $\theta$. We present
+below two criteria that can be used for this purpose.
+
+### Minimax criterion {#sec:minimax-criterion}
+
+The idea behind the minimax criterion is to safeguard against the worst
+possible situation. Consider, for example, an aeroplane manufacturer
+considering various aeroplane designs. The manufacturer wants to choose
+the design that is safest under the worst possible weather conditions.
+
+For a decision rule $d$, with risk $R(\theta,d)$, the maximum possible
+risk, $\bar R (d)$, is given by
+$$\bar R (d) = \max_{\theta \in \Theta} R(\theta,d).$$ The value of
+$\theta$ that maximises $R(\theta,d)$ is the worst possible situation
+for the decision rule $d$. Thus, we want to choose the decision rule
+among all those considered in the set $\mathcal{D}$ that is best under
+the worst possible conditions, i.e., we want to choose the decision rule
+with the lowest $\bar R (d)$. Such decision rule is called *minimax*,
+and is given by
+$$
+d_\mathrm{MM} = \mathop{\mathrm{argmin}}_{d \in \mathcal{D}} \bar R (d) = \mathop{\mathrm{argmin}}_{d \in \mathcal{D}} \max_{\theta \in \Theta} R(\theta,d).
+$$  
+
+The notation $\displaystyle\mathop{\mathrm{argmin}}_{d \in \mathcal{D}}$ reads "the
+argument that minimises over $d\in\mathcal{D}$", meaning "search over
+all decision rules $d \in \mathcal{D}$ and pick the one that gives the
+smallest $\bar R (d)$". It is clear by looking at @fig-risks
+that if we have to choose only between $d_1$ and $d_2$ in
+@exm-5,
+then, according to the minimax criterion, we would choose $d_2$, because
+it has a lower maximum risk than $d_1$. Note that it does not matter
+whether the maximum risk is attained at the same $\theta$ value.
+
+::: {#exm-6}
+
+ Suppose we consider a family $\mathcal{D}$ of
+decision rules of the form 
+$$
+    d_t(x) = 
+    \begin{cases}
+      1 & \text{ if $x \geq t$,} \\ 0 & \text{ if $x < t$,}
+    \end{cases}
+$${#eq-4} 
+
+for $t \in [0,1]$. In other words, we want to find the
+optimum threshold $t$ such that the traveller decides to buy insurance
+if the proportion of cancelled flights, $x$, exceeds that threshold, and
+not buy otherwise. Then, repeating the calculations from
+@exm-5, with an arbitrary threshold $t$, we have, by @eq-5,
+
+$$
+R(\theta,d_t) = (500\theta) \times \Phi\left(\frac{30(t -
+        \theta)}{\sqrt{\theta(1-\theta)}}\right) + (50-500\theta) \times
+    \Phi\left(\frac{30(\theta -
+        t)}{\sqrt{\theta(1-\theta)}}\right).
+$$ {#eq-6}
+
+Then, $\bar R(d_t) = \max_\theta R(\theta,d_t)$.
+
+
+![Maximum risk for the varying threshold of the decision rules in
+@exm-6](images/ins_rbart.png){#fig-maximum-risk-varying}
+
+Finding $\bar R(d_t)$ is closed-form is not possible, but we can compute
+it numerically. A plot of $\bar R(d_t)$ for different choices of the
+threshold $t$ is shown in @fig-maximum-risk-varying. It can be seen that the minimum
+is attained at $t = 0.05$. For comparison, the risks of the minimax
+decision rule ($t=0.05$), and the original decision rule ($t=0.10$) are
+shown in @fig-risks2. It can be seen that both rules have similar
+risks, however, in the region of $\theta$ between 0.05 and 0.10 the
+minimax rule is better.
+
+![Risks of the decision rules for thresholds $t=0.10$ and $t=0.05$
+(minimax) in @exm-6.](images/ins_risk2.png){#fig-risks2}
+
+:::
+
+
+## Exercises {#sec:exercises}
+
+1.  A patient is considering a number of treatment options available
+    through her general practitioner (GP) between receiving medication
+    or having a surgery. The costs of the different treatments vary as
+    well as their likelihood of success. The GP has discussed with the
+    patient the success rates of each treatment when used in other
+    patients.
+
+    Describe the parameter, data, actions, and loss function for this
+    problem.
+
+2.  An investor is considering whether or not to buy certain risky
+    bonds. If he buys the bonds, they can be redeemed at maturity for a
+    net gain of £500. There is probability $\theta$ that there will be a
+    default on the bonds, in which case the investor is set to lose his
+    investment of £1000. If the investor instead puts his money in a
+    "safe" investment, he will receive a net gain of £300 over the same
+    period.
+
+    a.  Define appropriate actions, parameter, and parameter space for
+        the problem.
+
+    b.  Derive the loss function for the problem.
+
+    c.  Describe all randomised decision rules and find the minimax
+        decision among them.
+
+
+
+3.  A coin has probability $\theta \in [0,1]$ of coming up heads
+    $(y=1)$, and $1-\theta$ of coming up tails $(y=0)$. You are playing
+    a game where if you guess the outcome of a coin flip correctly you
+    receive a payment of £1, but if you guess wrongly, you loose £1.
+
+    a.  What are the parameter and parameter space for this problem?
+
+    b.  What is the action space for this problem?
+
+    c.  Show that the loss function, $L(\theta,a)$, for this problem is
+        given by $$L(\theta,a) =
+              \begin{cases}
+                2\theta -1 & \text{ if guessing ``tails'',} \\ 1-2\theta  & \text{ if guessing ``heads''.}
+              \end{cases}$$
+
+    4.  Let $x$ be the outcome the coin flip from an earlier game.
+        Consider the following two strategies for guessing the outcome
+        of a future coin flip:
+
+        -   **Strategy 1:** Guess the same as the outcome of the earlier
+            coin flip.
+
+        -   **Strategy 2:** Guess "heads" regardless of the outcome of
+            the earlier coin flip.
+
+        a.  Write a mathematical expression for the decision rules
+            corresponding to these two strategies.
+
+        b.  Between the two strategies, which one is the minimax
+            decision rule?

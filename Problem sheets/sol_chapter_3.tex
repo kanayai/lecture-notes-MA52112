@@ -1,0 +1,428 @@
+\documentclass[oneside,11pt]{article}
+
+%\usepackage[british]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+% \usepackage{bm}
+%\usepackage{dsfont}
+%\usepackage{titling}
+%\usepackage{enumitem}
+%\usepackage{titletoc}
+\usepackage{lmodern}
+\usepackage{textcomp} % Required by listings
+%\usepackage{listings}
+%\usepackage{thmtools}
+%\usepackage{memhfixc}
+\usepackage{hyperref}
+%\usepackage[all]{xy}
+
+
+\usepackage[T1]{fontenc}
+%\usepackage[scaled=0.8]{DejaVuSansMono}
+% \usepackage[charter]{mathdesign}
+% \def\rmdefault{bch} % not scaled
+% \def\ttdefault{blg}
+% \usepackage[scaled=0.9]{inconsolata}
+% \usepackage[scaled=0.8]{luximono}
+
+%\nonzeroparskip
+\raggedbottom
+
+%% Shaded environment
+\usepackage{framed}
+\usepackage{xcolor}
+\definecolor{shadecolor}{gray}{0.9}
+\setlength{\FrameSep}{3pt}
+\setlength{\OuterFrameSep}{3pt}
+
+
+%%% Floats
+%\setfloatlocations{figure}{tbhp}
+%\setfloatlocations{table}{tbhp}
+%\captionnamefont{\bfseries}
+% \captiontitlefont{\itshape}
+% \captionstyle[\centering]{\raggedright}
+% \captionwidth{\linewidth} \changecaptionwidth
+\renewcommand{\topfraction}{0.9}        % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}     % max fraction of floats at bottom
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+\setcounter{dbltopnumber}{2}    % for 2-column pages
+\renewcommand{\dbltopfraction}{0.9}     % fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}      % allow minimal text w. figs
+\renewcommand{\floatpagefraction}{0.7}  % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.7}       % require fuller float pages
+
+
+%%% Commands
+\DeclareMathOperator*{\E}{{\mathsf E}} % expectation
+\DeclareMathOperator*{\Var}{{\mathsf Var}} % variance
+\DeclareMathOperator*{\Cov}{{\mathsf Cov}} % covariance
+\DeclareMathOperator*{\argmin}{argmin} % argmin
+\DeclareMathOperator*{\argmax}{argmax} % argmax
+\newcommand{\iid}{{{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}}
+\renewcommand{\Pr}{{\mathbb{P}}}
+\newcommand{\half}{{\frac 12}}
+\newcommand{\ud}{{\,\mathrm{d}}}
+\newcommand{\xbf}{{\mathbf{x}}}
+\newcommand{\Xbf}{{\mathbf{X}}}
+
+%%% Theorems
+%\renewenvironment{proof}[1][Proof]{\noindent{\bfseries #1.}\hspace*{1em}}{\qed\\}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.\newline}]{clearprint}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.}]{clearexc}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.},qed=$\blacktriangleright$]{clearexm}
+%\declaretheoremstyle[spaceabove=10pt,headpunct={.\newline},
+%headfont={\normalfont\itshape}]{remarkmy}
+%%
+%\declaretheorem[style=clearprint,within=chapter,name=Definition]{definition}
+%\declaretheorem[style=clearexm,within=chapter,name=Example]{example}
+%\declaretheorem[style=clearexc,within=chapter,name=Exercise]{exercise}
+%\declaretheorem[style=clearprint,within=chapter,name=Theorem]{theorem}
+%\declaretheorem[style=clearprint,name=Lemma,sibling=theorem]{lemma}
+%\declaretheorem[style=clearprint,name=Proposition,sibling=theorem]{proposition}
+%\declaretheorem[style=clearexc,numbered=no,name=Corollary]{corollary}
+%\declaretheorem[style=clearexc,numbered=no,name=Remark]{remark}
+
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength{\emergencystretch}{.5ex}
+
+% \hypersetup{
+%   colorlinks,%
+%   citecolor=black,%
+%   filecolor=black,%
+%   linkcolor=black,%
+%   urlcolor=black,
+%   linktoc=none
+% }
+
+% Page style
+\pagestyle{plain}
+
+%%% Page size
+% \setstocksize{297mm}{210mm} % A4 paper
+% \settypeblocksize{258mm}{160mm}{*} % A4 paper
+%\setstocksize{10.3in}{7.3in}
+% \settypeblocksize{217mm}{140mm}{*}
+%\settypeblocksize{230mm}{160mm}{*}
+%\settrimmedsize{\stockheight}{\stockwidth}{*}
+%\setlength{\trimtop}{0pt}
+%\setlength{\trimedge}{\stockwidth}
+%\addtolength{\trimedge}{-\paperwidth}
+%\setulmargins{*}{*}{1.5}
+%\setlrmargins{*}{*}{1}
+\addtolength{\footskip}{.25cm}
+%\checkandfixthelayout
+
+
+
+
+
+\setcounter{tocdepth}{2}
+
+\allowdisplaybreaks
+
+\usepackage{xr}
+\externaldocument[lec1:]{../1_sampling/lec1}
+\externaldocument[lec2:]{../2_estimation/lec2}
+\externaldocument[lec3:]{../3_hypothesis/lec3}
+
+
+
+\begin{document}
+
+Chapter 3 Solutions
+
+\begin{enumerate}
+\item A patient is considering a number of treatment options available
+  through her general practitioner (GP) between receiving medication or
+  having a surgery. The costs of the different treatments vary as well
+  as their likelihood of success. The GP has discussed with the
+  patient the success rates of each treatment when used in other patients.
+
+  Describe the parameter, data, actions, and loss function for this
+  problem.
+
+  \begin{shaded}
+    The \textbf{parameter} corresponds to the probability of success of
+    each treatment.
+
+    The \textbf{data} consist of the success rates  provided by the GP.
+
+    The available \textbf{actions} are: no treatment, medication, surgery.
+
+    The \textbf{loss} function incorporates the cost and improvement in
+    quality of life for the patient.
+  \end{shaded}
+  
+\item An investor is considering whether or not to buy certain risky bonds.
+  If he buys the bonds, they can be redeemed at maturity for a net gain of
+  \pounds500. There is probability $\theta$ that there will be a default
+  on the bonds, in which case the investor is set to lose his investment of
+  \pounds1000. If the investor instead puts his money in a ``safe''
+  investment, he will receive a net gain of \pounds300 over the same
+  period.
+  \begin{enumerate}
+  \item Define appropriate actions, parameter, and parameter space for the problem.
+    \begin{shaded}
+      The two \textbf{actions} are: ``Invest in bonds'' and ``Invest in
+      safe assets''. The \textbf{parameter} is the probability that there
+      is a default on the bonds. The \textbf{parameter space} is $[0,1]$.
+    \end{shaded}
+  \item Derive the loss function for the problem.
+    \begin{shaded}
+      Let $y$ denote the event of default on the bonds. We set $y=1$ if a
+      default occurs and $y=0$ if a default does not occur. Then $y \sim
+      \mathrm{Bernoulli}(\theta)$. Let $a=1$ if the investor invests in
+      bonds and $a=0$ if the investor invests in safe assets. Then, the
+      loss from the outcome $y$ is\\
+      \begin{equation*}
+        l(y,a) =
+        \begin{cases}
+          -300 & \text{ if $a=0$ and $y=0$ or $1$}, \\
+          -500 & \text{ if $a=1$ and $y=0$,} \\
+          1000 & \text{ if $a=1$ and $y=1$.}
+        \end{cases}
+      \end{equation*}
+      This can also be written as a $2\times 2$ table:
+      \begin{center}
+        \begin{tabular}{l|c|c|}
+          \multicolumn{1}{c}{} & \multicolumn{1}{c}{$a=0$} &
+          \multicolumn{1}{c}{$a=1$} \\
+          \cline{2-3}
+          $y=0$ & $-300$ & $-500$ \\
+          \cline{2-3}
+          $y=1$ & $-300$ & $1000$ \\
+          \cline{2-3}
+        \end{tabular}.
+      \end{center}
+      Then,
+      \begin{align}
+        L(\theta,a=0) &= \E[l(y,a=0)] \\ &= l(y=0,a=0) \Pr(y=0) +
+        l(y=1,a=0) \Pr(y=1) \\ &= -300 \times (1-\theta) -300 \times \theta
+        \\ &= -300 \\
+        L(\theta,a=1) &= \E[l(y,a=1)] \\ &= l(y=0,a=1) \Pr(y=0) +
+        l(y=1,a=1) \Pr(y=1) \\ &= -500 \times (1-\theta) +1000 \times \theta
+        \\ &= -500 + 1500 \theta
+      \end{align}
+      So,
+      \begin{equation*}
+        L(\theta,a) =
+        \begin{cases}
+          -300 & \text{ if $a=0$,}\\ -500 + 1500\theta & \text{ if $a=1$.}
+        \end{cases}
+      \end{equation*}
+    \end{shaded}
+  \item Describe all randomised decision rules and find the minimax
+    decision among them.
+    \begin{shaded}
+      There are no data. All randomised decision rules are of the form
+      \begin{equation*}
+        d_p =
+        \begin{cases}
+          1 & \text{ with probability $p$,} \\ 0 & \text{ with probability
+            $1-p$,} 
+        \end{cases}
+      \end{equation*}
+      i.e., invest in bonds with probability $p$, and invest in safe assets
+      with probability $1-p$. As there are no data, the risk is the loss, i.e.,
+      \begin{align*}
+        R(\theta,d_p) &= L(\theta,d_p) \\
+        &= -300\times(1-p) + (-500 + 1500\times\theta) \times p \\
+        &= -300 - 200\times p + 1500\times\theta\times p.
+      \end{align*}
+      This is maximised when $\theta=1$ for all $p$, so
+      \begin{align*}
+        \bar R(d_p) &= \max_{0 \leq \theta \leq 1} R(\theta,d_p) \\
+        &= -300 -200 \times p + 1500 \times 1 \times p \\
+        &= -300 + 1300 \times p.
+      \end{align*}
+      The value of $p$ that minimises the maximum risk, $\bar R(d_p)$ is
+      $p=0$, so the optimal decision is in fact a deterministic decision, 
+      \begin{equation*}
+        d_\mathrm{MM} = d_0 =
+        \begin{cases}
+          1 & \text{ with probability $0$,} \\ 0 & \text{ with probability
+            $1$} 
+        \end{cases} = 0 \text{ always}.
+      \end{equation*}
+      In other words, the minimax strategy is to invest in safe assets.
+    \end{shaded}
+  \end{enumerate}
+
+
+\item A coin has probability $\theta \in [0,1]$ of coming up heads $(y=1)$,
+  and $1-\theta$ of coming up tails $(y=0)$. You are playing a game where
+  if you guess the outcome of a coin flip correctly you receive a payment
+  of \pounds{1}, but if you guess wrongly, you loose \pounds{1}.
+  \begin{enumerate}
+  \item What are the parameter and parameter space for this problem?
+    \begin{shaded}
+      The parameter is the probability of the coin coming up heads,
+      $\theta$, and the parameter space is $\Theta = [0,1]$.
+    \end{shaded}
+    
+  \item What is the action space for this problem?
+
+    \begin{shaded}
+      The actions that can be taken are: ``guess heads'' ($a=1$) or ``guess
+      tails'' ($a=0$), so the action space is $\mathcal{A} = \{0,1\}$.
+    \end{shaded}
+    
+  \item Show that the loss function, $L(\theta,a)$, for this problem is given
+    by
+    \begin{equation*}
+      L(\theta,a) =
+      \begin{cases}
+        2\theta -1 & \text{ if guessing ``tails'',} \\ 1-2\theta  & \text{ if guessing ``heads''.}
+      \end{cases}
+    \end{equation*}
+
+    \begin{shaded}
+      Let $y$ be the outcome of a future coin flip such that $\Pr(y=1) =
+      \theta$ and $\Pr(y=0) = 1-\theta$. Then the loss from that outcome is
+      \begin{align*}
+        l(y,0) &= \begin{cases} -1 & \text{ if $y=0$,} \\ 1 & \text{ if
+            $y=1$,} 
+        \end{cases}
+        & l(y,1) &= \begin{cases} 1 & \text{ if $y=0$,} \\ -1 &
+          \text{ if $y=1$.}
+        \end{cases}
+      \end{align*}
+      Then, $L(\theta,0) = -1 \times \Pr(y=0) + 1 \times \Pr(y=1) =
+      -(1-\theta) + \theta = 2\theta-1$,\\
+      and $L(\theta,1) = 1 \times \Pr(y=0) - 1 \times \Pr(y=1) =
+      (1-\theta) - \theta = 1-2\theta$.
+    \end{shaded}
+    
+    \end{enumerate}
+    
+  \item Let $x$ be the outcome the coin flip from an earlier game. Consider
+    the following two strategies for guessing the outcome of a future coin
+    flip:
+    \begin{itemize}
+    \item \textbf{Strategy 1:} Guess the same as the outcome of the earlier
+      coin flip. 
+    \item \textbf{Strategy 2:} Guess ``heads'' regardless of the outcome of
+      the earlier coin flip.
+    \end{itemize}
+    \begin{enumerate}
+    \item Write a mathematical expression for the decision rules
+      corresponding to these two strategies and compute their risks.
+
+      \begin{shaded}
+        The decision rules corresponding to the two strategies are $d_1(x)
+        = x$ and $d_2(x) = 1$.\medskip
+
+        Since $x = 1$ with probability $\theta$, and $x=0$ with probability
+        $1-\theta$, \\ $R(\theta,d_1) = \E L(\theta,x) =
+        L(\theta,0)(1-\theta) + L(\theta,1)\theta = (2\theta-1)(1-\theta) +
+        (1-2\theta) \theta = (2\theta-1)(1-\theta) -
+        (2\theta-1) \theta = (2\theta-1)(1-\theta-\theta) =
+        (2\theta-1)(1-2\theta) = -(2\theta-1)^2$. \medskip
+
+        $R(\theta,d_2) = \E L(\theta,1) = \E(1-2\theta) = 1-2\theta$.
+      \end{shaded}
+      
+    \item Between the two strategies, which one is the minimax decision
+      rule?
+
+      \begin{shaded}
+        It can be seen that for $d_1$, the value of $\theta$ that attains
+        the maximum risk is $\theta = \half$, in which case $\bar R(d_1) =
+        -(2 \times \half - 1)^2 = 0$.
+
+        For $d_2$, the risk is maximised when $\theta = 0$, in which case
+        $\bar R(d_2) = 1 - 2 \times 0 = 1$.
+
+        So, between the two decision rules, $d_1$ is minimax as $\bar
+        R(d_1) < \bar R(d_2)$.
+      \end{shaded}
+ 
+      
+
+  \end{enumerate}
+
+% \item Every winter evening, the head of Bath's council must decide whether
+%   to spread salt on the roads of Bath to prevent them from getting icy. If
+%   she does not spread salt, and the roads become icy, then there are
+%   consequences from car accidents and delays in the roads. Spreading salt,
+%   also costs money. She calculates that the cost from the roads becoming
+%   icy if no salt is spread is twice as much as the cost of spreading salt.
+%   There is no loss from rightly spreading salt.
+% 
+%   To make up her decision, the head of council checks two weather reporting
+%   websites that provide independent forecasts of the event of ice. If there
+%   is going to be ice, each website will forecast ice with probability
+%   $3/4$, and not forecast ice with probability $1/4$. If there is not going
+%   to be ice, each website will forecast ice with probability $1/2$, and not
+%   forecast ice with probability $1/2$. Historical records show that a third
+%   of winter nights are icy. Let $x$ denote how many of the two
+%   websites forecast ice on a given day. The head of council will make a
+%   decision based on $x$.
+% 
+%   \begin{enumerate}[label=\alph*)]
+%   \item Let $\theta$ denote the probability that there will be ice on any
+%     particular day. Show that the loss function for this problem is given by
+%     \begin{equation*}
+%       L(\theta,a) = \begin{cases} 2\theta & \text{ if salt is not spread,}
+%         \\ 1-\theta & \text{ if salt is spread.} \end{cases}
+%     \end{equation*}
+% 
+%     \begin{shaded}
+%       There is a loss of 1 if salt is spread but the weather is not icy,
+%       and a loss of 2 if salt is not spread but the weather is icy. In all
+%       other cases, there is no loss. Let $a=1$ if salt is spread, and $a=0$
+%       if salt is not spread. Then,
+%       \begin{align*}
+%         L(\theta,0) &= 0 \times \Pr(\text{no ice}) + 2 \times
+%         \Pr(\text{ice}) = 0 \times (1-\theta) + 2 \times \theta = 2\theta,
+%         \\
+%         L(\theta,1) &= 1 \times \Pr(\text{no ice}) + 0 \times
+%         \Pr(\text{ice}) = 1 \times (1-\theta) + 0 \times \theta = 1-\theta.
+%       \end{align*}
+%     \end{shaded}
+%     
+%   \item Write down an exhaustive set of deterministic decision rules based
+%     on $x$. \label{item:3}
+% 
+%     \begin{shaded}
+%       Here, $x$ can take the values $x\in\{0,1,2\}$ and each value can be
+%       assigned to an action $a \in \{0,1\}$. Therefore, there are $2^3=8$
+%       different deterministic decision rules.
+% 
+%       The different decision rules are to spread salt if $x$ is a member of
+%       the set: $\{\}$, $\{0\}$, $\{1\}$, $\{2\}$, $\{0,1\}$, $\{0,2\}$,
+%       $\{1,2\}$, $\{0,1,2\}$, and not spread otherwise. The set $\{\}$
+%       correspond to never spread salt (regardless of $x$), and the set
+%       $\{0,1,2\}$ to always spread salt (regardless of $x$).
+%     \end{shaded}
+%     
+%   \item Compute the risk of each rule from~\ref{item:3} and find the minimax
+%     decision rule among them.
+%   \item Consider the following family of randomised decision rules,
+%     $d_p(x)$, where salt is spread with probability $px$, where $0 \leq p
+%     \leq \half$.
+%     \begin{enumerate}
+%     \item Find the minimax decision rule in $d_p(x)$.
+%     \item Find the Bayes decision rule under the uniform prior $\pi(\theta)
+%       = 1$.
+%     \end{enumerate}
+%   \end{enumerate}
+\end{enumerate}
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex/m
+%%% TeX-PDF-mode: t
+%%% TeX-source-correlate-mode: t
+%%% End:

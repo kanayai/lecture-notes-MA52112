@@ -1,0 +1,419 @@
+\documentclass[oneside,11pt]{article}
+
+
+%\usepackage[british]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+% \usepackage{bm}
+%\usepackage{dsfont}
+%\usepackage{titling}
+%\usepackage{enumitem}
+%\usepackage{titletoc}
+\usepackage{lmodern}
+\usepackage{textcomp} % Required by listings
+%\usepackage{listings}
+%\usepackage{thmtools}
+%\usepackage{memhfixc}
+\usepackage{hyperref}
+%\usepackage[all]{xy}
+
+
+\usepackage[T1]{fontenc}
+%\usepackage[scaled=0.8]{DejaVuSansMono}
+% \usepackage[charter]{mathdesign}
+% \def\rmdefault{bch} % not scaled
+% \def\ttdefault{blg}
+% \usepackage[scaled=0.9]{inconsolata}
+% \usepackage[scaled=0.8]{luximono}
+
+%\nonzeroparskip
+\raggedbottom
+
+%% Shaded environment
+\usepackage{framed}
+\usepackage{xcolor}
+\definecolor{shadecolor}{gray}{0.9}
+\setlength{\FrameSep}{3pt}
+\setlength{\OuterFrameSep}{3pt}
+
+
+%%% Floats
+%\setfloatlocations{figure}{tbhp}
+%\setfloatlocations{table}{tbhp}
+%\captionnamefont{\bfseries}
+% \captiontitlefont{\itshape}
+% \captionstyle[\centering]{\raggedright}
+% \captionwidth{\linewidth} \changecaptionwidth
+\renewcommand{\topfraction}{0.9}        % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}     % max fraction of floats at bottom
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+\setcounter{dbltopnumber}{2}    % for 2-column pages
+\renewcommand{\dbltopfraction}{0.9}     % fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}      % allow minimal text w. figs
+\renewcommand{\floatpagefraction}{0.7}  % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.7}       % require fuller float pages
+
+
+%%% Commands
+\DeclareMathOperator*{\E}{{\mathsf E}} % expectation
+\DeclareMathOperator*{\Var}{{\mathsf Var}} % variance
+\DeclareMathOperator*{\Cov}{{\mathsf Cov}} % covariance
+\DeclareMathOperator*{\argmin}{argmin} % argmin
+\DeclareMathOperator*{\argmax}{argmax} % argmax
+\newcommand{\iid}{{{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}}
+\renewcommand{\Pr}{{\mathbb{P}}}
+\newcommand{\half}{{\frac 12}}
+\newcommand{\ud}{{\,\mathrm{d}}}
+\newcommand{\xbf}{{\mathbf{x}}}
+\newcommand{\Xbf}{{\mathbf{X}}}
+
+%%% Theorems
+%\renewenvironment{proof}[1][Proof]{\noindent{\bfseries #1.}\hspace*{1em}}{\qed\\}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.\newline}]{clearprint}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.}]{clearexc}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.},qed=$\blacktriangleright$]{clearexm}
+%\declaretheoremstyle[spaceabove=10pt,headpunct={.\newline},
+%headfont={\normalfont\itshape}]{remarkmy}
+%%
+%\declaretheorem[style=clearprint,within=chapter,name=Definition]{definition}
+%\declaretheorem[style=clearexm,within=chapter,name=Example]{example}
+%\declaretheorem[style=clearexc,within=chapter,name=Exercise]{exercise}
+%\declaretheorem[style=clearprint,within=chapter,name=Theorem]{theorem}
+%\declaretheorem[style=clearprint,name=Lemma,sibling=theorem]{lemma}
+%\declaretheorem[style=clearprint,name=Proposition,sibling=theorem]{proposition}
+%\declaretheorem[style=clearexc,numbered=no,name=Corollary]{corollary}
+%\declaretheorem[style=clearexc,numbered=no,name=Remark]{remark}
+
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength{\emergencystretch}{.5ex}
+
+% \hypersetup{
+%   colorlinks,%
+%   citecolor=black,%
+%   filecolor=black,%
+%   linkcolor=black,%
+%   urlcolor=black,
+%   linktoc=none
+% }
+
+% Page style
+\pagestyle{plain}
+
+%%% Page size
+% \setstocksize{297mm}{210mm} % A4 paper
+% \settypeblocksize{258mm}{160mm}{*} % A4 paper
+%\setstocksize{10.3in}{7.3in}
+% \settypeblocksize{217mm}{140mm}{*}
+%\settypeblocksize{230mm}{160mm}{*}
+%\settrimmedsize{\stockheight}{\stockwidth}{*}
+%\setlength{\trimtop}{0pt}
+%\setlength{\trimedge}{\stockwidth}
+%\addtolength{\trimedge}{-\paperwidth}
+%\setulmargins{*}{*}{1.5}
+%\setlrmargins{*}{*}{1}
+\addtolength{\footskip}{.25cm}
+%\checkandfixthelayout
+
+
+
+
+
+\setcounter{tocdepth}{2}
+
+\allowdisplaybreaks
+
+\usepackage{xr}
+\externaldocument[lec1:]{../1_sampling/lec1}
+\externaldocument[lec2:]{../2_estimation/lec2}
+\externaldocument[lec3:]{../3_hypothesis/lec3}
+
+
+
+\begin{document}
+
+Chapter 5 Solutions
+
+\textbf{Confidence intervals}
+
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item Let $X_1,\ldots,X_n \iid \mathrm{N}(\mu,\sigma^2)$ where both $\mu$
+    and $\sigma^2$ are unknown parameters. Using the fact that, the sample
+    variance, $S^2$, is distributed as
+    $(n-1)S^2/\sigma^2 \sim \mathcal{X}^2_{n-1}$, derive a level $1-\alpha$
+    confidence interval for $\sigma^2$. ($\mathcal{X}^2_{k}$ denotes the
+    \emph{chi-squared distribution with $k$ degrees of freedom}, which is
+    available in python as \verb|scipy.stats.chi2|. It is a special case of
+    the gamma distribution with shape $k/2$ and rate $1/2$.)
+    
+    \begin{shaded}
+      We know that $\dfrac{(n-1)S^2}{\sigma^2} \sim \mathcal{X}^2_{n-1}$ so
+      $Y = \dfrac{(n-1)S^2}{\sigma^2}$ is a pivot function because its
+      distribution does not depend on the unknown parameter $\sigma^2$. Let
+      $\chi^2_{\alpha/2}$ and $\chi^2_{1-\alpha/2}$ denote the $\alpha/2$ and
+      $1-\alpha/2$ left quantiles of the $\mathcal{X}^2_{n-1}$ distribution
+      respectively. Then we have the following inequality which holds with
+      probability $1-\alpha$
+      \begin{align*}
+        & \chi^2_{\alpha/2} < Y < \chi^2_{1-\alpha/2} \\
+        & \Rightarrow \chi^2_{\alpha/2} < \dfrac{(n-1)S^2}{\sigma^2} <
+        \chi^2_{1-\alpha/2} \\
+        & \Rightarrow \dfrac{1}{\chi^2_{1-\alpha/2}} <
+        \dfrac{\sigma^2}{(n-1)S^2} < \dfrac{1}{\chi^2_{\alpha/2}} \\
+        & \Rightarrow \dfrac{(n-1)S^2}{\chi^2_{1-\alpha/2}} <
+        \sigma^2 < \dfrac{(n-1)S^2}{\chi^2_{\alpha/2}},
+      \end{align*}
+      so a level $1-\alpha$ confidence interval is
+      $\left[ \dfrac{(n-1)S^2}{\chi^2_{1-\alpha/2}},
+        \dfrac{(n-1)S^2}{\chi^2_{\alpha/2}} \right]$
+    \end{shaded}
+    
+  \item Suppose that the following data were observed
+    \begin{center}
+      $-$1.90, $-$0.89, $-$0.87, $-$0.65, $-$0.32, $-$0.25,  0.90,  1.00,  1.18.
+    \end{center}
+    For these data $n=9$, $\bar x = -0.2$, and $S^2 = 1.073$. Calculate a
+    95\% confidence interval for $\sigma^2$.
+
+    \begin{shaded}
+      From Python, we have
+\begin{verbatim}
+>>> import scipy.stats
+>>> scipy.stats.chi2.ppf([.025,.975],8)
+array([ 2.17973075, 17.53454614])
+\end{verbatim}
+      so $\chi^2_{\alpha/2} = 2.18$ and $\chi^2_{1-\alpha/2} = 17.53$. Then,
+      \begin{align*}
+        L&= \frac{(9-1)(1.073)}{17.53} = 0.49 \\
+        U&= \frac{(9-1)(1.073)}{2.18} = 3.94,
+      \end{align*}
+      so the 95\% confidence interval is $[0.49,3.94]$.
+    \end{shaded}
+\end{enumerate}
+
+
+\item
+  \begin{enumerate}
+  \item Let $X_1,\ldots,X_n \iid \mathrm{U}(0,\theta)$, $\theta > 0$. By
+    considering an appropriate pivot construct a level $1-\alpha$
+    confidence interval for $\theta$. \textit{Hint.} Let
+    $W_i = X_i/\theta$.
+
+    \begin{shaded}
+      Let $W_i = X_i/\theta$. Then $W_i \sim U(0,1)$ so if we let
+      $W_{(n)} = \max \{ W_1,\ldots, W_n \}$, then the distribution of
+      $W_{(n)}$ does not depend on $\theta$. Note that by letting
+      $X_{(n)} = \max \{ X_1,\ldots, X_n \}$, $W_{(n)} = X_{(n)}/\theta$.
+
+      The CDF of $W_{(n)}$ is
+      \begin{align*}
+        F_W(w)
+        & = \Pr (W_{(n)} \leq w) \\
+        &= \Pr( \max \{ W_1,\ldots, W_n \} \leq w) \\
+        &= \Pr( W_1 \leq w, \ldots, W_n \leq w) \\
+        &= \Pr( W_1 \leq w)  \ldots \Pr( W_n \leq w),\ \text{by independence} \\
+        &= w \times  \ldots \times w \\
+        &= w^n
+      \end{align*}
+      So if we let $c_1 = (\alpha/2)^{\frac 1n}$ and
+      $c_2 = (1-\alpha/2)^{\frac 1n}$, with probability $1-\alpha$,
+      \begin{align*}
+        & c_1 < W_{(n)} < c_2 \\
+        & c_1 < X_{(n)}/\theta < c_2 \\
+        & \dfrac{1}{c_2} < \theta/X_{(n)} < \dfrac{1}{c_1} \\
+        & \dfrac{X_{(n)}}{c_2} < \theta < \dfrac{X_{(n)}}{c_1},
+      \end{align*}
+      so a level $1-\alpha$ confidence interval is
+      $\left[ \dfrac{X_{(n)}}{c_2}, \dfrac{X_{(n)}}{c_1} \right]$
+    \end{shaded}
+    
+  \item Suppose that the following data were observed
+    \begin{center}
+      0.90,  1.00,  1.18, 1.90, 2.20.
+    \end{center}
+    Calculate a 95\% confidence interval for $\theta$. Does the confidence
+    interval contain the maximum likelihood estimator for $\theta$?
+
+    \begin{shaded}
+      For the given data, $n=5$ and $\max{x} = 2.20$.
+
+      For 95\% confidence, $\alpha = 0.05$, so $c_1 = (0.025)^(1/5) =
+      0.48$, and $c_2 = (0.975)^(1/5) = 0.99$. Then,
+      \begin{align*}
+        L&=\frac{2.20}{0.99} = 2.22 \\
+        U&=\frac{2.20}{0.48} = 4.58,
+      \end{align*}
+      so the confidence interval is $[2.22,4.58]$.
+
+      We can see that the confidence interval does not contain the maximum
+      likelihood estimator, which equals 2.20. The confidence interval
+      provides a more sensible range of values than the maximum likelihood
+      estimator, which underestimates $\theta$ for this model as we have
+      observed in the previous chapter.
+    \end{shaded}
+  \end{enumerate}
+\end{enumerate}
+
+\textbf{Hypothesis testing}
+
+\begin{enumerate}
+\item The author of a weight-loss diet claims that an average adult,
+  weighting 100\,Kg, who follows the proposed diet, will lose 20\,Kg after
+  1 month. What are the null and alternative hypotheses?
+
+  \begin{shaded}
+    Let $\mu$ denote the average person's weight after one month of diet.
+    Then \\ H$_0$: $\mu = 100$ vs H$_1$: $\mu = 80$.
+  \end{shaded}
+  
+\item The author of a weight-loss diet claims that an average adult,
+  weighting 100\,Kg, who follows the proposed diet, will lose weight after
+  1 month. What are the null and alternative hypotheses?
+  \begin{shaded}
+    Let $\mu$ denote the average person's weight after one month of diet.
+    Then \\ H$_0$: $\mu = 100$ vs H$_1$: $\mu < 100$.
+  \end{shaded}
+
+\item The author of a weight-loss diet claims that an average adult,
+  weighting 100\,Kg, who follows the proposed diet, will notice a change in
+  their weight after 1 month. What are the null and alternative hypotheses?
+  \begin{shaded}
+    Let $\mu$ denote the average person's weight after one month of diet.
+    Then \\ H$_0$: $\mu = 100$ vs H$_1$: $\mu \neq 100$.
+  \end{shaded}
+
+\item The author of a weight-loss diet claims that an average adult,
+  weighting 100\,Kg, who follows the proposed diet, will lose weight after
+  1 month. An experiment was conducted to verify this claim. Three adults,
+  who weighted 100\,Kg, followed the diet for one month and their weights
+  at the end of the month were recorded. The experimenters
+  would accept the author's claim if the sample mean $\bar X$ of the three
+  measured weights is less than 90. Suppose that the population standard
+  deviation is $\sigma=15$. 
+
+  \begin{enumerate}
+  \item The three people's weights after the end of the month were: 82, 86,
+    and 93. What is the experimenters' conclusion?
+    \begin{shaded}
+      In this case $\bar x = (82 + 86 + 93)/3 = 87$. Because $\bar x < 90$
+      the experimenters will conclude that there is evidence that the diet
+      helps people loose weight.
+    \end{shaded}
+
+    
+  \item According to the central limit theorem, what is the asymptotic
+    distribution of the sample mean of $n=3$ measurements from a population
+    with mean $\mu=100$ and standard deviation $\sigma=15$?
+    \begin{shaded}
+      The central limit theorem says that the distribution of the sample mean
+      $\bar X$ approximates the normal distribution with mean $\mu$ and
+      variance $\sigma^2/n = 15^2/3 = 75$. In this case it will be the N($100, 75$)
+      distribution. 
+    \end{shaded}
+    
+  \item \label{item:1} Use the central limit theorem to calculate the probability of Type I error of the experimenters'
+    decision rule.
+    \begin{shaded}
+      The experimenters' rule is ``reject H$_0$ if $\bar X < 90$''.
+
+      $\Pr(\text{Type I error}) = \Pr(\bar X < 90|\mu = 100)$.
+
+      Using the central limit theorem: $\bar X \sim \mathrm{N}(100, 75)$.
+      Then to find the probability:
+      \begin{center}
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/type1x.png}          
+        \end{minipage}
+        $\rightarrow$
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/type1z.png}  
+          
+        \end{minipage}
+      \end{center}
+
+      $z  = \dfrac{90-100}{\sqrt{75}} = -1.15 \Rightarrow \Phi(-1.15) =
+      \mathbf{0.1251}$ is the probability of Type~I error.
+    \end{shaded}
+
+    
+  \item Use the central limit theorem to calculate the probability of Type II error of the experimenters'
+    decision rule assuming that the average weight after one month is 85.
+
+    \begin{shaded}
+      The experimenters' rule is ``reject H$_0$ if $\bar X < 90$''.
+
+      $\Pr(\text{Type II error}) = \Pr(\bar X \geq 90|\mu = 85)$.
+
+      Using the central limit theorem: $\bar X \sim \mathrm{N}(85, 75)$
+      because now $\mu = 85$.
+      Then to find the probability:
+      \begin{center}
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/type2x.png}
+        \end{minipage}
+         $\rightarrow$        
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/type2z.png}  
+        \end{minipage}
+      \end{center}
+
+      $z  = \dfrac{90-85}{\sqrt{75}} = 0.58 \Rightarrow \Phi(0.58) =
+      0.7190 \Rightarrow 1 - 0.7190 = \mathbf{0.2810}$ is the probability of Type~II error.
+    \end{shaded}
+
+  \item Propose a rule of the form ``accept the author's claim if $\bar X <
+    c$'' (in other words find $c$) such that the probability of Type~I
+    error is 10\%.
+    \begin{shaded}
+      In this case we have to do the reverse calculation from~\ref{item:1}.
+      If we want $\Phi(z) = 0.10$, then we must choose $z = -1.28$. In this
+      case $\dfrac{c - 100}{\sqrt{75}} = -1.28 \Rightarrow c = 100 -(1.28)\sqrt{75} = \mathbf{88.9}$.
+      \begin{center}
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/signz.png}
+        \end{minipage}
+         $\rightarrow$        
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/signx.png}  
+        \end{minipage}
+      \end{center}
+    \end{shaded}
+
+    \item Suppose that in the sample we find that $\bar x = 86$. Find the
+    $p$-value. What is your conclusion at significance level $\alpha = 5\%$?
+    \begin{shaded}
+      \begin{center}
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/pval1x.png}
+        \end{minipage}
+         $\rightarrow$
+        \begin{minipage}{.45\linewidth}
+          \includegraphics[width=\linewidth]{images/pval1z.png}  
+        \end{minipage}
+      \end{center}
+      $z  = \dfrac{86-100}{\sqrt{75}} = -1.62 \Rightarrow \Phi(-1.62) =
+      \mathbf{0.0526}$ is the $p$-value.
+
+      Since $\text{$p$-value} \nless \alpha$, we do not reject the null
+      hypothesis at the 5\% level.
+    \end{shaded}
+  \end{enumerate}
+\end{enumerate}
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex/m
+%%% TeX-PDF-mode: t
+%%% TeX-source-correlate-mode: t
+%%% End:

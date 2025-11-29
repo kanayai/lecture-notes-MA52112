@@ -1,0 +1,289 @@
+\documentclass[oneside,11pt]{article}
+
+%\usepackage[british]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+% \usepackage{bm}
+%\usepackage{dsfont}
+%\usepackage{titling}
+%\usepackage{enumitem}
+%\usepackage{titletoc}
+\usepackage{lmodern}
+\usepackage{textcomp} % Required by listings
+%\usepackage{listings}
+%\usepackage{thmtools}
+%\usepackage{memhfixc}
+\usepackage{hyperref}
+%\usepackage[all]{xy}
+
+
+\usepackage[T1]{fontenc}
+%\usepackage[scaled=0.8]{DejaVuSansMono}
+% \usepackage[charter]{mathdesign}
+% \def\rmdefault{bch} % not scaled
+% \def\ttdefault{blg}
+% \usepackage[scaled=0.9]{inconsolata}
+% \usepackage[scaled=0.8]{luximono}
+
+%\nonzeroparskip
+\raggedbottom
+
+%% Shaded environment
+\usepackage{framed}
+\usepackage{xcolor}
+\definecolor{shadecolor}{gray}{0.9}
+\setlength{\FrameSep}{3pt}
+\setlength{\OuterFrameSep}{3pt}
+
+
+%%% Floats
+%\setfloatlocations{figure}{tbhp}
+%\setfloatlocations{table}{tbhp}
+%\captionnamefont{\bfseries}
+% \captiontitlefont{\itshape}
+% \captionstyle[\centering]{\raggedright}
+% \captionwidth{\linewidth} \changecaptionwidth
+\renewcommand{\topfraction}{0.9}        % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.8}     % max fraction of floats at bottom
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}     % 2 may work better
+\setcounter{dbltopnumber}{2}    % for 2-column pages
+\renewcommand{\dbltopfraction}{0.9}     % fit big float above 2-col. text
+\renewcommand{\textfraction}{0.07}      % allow minimal text w. figs
+\renewcommand{\floatpagefraction}{0.7}  % require fuller float pages
+\renewcommand{\dblfloatpagefraction}{0.7}       % require fuller float pages
+
+
+%%% Commands
+\DeclareMathOperator*{\E}{{\mathsf E}} % expectation
+\DeclareMathOperator*{\Var}{{\mathsf Var}} % variance
+\DeclareMathOperator*{\Cov}{{\mathsf Cov}} % covariance
+\DeclareMathOperator*{\argmin}{argmin} % argmin
+\DeclareMathOperator*{\argmax}{argmax} % argmax
+\newcommand{\iid}{{{}\mathbin{\stackrel{\mathsf{iid}}{\sim}}{}}}
+\renewcommand{\Pr}{{\mathbb{P}}}
+\newcommand{\half}{{\frac 12}}
+\newcommand{\ud}{{\,\mathrm{d}}}
+\newcommand{\xbf}{{\mathbf{x}}}
+\newcommand{\Xbf}{{\mathbf{X}}}
+
+%%% Theorems
+%\renewenvironment{proof}[1][Proof]{\noindent{\bfseries #1.}\hspace*{1em}}{\qed\\}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.\newline}]{clearprint}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.}]{clearexc}
+%\declaretheoremstyle[spaceabove=10pt,spacebelow=3pt,headfont=\normalfont\bfseries,
+%bodyfont=\normalfont,postheadspace=1em,headpunct={.},qed=$\blacktriangleright$]{clearexm}
+%\declaretheoremstyle[spaceabove=10pt,headpunct={.\newline},
+%headfont={\normalfont\itshape}]{remarkmy}
+%%
+%\declaretheorem[style=clearprint,within=chapter,name=Definition]{definition}
+%\declaretheorem[style=clearexm,within=chapter,name=Example]{example}
+%\declaretheorem[style=clearexc,within=chapter,name=Exercise]{exercise}
+%\declaretheorem[style=clearprint,within=chapter,name=Theorem]{theorem}
+%\declaretheorem[style=clearprint,name=Lemma,sibling=theorem]{lemma}
+%\declaretheorem[style=clearprint,name=Proposition,sibling=theorem]{proposition}
+%\declaretheorem[style=clearexc,numbered=no,name=Corollary]{corollary}
+%\declaretheorem[style=clearexc,numbered=no,name=Remark]{remark}
+
+\renewcommand{\labelitemi}{$\bullet$}
+\setlength{\emergencystretch}{.5ex}
+
+% \hypersetup{
+%   colorlinks,%
+%   citecolor=black,%
+%   filecolor=black,%
+%   linkcolor=black,%
+%   urlcolor=black,
+%   linktoc=none
+% }
+
+% Page style
+\pagestyle{plain}
+
+%%% Page size
+% \setstocksize{297mm}{210mm} % A4 paper
+% \settypeblocksize{258mm}{160mm}{*} % A4 paper
+%\setstocksize{10.3in}{7.3in}
+% \settypeblocksize{217mm}{140mm}{*}
+%\settypeblocksize{230mm}{160mm}{*}
+%\settrimmedsize{\stockheight}{\stockwidth}{*}
+%\setlength{\trimtop}{0pt}
+%\setlength{\trimedge}{\stockwidth}
+%\addtolength{\trimedge}{-\paperwidth}
+%\setulmargins{*}{*}{1.5}
+%\setlrmargins{*}{*}{1}
+\addtolength{\footskip}{.25cm}
+%\checkandfixthelayout
+
+
+
+
+
+\setcounter{tocdepth}{2}
+
+\allowdisplaybreaks
+
+\usepackage{xr}
+\externaldocument[lec1:]{../1_sampling/lec1}
+\externaldocument[lec2:]{../2_estimation/lec2}
+\externaldocument[lec3:]{../3_hypothesis/lec3}
+
+
+
+\begin{document}
+
+Chapter 2 Solutions
+
+\begin{enumerate}
+\item A coffee shop buys roasted coffee from a supplier. In order to assess
+  the quality of the supplied coffee, the manager of the shop conducts a
+  tasting experiment where she selects a small portion of coffee beans from
+  different batches and tastes the coffee from each portion. For each
+  portion she gives a score in the scale $1,2,\ldots,10$ with 10
+  corresponding to coffee of the best taste and uses the results to assess
+  the quality of the coffee.
+
+  Identify the population, parameter, and statistic.
+
+  \begin{shaded}
+    \textbf{Population:} In this case we want to draw conclusions about all
+    roasted coffee delivered from the supplier.
+
+    \textbf{Parameter:} In this tasting experiment we give a score to the
+    taste from each batch. The parameter could be the average score from
+    all possible batches even those which we didn't taste. Because each
+    tasting experiment is a score from 1 to 10, the parameter space is the
+    interval $[1,10]$.
+
+    \textbf{Statistic:} The statistic that helps us estimate the value of
+    the parameter is the sample average. The possible values of the
+    statistic are in the range of 1 to 10. It is not easy to come up with
+    the distribution of the test statistic. If we assume that the central
+    limit theorem applies, then the distribution of the sample average is
+    approximately the normal distribution.
+  \end{shaded}
+
+\item Read the abstract of the article: ``Dietary Intake of Marine n-3 Fatty Acids, Fish
+  Intake, and the Risk of Coronary Disease among Men'' by Ascherio and
+  others published in \textit{The New England Journal of Medicine} on April
+  13, 1995\\ \url{http://www.nejm.org/doi/full/10.1056/NEJM199504133321501}
+
+  Identify the population, parameter, sample, and statistic.
+
+  \begin{shaded}
+    \textbf{Population:} All men (according to the title).
+
+    \textbf{Parameter:} There are two parameters of interest: (1)~The
+    probability of having a coronary event (death from coronary disease,
+    nonfatal myocardial infarction, and coronary-artery bypass or
+    angioplasty procedures). (2)~The reduction, if any, of the risk of
+    coronary disease caused by the intake of marine n-3 fatty acids.
+
+    \textbf{Sample:} The sample consists of the 44,895 health
+    professionals, who completed the questionnaire.
+    
+    \textbf{Statistic:} The number of participants in the study who
+    experienced a coronary event.
+  \end{shaded}
+
+\item Let $X_1,\ldots,X_n \iid \mathrm{N}(\mu,\sigma^2)$. Derive the
+  sampling distribution of $\bar X$ given in Example 2.4
+
+  \begin{shaded}
+  
+Using the result in \href{https://moodle.bath.ac.uk/pluginfile.php/2857344/mod_resource/content/3/exercise-2-sols.html}{Problem 7  in Exercise sheet 2}, the moment generating function of a Normal distribution with mean $\mu$ and variance $\sigma^
+2$ is given by:
+$$
+M_X(t) = e^{\mu t + \frac{\sigma^2 t^
+2}{2}}
+$$
+
+Therefore the MGF of the average of n independent Normal distributions is:
+$$
+M_{\bar{X}}(t) = \left(M_X\left(\frac{
+t}{n}\right)\right)^n = \left(e^{\mu \frac{t}{n} + \frac{\sigma^2 \left(\frac{t}{n}\right)^2}{2}}\right)^n = e^{\mu t + \frac{\sigma^2 t^2}{2n}}
+$$
+This is the MGF of a Normal distribution with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+Thus, the average of n independent Normal distributions with mean $\mu$ and variance $\sigma^2$ is also Normally distributed with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+ To find the
+    mean and variance, we write $\bar X = \dfrac{1}{n} \sum_{i=1}^n X_i$ so
+    \begin{align*}
+      \E \bar X &= \E \left( \dfrac{1}{n} \sum_{i=1}^n X_i \right) &    \Var \bar X &= \Var \left( \dfrac{1}{n} \sum_{i=1}^n X_i \right) \\
+      &= \dfrac{1}{n} \E \left( \sum_{i=1}^n X_i \right) &              &= \dfrac{1}{n^2} \Var \left( \sum_{i=1}^n X_i \right) \\
+      &= \dfrac{1}{n} \sum_{i=1}^n \E X_i &                             &= \dfrac{1}{n^2} \sum_{i=1}^n \Var X_i,\ \text{by independence} \\
+      &= \dfrac{1}{n} \sum_{i=1}^n \mu &                                &= \dfrac{1}{n^2} \sum_{i=1}^n \sigma^2 \\
+      &= \dfrac{1}{n} n \mu  = \mu &                                    &= \dfrac{1}{n^2} n \sigma^2  = \sigma^2/n.
+    \end{align*}
+  \end{shaded}
+
+\item Let $X_1,\ldots,X_n \iid \mathrm{Bernoulli}(p)$.
+  \begin{enumerate}
+  \item Derive the sampling distribution of $\bar X$.
+  \item Derive the asymptotic distribution of $\bar X$ from the central
+    limit theorem.
+  \item Draw a graph of the exact and approximate CDFs when $n=20$ and $p =
+    0.4$.
+  \end{enumerate}
+
+  \begin{shaded}
+    \begin{enumerate}
+    \item Let $W = \sum X_i$. Then $W \sim \mathrm{Bin}(n,p)$ and $\Pr(W =
+      w) = \dbinom{n}{w} p^w (1-p)^{n-w}$.
+
+      Therefore, $\Pr(\bar X = x) = \Pr(W = n x) = \dbinom{n}{nx} p^{nx}
+      (1-p)^{n-nx}$. Thus, $\bar X$ is the sample proportion from $n$
+      Bernoulli trials.
+
+    \item The mean and variance of each $X_i$ is $\E X_i = p$ and $\Var X_i
+      = p(1-p)$. By the central limit theorem $\bar X \sim N \left( p,
+        \dfrac{p(1-p)}{n} \right)$ approximately.
+
+    \item The two CDFs can be seen in the figure below\\
+      \mbox{} \hfill \includegraphics[width=.65\linewidth]{images/exercise_cdf.png} \hfill
+      \mbox{}\\
+      with the red line denoting the approximate normal CDF and the blue
+      line the exact binomial proportion. The exact CDF is a step function
+      because the random variable is discrete.
+      
+Below is   some Python code to produce the plot.
+
+\newpage
+      
+  \begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom, norm
+n = 20
+p = 0.4
+x = np.arange(0, n+1)
+binom_cdf = binom.cdf(x, n, p)
+norm_cdf = norm.cdf(x, loc=n*p, scale=np.sqrt(n*p*(1-p)))
+plt.step(x, binom_cdf, label='Binomial CDF', where='post
+')
+plt.plot(x, norm_cdf, label='Normal Approximation CDF', color='red
+')
+plt.xlabel('x')
+plt.ylabel('CDF')
+plt.title('Exact and Approximate CDFs')
+plt.legend()
+plt.grid()
+plt.show()
+\end{verbatim}
+    \end{enumerate}
+  \end{shaded}
+\end{enumerate}
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: latex/m
+%%% TeX-PDF-mode: t
+%%% TeX-source-correlate-mode: t
+%%% End:

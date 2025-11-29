@@ -1,0 +1,72 @@
+---
+title: "Untitled"
+format: html
+---
+
+exercises
+
+Find the distribution of the average of n independent Normal distriubutions with the same mean and variance.
+
+The moment generating function of a Normal distribution with mean $\mu$ and variance $\sigma^
+2$ is given by:
+$$
+M_X(t) = e^{\mu t + \frac{\sigma^2 t^
+2}{2}}
+$$
+
+Therefore the MGF of the average of n independent Normal distributions is:
+$$
+M_{\bar{X}}(t) = \left(M_X\left(\frac{
+t}{n}\right)\right)^n = \left(e^{\mu \frac{t}{n} + \frac{\sigma^2 \left(\frac{t}{n}\right)^2}{2}}\right)^n = e^{\mu t + \frac{\sigma^2 t^2}{2n}}
+$$
+This is the MGF of a Normal distribution with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+Thus, the average of n independent Normal distributions with mean $\mu$ and variance $\sigma^2$ is also Normally distributed with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+
+
+
+ Let $X_1,\ldots,X_n \iid \mathrm{Bernoulli}(p)$.
+  
+  - Derive the sampling distribution of $\bar X$.
+
+**Solution** 
+Let $W = \sum X_i$. Then $W \sim \mathrm{Bin}(n,p)$ and $\Pr(W =
+      w) = \dbinom{n}{w} p^w (1-p)^{n-w}$.
+
+      Therefore, $\Pr(\bar X = x) = \Pr(W = n x) = \dbinom{n}{nx} p^{nx}
+      (1-p)^{n-nx}$. Thus, $\bar X$ is the sample proportion from $n$
+      Bernoulli trials.
+
+  - Derive the asymptotic distribution of $\bar X$ from the central
+    limit theorem.
+
+    **Solution**
+    The mean and variance of each $X_i$ is $\E X_i = p$ and $\Var X_i
+      = p(1-p)$. By the central limit theorem $\bar X \sim N \left( p,
+        \dfrac{p(1-p)}{n} \right)$ approximately.
+
+
+  - Draw a graph of the exact and approximate CDFs when $n=20$ and $p =
+    0.4$.
+   The two CDFs can be seen in the figure below done in python.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import binom, norm
+n = 20
+p = 0.4
+x = np.arange(0, n+1)
+x2 = x / n
+binom_cdf = binom.cdf(x, n, p)
+norm_cdf = norm.cdf(x, loc=n*p, scale=np.sqrt(n*p*(1-p)))
+plt.step(x2, binom_cdf, label='Binomial CDF', where='post')
+plt.plot(x2, norm_cdf, label='Normal Approximation CDF', color='red')
+plt.xlabel('x')
+plt.ylabel('CDF')
+plt.title('Exact and Approximate CDFs')
+plt.legend()
+plt.grid()
+plt.show()
+```
+
+  ![CDFs](attachment:cdf_plot.png)

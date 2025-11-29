@@ -1,0 +1,940 @@
+---
+title: "MA52112: Statistics for Data Science"
+subtitle: "Exercise sheet 1 (Probability) - Solutions"
+format: 
+  html:
+    embed-resources: true
+---
+
+
+1. Recall that the set difference of two sets A and B is defined as:
+$$
+B\setminus A=\{x\in B: x\notin A\}=
+B \cap A^c
+$$
+
+Show that for any events A and B, the following holds:
+
+ $$P(B\setminus A)=P(B)-P(A\cap B)$$
+
+**Solution**
+
+Note we can write $B$ as follows
+
+$$
+B=B\cap \Omega=B\cap(A\cup A^c)=(B\cap A)\cup (B\cap A^c)
+$$
+Since the two sets on the right hand side are disjoint, we have:
+$$
+P(B)=P(B\cap A)+P(B\cap A^c)
+$$
+Rearranging the equation, we get
+$$
+P(B\cap A^c)=P(B)-P(B\cap A)
+$$
+which is what we wanted to show.
+
+
+2. Show that for any events A and B, the following holds:
+$$
+P(B \setminus A)= P(A \cup B) - P(A)
+$$
+
+**Solution**
+
+Note we can write $A\cup B$ as follows
+$$
+A\cup B = A \cup (B \cap A^c)
+$$
+Since the two sets on the right hand side are disjoint, we have
+$$
+P(A \cup B) = P(A) + P(B \cap A^c)
+$$
+Rearranging the equation, we get
+$$
+P(B \cap A^c)=P(B\setminus A) = P(A \cup B) - P(A)
+$$
+which is what we wanted to show.
+
+
+3 Show that for any events A and B such that $A \subseteq B$ we have
+$P(A) \leq P(B)$.
+
+**Solution**
+Since $A \subseteq B$, we can write $B$ as follows
+$$
+B = A \cup (B \cap A^c)
+$$
+Since the two sets on the right hand side are disjoint, we have
+$$
+P(B) = P(A) + P(B \cap A^c)
+$$
+Since probabilities are non-negative, we have $P(B \cap A^c) \geq 0$, and therefore
+$$
+P(B) \geq P(A)
+$$
+which is what we wanted to show.
+
+
+
+
+
+
+
+
+4. Show that if two events A and B are independent, then their complements $A^c$ and $B^c$ are also independent.
+
+
+**Solution**
+
+
+To show that if two events A and B are independent, then their complements $A^c$ and $B^c$ are also independent, we start with the definition of independence. Two events A and B are independent if:
+$$
+P(A \cap B) = P(A) \times P(B)$$
+We need to show that:
+$$
+P(A^c \cap B^c) = P(A^c) \times P(B^c)$$
+Using the properties of complements, we know that:
+$$
+P(A^c) = 1 - P(A)$$
+$$
+P(B^c) = 1 - P(B)$$
+Now, we can express $P(A^c \cap B^c)$ in terms of $P(A)$and $P(B)$ :
+$$
+P(A^c \cap B^c) = P((A \cup B)^c) = 1 - P(A \cup B)$$
+Using the formula for the union of two events, we have:
+$$
+P(A \cup B) = P(A) + P(B) - P(A \cap B)$$
+Substituting this into our expression for $P(A^c \cap B^c)$ :
+$$
+P(A^c \cap B^c) = 1 - [P(A) + P(B) - P(A \cap B)] = 1 - P(A) - P(B) + P(A \cap B)$$
+Now, substituting the independence condition $P(A \cap B) = P(A) \times P(B)$ :
+$$
+P(A^c \cap B^c) = 1 - P(A) - P(B) + P(A) \times P(B)$$
+Now, we can factor this expression:
+$$
+P(A^c \cap B^c) = (1 - P(A))(1 - P(B)) = P(A^c) \times P(B^c)$$
+Thus, we have shown that:
+$$
+P(A^c \cap B^c) = P(A^c) \times P(B^c)$$
+Therefore, the complements $A^c$ and $B^c$ are also independent.
+
+
+
+5. Three events A, B, and C are said to be mutually independent if all the following conditions hold:
+
+- $P(A \cap B) = P(A)P(B)$
+- $P(A \cap C) = P(A)P(C)$
+- $P(B \cap C) = P(B)P(C)$
+- $P(A \cap B \cap C) = P(A)P(B)P(C)$
+
+
+Consider  the experiment of tossing two dice. 
+Assume that each outcome is equally likely.
+Define the following events:
+
+- A: The two throws give the same result
+
+- B: the sum of the numbers is between 7 and 10 (inclusive)
+
+- C: the sum is 2 or 7 or 8
+
+Show that the events A, B, and C are not mutually independent.
+
+**Solution**
+
+The sample space is given by
+$$
+\begin{aligned}
+\Omega &= \{(1,1), (1,2), (1,3), (1,4), (1,5), (1,6),  \\
+&  (2,1), (2,2), (2,3), (2,4), (2,5), (2,6), \\
+&  (3,1), (3,2), (3,3), (3,4), (3,5), (3,6),\\
+&  (4,1), (4,2), (4,3), (4,4), (4,5), (4,6),\\
+&  (5,1), (5,2), (5,3), (5,4), (5,5), (5,6),\\
+&  (6,1), (6,2), (6,3), (6,4), (6,5), (6,6)\}
+\end{aligned}
+$$
+
+
+List the outcomes in each event and compute their probabilities.
+The outcomes in each event are as follows:
+$$
+\begin{aligned}
+A &= \{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\} \\
+ &\\
+B &= \{(1,6), (2,5), (3,4), (4,3), (5,2), (6,1), \\
+  &    (2,6), (3,5), (4,4), (5,3), (6,2), (3,6), \\
+  &    (4,5), (5,4), (6,3), (4,6), (5,5), (6,4)\}\\
+  &\\
+C  &=\{(1,1),(1,6),(2,5),(3,4),(4,3),(5,2),\\
+  &     (6,1),(2,6),(6,2),(3,5),(5,3),(4,4)\}
+\end{aligned}
+$$
+
+
+The probabilities of each event are as follows:
+
+$$P(A) = 6/36 = 1/6\,,\quad P(B) = 18/36 = 1/2\,,\quad P(C) = 12/36 = 1/3$$
+
+We also have that $A\cap B \cap C=\{(4,4)\}$ and therefore 
+
+$$
+P(A\cap B \cap C)=1/36=\frac{1}{6}\times \frac{1}{2} \times\frac{1}{3}=
+P(A)P(B)P(C)
+$$
+
+However, we have that
+$$
+A\cap B=\{(4,4),(5,5)\}
+$$
+and therefore
+$$
+P(A\cap B)=\frac{2}{36} \neq\frac{1}{6}\times\frac{1}{2} P(A)P(B)
+$$
+Similarly, we have that
+$$
+A\cap C=\{(1,1),(4,4)\}
+$$
+and therefore
+$$
+P(A\cap C)=\frac{2}{36} = \frac{1}{6}\times\frac{1}{3}=P(A)P(C)
+$$
+Finally, we have that
+$$
+\begin{aligned}
+B\cap C  &=\{(1,6),(2,5),(3,4),(4,3),(5,2),\\
+  &     (6,1),(2,6),(6,2),(3,5),(5,3),(4,4)\}
+\end{aligned}
+$$
+and therefore
+$$
+P(B\cap C)=\frac{11}{36} \neq P(B)P(C)=\frac{1}{2}\times\frac{1}{3}
+$$
+Thus, we have shown that the events A, B, and C are not mutually independent.
+
+
+
+6. Consider the experiment of tossing three coins. Assume that each outcome is equally likely.
+
+Define the following events:
+
+- A: The first coin is a head
+- B: The second coin is a head
+- C: The third coin is a head
+
+Show that the events A, B, and C are mutually independent.
+
+**Solution**
+The sample space is given by
+$$
+\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+$$
+List the outcomes in each event and compute their probabilities.
+The outcomes in each event are as follows:
+$$
+\begin{aligned}
+A &= \{HHH, HHT, HTH, HTT\} \\
+ &\\
+B &= \{HHH, HHT, THH, THT\} \\
+ &\\
+C &= \{HHH, HTH, THH, TTH\}
+\end{aligned}
+$$
+The probabilities of each event are as follows:
+
+$$P(A) = 4/8 = 1/2\,,\quad P(B) = 4/8 = 1/2\,,\quad P(C) = 4/8 = 1/2$$
+We also have that $A\cap B \cap C=\{HHH\}$ and therefore
+$$
+P(A\cap B \cap C)=1/8=\frac{1}{2}\times \frac{1}{2} \times\frac{1}{2}=
+P(A)P(B)P(C)
+$$
+Similarly, we have that
+$$
+A\cap B=\{HHH, HHT\}
+$$
+and therefore
+$$
+P(A\cap B)=2/8 = 1/4 = P(A)P(B)
+$$
+We also have that
+$$
+A\cap C=\{HHH, HTH\}
+$$
+and therefore
+$$
+P(A\cap C)=2/8 = 1/4 = P(A)P(C)
+$$
+Finally, we have that
+$$
+B\cap C=\{HHH, THH\}
+$$
+and therefore
+$$
+P(B\cap C)=2/8 = 1/4 = P(B)P(C)
+$$
+Thus, we have shown that the events A, B, and C are mutually independent.
+
+7. Consider the events $A_1, A_2, A_3$ and $A_4$, defined on the sample space $\Omega$. Show that $p(A_1, A_2, A_3, A_4) = p(A_4 \mid A_3, A_2, A_1) \, p(A_3 \mid A_2, A_1) \, p(A_2 \mid A_1) \, p(A_1).$
+THis is the product rule for four events.
+
+If we further assume that $A_1$ and $A_2$ are independent. How does the expression simplify?
+
+**Solution**
+Using the definition of conditional probability, we have:
+$$
+p(A_1, A_2, A_3, A_4) = p(A_4 \mid A_3, A_2, A_1) \, p(A_3, A_2, A_1)
+$$
+Now, we can apply the definition of conditional probability again to $p(A_3, A_2, A_1)$:
+$$
+p(A_3, A_2, A_1) = p(A_3 \mid A_2, A_1) \, p(A_2, A_1)
+$$
+Substituting this back into our original equation, we get:
+$$
+p(A_1, A_2, A_3, A_4) = p(A_4 \mid A_3, A_2, A_1) \, p(A_3 \mid A_2, A_1) \, p(A_2, A_1)
+$$
+Finally, we can apply the definition of conditional probability one more time to $p(A_2, A_1)$:
+$$
+p(A_2, A_1) = p(A_2 \mid A_1) \, p(A_1)
+$$
+Substituting this back into our equation, we obtain:
+$$
+p(A_1, A_2, A_3, A_4) = p(A_4 \mid A_3, A_2, A_1) \, p(A_3 \mid A_2, A_1) \, p(A_2 \mid A_1) \, p(A_1)
+$$
+which is what we wanted to show.
+If we further assume that $A_1$ and $A_2$ are independent, then we have:
+$$
+p(A_2 \mid A_1) = p(A_2)
+$$
+Thus, the expression simplifies to:
+$$
+p(A_1, A_2, A_3, A_4) = p(A_4 \mid A_3, A_2, A_1) \, p(A_3 \mid A_2, A_1) \, p(A_2) \, p(A_1)
+$$
+
+
+
+
+8. Again consider the experiment of tossing three coins. Assume that each outcome is equally likely. Define the random variable $X$ as the number of heads obtained. Find the probability mass function of $X$ as well as its cumulative distribution function.
+
+**Solution**
+The sample space is given by
+$$
+\Omega = \{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}
+$$
+Under assumption, the probability of each outcome is $1/8$.
+
+The random variable $X$ can take the values 0, 1, 2, or 3. We can compute the probabilities as follows:
+
+- $P(X=0)=P(\{TTT\})= 1/8$
+
+- $P(X=1)=P(\{HTT, THT,  TTH\}) = 3/8$
+- $P(X=2)=P(\{HHT, HTH,THH\}) = 3/8$
+- $P(X=3)=P(\{HHH\}) = 1/8$
+
+Thus, the probability mass function of X is given by:
+
+$$
+f(x)=P(X=x)=
+\begin{cases}
+1/8 & x=0 \\
+3/8 & x=1 \\
+3/8 & x=2 \\
+1/8 & x=3 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+THis is actually a Binomial distributon with parameters $n=3$ and $p=1/2$ so the PMF can also be written as follows:
+$$
+f_X(x)=
+\begin{cases}
+\displaystyle\binom{3}{x}\left(\frac{1}{2}\right)^x \left(\frac{1}{2}\right)^{3-x}=\binom{3}{x}\frac{1}{8} & \text{for } \,x=0,1,2,3\\
+\rule{0in}{4ex}0 & \text{otherwise}
+\end{cases}
+$$
+
+Here $X$ is the random variable defined as the number of heads obtained in three coin tosses.
+
+
+
+Thus, the cumulative distribution function of X is given by:
+
+
+$$
+F_X(x)=
+\begin{cases}
+0 & x < 0 \\
+1/8 & 0 \leq x < 1 \\
+1/2 & 1 \leq x < 2 \\
+7/8 & 2 \leq x < 3 \\
+1 & x \geq 3
+\end{cases}
+$$
+
+
+
+
+9. Consider now the experiment that consists in tossing a coin until we get a head. Assume that the coin is biased and that the probability of getting a head is 0.6. Define the random variable $X$ as the number of tosses before we get the first head. Find the probability mass function of $X$.
+
+**Solution**
+The random variable X can take the values 0, 1, 2, 3, and so on. We can compute the probabilities as follows:
+
+- $P(X=0)$: This occurs when we get a head on the first toss. So, $P(X=0) = 0.6$.
+- $P(X=1)$: This occurs when we get a tail on the first toss and a head on the second toss. So, $P(X=1) = 0.4 \times 0.6 = 0.24$.
+- $P(X=2)$: This occurs when we get tails on the first two tosses and a head on the third toss. So, $P(X=2) = 0.4 \times 0.4 \times 0.6 = 0.096$.
+- $P(X=3)$: This occurs when we get tails on the first three tosses and a head on the fourth toss. So, $P(X=3) = 0.4 \times 0.4 \times 0.4 \times 0.6 = 0.0384$.
+Thus, the probability mass function of X is given by:
+
+$$
+\begin{aligned}
+P(X=0) &= 0.6 \\
+P(X=1) &= 0.24 \\
+P(X=2) &= 0.096 \\
+P(X=3) &= 0.0384 \\
+P(X=x) &= 0.4^x \times 0.6 \quad \text{for } x = 0, 1, 2, \ldots
+\end{aligned}
+$$
+
+
+
+We can get a formula for the probability mass function of $X$ for general $p$ as follows:
+$$
+P(X=x) = (1-p)^x \times p \quad \text{for } x = 0, 1, 2, \ldots
+$$
+where $p$ is the probability of getting a head (in this case, $p=0.6$) and $(1-p)$ is the probability of getting a tail (in this case, $(1-p)=0.4$).
+This is a **geometric distribution** with parameter $p$.
+
+10. Prove that the following functions are CDFs of some random variables. Find the PDF or PMF in each case.
+
+a) $$F(x)=\frac{1}{2}+\frac{1}{\pi}\tan^{-1}(x)\,,\quad x \in \mathbb{R}$$
+
+b) $$F(x)=\frac{1}{(1+e^{-x})}\,,\quad x \in \mathbb{R}$$
+
+c) $$F(x)=e^{-e^{-x}}\,,\quad x \in \mathbb{R}$$
+
+d) 
+$$
+F(x)=
+\begin{cases}
+0 & x < 0 \\
+1/3 & 0 \leq x < 1 \\
+1 & x \geq 1
+\end{cases}
+$$
+
+**Solution**
+To prove that the given functions are CDFs of some random variables, we need to verify that they satisfy the properties of a cumulative distribution function (CDF):
+
+1. Non-decreasing: For any $x_1 < x_2$ , $F(x_1) \leq F(x_2)$ .
+2. Right-continuous: $F(x)$ is continuous from the right at every point $x$ .
+3. Limits: $\lim_{x \to -\infty} F(x) = 0$and $\lim_{x \to +\infty} F(x) = 1$ .
+
+a) For $F(x) = \frac{1}{2} + \frac{1}{\pi} \tan^{-1}(x)$ :
+1. Non-decreasing: The function $\tan^{-1}(x)$ is increasing, so $F(x)$ is non-decreasing.
+2. Right-continuous: $\tan^{-1}(x)$ is continuous everywhere, so $F(x)$is right-continuous.
+3. Limits: 
+   - As $x \to -\infty$ , $\tan^{-1}(x) \to -\frac{\pi}{2}$ , so $F(x) \to 0$ .
+   - As $x \to +\infty$ , $\tan^{-1}(x) \to \frac{\pi}{2}$ , so $F(x) \to 1$.
+
+Thus, $F(x)$ is a valid CDF.
+To find the probability density function (PDF), we differentiate the CDF:
+$$
+f(x) = F'(x) = \frac{1}{\pi} \cdot \frac{1}{1+x^2}
+$$
+This is called the Cauchy distribution.
+
+b) For $F(x) = \frac{1}{1 + e^{-x}}$ : 
+
+1. Non-decreasing: The derivative of the CDF is given by:  
+$$
+f(x) = F'(x) = \frac{e^{-x}}{(1 + e^{-x})^2}>0
+$$
+
+therefore $F(x)$ is non-decreasing. $f(x)$ is the corresponding PDF.
+
+
+2. Right-continuous: The function is continuous everywhere, so $F(x)$ is right-continuous.
+3. Limits:
+   - As $x \to -\infty$ , $e^{-x} \to +\infty$ , so $F(x) \to 0$ .
+   - As $x \to +\infty$ , $e^{-x} \to 0$ , so $F(x) \to 1$ .
+Thus, $F(x)$is a valid CDF.
+
+
+c) For $F(x) = e^{-e^{-x}}$ :
+
+
+1. Non-decreasing: The derivative of the CDF is given by:
+$$
+f(x) = F'(x) = e^{-e^{-x}} \cdot e^{-x}=e^{x-e^{-x}}>0
+$$  
+
+
+therefore $F(x)$ is non-decreasing. $f(x)$ is the corresponding PDF.
+
+
+2. Right-continuous: The function is continuous everywhere, so $F(x)$ is right-continuous.
+3. Limits:
+   - As $x \to -\infty$ , $e^{-x} \to +\infty$ , so $F(x) \to 0$ .
+   - As $x \to +\infty$ , $e^{-x} \to 0$ , so $F(x) \to 1$ .
+Thus, $F(x)$ is a valid CDF.
+
+
+d) For
+$$
+F(x) =
+\begin{cases}
+0 & x < 0 \\
+1/3 & 0 \leq x < 1 \\
+1 & x \geq 1
+\end{cases}
+$$
+1. Non-decreasing: The function is non-decreasing as it jumps from 0 to 1/3 at $x=0$ and from 1/3 to 1 at $x=1$.
+
+2. Right-continuous: The function is right-continuous at every point.
+
+3. Limits:
+   - As $x \to -\infty$ , $F(x) \to 0$ .
+   - As $x \to +\infty$ , $F(x) \to 1$ .
+
+Thus, $F(x)$is a valid CDF.
+
+To find the probability mass function (PMF), we note that the CDF has jumps at $x=0$ and $x=1$. The PMF is given by the size of these jumps:
+$$
+P(X=0) = F(0) - F(0^-) = 1/3 - 0 = 1/3
+$$
+$$
+P(X=1) = F(1) - F(1^-) = 1 - 1/3 = 2/3
+$$
+
+where $F(x^-)$ denotes the limit of $F(x)$ as $x$ approaches from the left.
+
+Thus, the PMF is:
+
+$$
+f(x)=
+\begin{cases}
+\frac{1}{3} & x=0 \\
+\frac{2}{3} & x=1 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+
+
+11. Some advanced large computer simulations are sensitive to
+initialisation. It is common that these simulations do not converge every time they are run, and no result is obtained for the specific run. For a specific type of simulation, the probability of convergence (and results obtained for the run) is 0.8. What is the probability results are obtained for (exactly) 10 runs, if 15 runs are performed. We can assume the runs are independent. Give your answer with 2 decimal points.
+
+**Solution**
+
+Each run can be seen as a Bernoulli trial with probability of success $p=0.8$. The number of successes in 15 independent Bernoulli trials follows a Binomial distribution with parameters $n=15$ and $p=0.8$. We want to find the probability of getting exactly 10 successes (i.e., results obtained) out of 15 runs.
+
+This can be obtained using the probability mass function of the Binomial distribution:
+
+$$
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+where $n$ is the number of trials, $k$ is the number of successes, and $p$ is the probability of success on each trial.
+
+Therefore, we need to calculate $P(X=10)$ for $n=15$ and $p=0.8$:
+
+$$
+P(X=10) = \binom{15}{10} (0.8)^{10} (0.2)^{5} \approx 0.103 
+$$
+
+the Python  code below computes this probability:
+
+
+```{python}
+from scipy import stats
+import numpy as np
+
+res=stats.binom.pmf(10, n=15, p=0.8)
+print(np.round(res,3))
+
+```
+
+
+12. The continuous random variable $X$ is uniformly distributed between -2
+  and 12. What is $p(1 < X < 6)$? Give your answer with 2 decimal points.
+
+**Solution**
+The probability density function (PDF) of a uniform distribution between $a$ and $b$ is given by:
+$$
+f(x) = \frac{1}{b-a} \quad \text{for } a \leq x \leq b
+$$
+In this case, $a = -2$ and $b = 12$, so the PDF is:
+$$
+f(x) = \frac{1}{12 - (-2)} = \frac{1}{14} \quad \text{for } -2 \leq x \leq 12
+$$
+To find $P(1 < X < 6)$, we can integrate the PDF over the interval from 1 to 6:
+$$
+P(1 < X < 6) = \int_{1}^{6} f(x) \, dx = \int_{1}^{6} \frac{1}{14} \, dx
+$$
+Calculating the integral, we get:
+$$
+P(1 < X < 6) = \frac{1}{14} \times (6 - 1) = \frac{5}{14} \approx 0.357
+$$
+Thus, the probability $P(1 < X < 6)$ is approximately 0.357.
+
+We double check this with Python code below:
+```{python}
+from scipy import stats
+import numpy as np
+res=stats.uniform.cdf(6, loc=-2, scale=14) - stats.uniform.cdf(1, loc=-2, scale=14)
+print(np.round(res,3))
+```
+
+13. The continuous random variable $X$ has the following probability density function (PDF):
+$$
+f(x) =
+\begin{cases}
+kx^2 & 0 \leq x \leq 3 \\
+0 & \text{otherwise}
+\end{cases}
+$$
+a) Find the value of $k$.
+b) Find the cumulative distribution function (CDF) of $X$.
+c) What is $p(1 < X < 2)$? Give your answer with 2 decimal points.
+
+
+**Solution**
+a) To find the value of $k$, we need to ensure that the total probability is equal to 1. This means we need to integrate the PDF over its entire range and set the result equal to 1:
+$$
+\int_{0}^{3} kx^2 \, dx = 1
+$$
+Calculating the integral, we get:
+$$
+\frac{k}{3} x^3 \Big|_{0}^{3} = 1
+$$
+$$
+\frac{k}{3} \times 27 = 1
+$$
+$$
+9k = 1
+$$
+$$
+k = \frac{1}{9}
+$$
+Thus, the value of $k$ is $\frac{1}{9}$.
+
+```{python}
+from scipy import integrate
+import numpy as np
+res=integrate.quad(lambda x: (1/9)*x**2, 0, 3)
+np.round(res[0],2)
+```
+b) To find the cumulative distribution function (CDF) of $X$, we integrate the PDF from 0 to $x$:
+$$
+F(x) = \int_{0}^{x} \frac{1}{9} t^2 \, dt = \frac{1}{9} \times \frac{t^3}{3} \Big|_{0}^{x} = \frac{x^3}{27} \quad \text{for } 0 \leq x \leq 3
+$$
+Thus, the CDF is given by:
+$$
+F(x) =
+\begin{cases}
+0 & x < 0 \\
+\frac{x^3}{27} & 0 \leq x \leq 3 \\
+1 & x > 3
+\end{cases}
+$$
+
+
+c) To find $P(1 < X < 2)$, we can use the CDF:
+$$
+P(1 < X < 2) = F(2) - F(1) = \frac{2^3}{27} - \frac{1^3}{27} = \frac{8}{27} - \frac{1}{27} = \frac{7}{27} \approx 0.259
+$$
+```{python}
+def F(x):
+    if x < 0:
+        return 0
+    elif 0 <= x <= 3:
+        return (x**3)/27
+    else:
+        return 1
+res=F(2)
+np.round(res,2)
+res=F(2)-F(1)
+print(np.round(res,3))
+```
+Thus, the probability $P(1 < X < 2)$ is approximately 0.259.
+
+Now double check with  `integrate.quad` we can also compute this probability as follows:
+
+```{python}
+from scipy import integrate
+import numpy as np
+res=integrate.quad(lambda x: (1/9)*x**2, 1, 2)
+print(np.round(res[0],3))
+```
+
+14. A fashionable (and by some considered risk-prone) Data Science student has bought a
+new pair of suede shoes. Suede gets ruined by water, and hence by rain. If we assume
+the probability of rain on any day is 0.4 in England, where the student is pursuing the
+degree, what is the probability the shoes get ruined the third time they are worn (third
+time unlucky)? We can assume the student does not check the weather before putting on
+the shoes, and that the probability of rain is the same every day and independent on other
+days. Give your answer with 2 decimal points.
+
+**Solution**
+This is a geometric distribution problem where we want to find the probability of the first success (rain) on the third trial (the third time the shoes are worn). The probability of rain on any given day is $p = 0.4$, and the probability of no rain (success) is $q = 1 - p = 0.6$.
+The probability mass function of a geometric distribution is given by:
+$$
+P(X=k) = (1-p)^{k-1} \cdot p
+$$
+where $k$ is the trial number on which the first success occurs.
+Therefore, the probability that the shoes get ruined the third time they are worn is:
+$$
+P(X=3) = (1-0.4)^{3-1} \cdot 0.4 = 0.6^2 \cdot 0.4 = 0.144
+$$
+```{python}
+from scipy import stats
+import numpy as np
+res=stats.geom.pmf(3, p=0.4)
+print(np.round(res,3))
+```
+Thus, the probability that the shoes get ruined the third time they are worn is approximately 0.144.
+
+
+
+15.   IVF is the treatment where eggs are fertilised with sperm in a laboratory, and the fertilised egg (embryo) is returned to the woman's womb. It is a treatment used by couples who are unable to get pregnant naturally or by women who wish to have children on their own. The probability an embryo survives in the womb, resulting in a successful pregnancy, varies depending on several factors. To increase the chance of a pregnancy, sometimes several embryos are inserted in the woman's womb simultaneously.
+
+
+a) If three embryos are inserted during a treatment, and if the probability an embryo survives is $p = 0.12$, what is the probability of triplets (all embryos survive)? What is the probability of twins (two embryos survive)? What is the probability exactly one embryo survives? What is the probability of no pregnancy (no embryos survive)? Assume the embryos are independent of each other. Give your answers with 2 decimal points. 
+
+b) What is the probability of a pregnancy (one baby, twins or triplets) in the above treatment? Give your answer with 2 decimal points. 
+
+c) If a treatment is not successful, the couple or woman can choose to undergo the treatment again. The price of a treatment can be \pounds 5,000 or more. Some clinics offer a discount if a fixed number of treatments are bought upfront. Using your obtained probability from part b), what is the probability a pregnancy occurs in the first try? Within two tries? Within three tries?
+
+
+**Solution**
+a) We can model the number of surviving embryos using a Binomial distribution with parameters $n = 3$ (the number of embryos) and $p = 0.12$ (the probability of an embryo surviving). The probability mass function of a Binomial distribution is given by:
+
+$$
+P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}
+$$
+
+where $k$ is the number of successes (surviving embryos).
+Therefore, we can calculate the probabilities as follows:
+- Probability of triplets (all embryos survive, $k=3$):
+$$
+P(X=3) = \binom{3}{3} (0.12)^3 (0.88)^0 = 1 \cdot 0.001728 \cdot 1 = 0.001728 
+$$
+- Probability of twins (two embryos survive, $k=2$):
+$$
+P(X=2) = \binom{3}{2} (0.12)^2 (0.88)^1 = 3 \cdot 0.0144 \cdot 0.88 = 0.038016 
+$$
+- Probability of exactly one embryo survives ($k=1$):
+$$
+P(X=1) = \binom{3}{1} (0.12)^1 (0.88)^2 = 3 \cdot 0.12 \cdot 0.7744 = 0.278784 
+$$
+- Probability of no pregnancy (no embryos survive, $k=0$):
+$$
+P(X=0) = \binom{3}{0} (0.12)^0 (0.88)^3 = 1 \cdot 1 \cdot 0.681472 = 0.681472 
+$$
+```{python}
+from scipy import stats
+import numpy as np
+res_triplets=stats.binom.pmf(3, n=3, p=0.12)
+res_twins=stats.binom.pmf(2, n=3, p=0.12)
+res_one=stats.binom.pmf(1, n=3, p=0.12)
+res_none=stats.binom.pmf(0, n=3, p=0.12)
+print(np.round(res_triplets,4), np.round(res_twins,3), np.round(res_one,3), np.round(res_none,3))
+```
+b) The probability of a pregnancy (one baby, twins, or triplets) is the complement of the probability of no pregnancy. Therefore, we can calculate it as follows:
+$$
+P(\text{pregnancy}) = 1 - P(X=0) = 1 - 0.681472 = 0.318528 \approx 0.32
+$$
+```{python}
+res_pregnancy=1-res_none
+print(np.round(res_pregnancy,2))
+```
+c) The Geometric distribution with $p= 0.32$ gives the probability of the first success on trial $x$
+
+- Probability of a pregnancy in the first try:
+$$
+P(X=1) = p = 0.32
+$$
+- Probability of a pregnancy within two tries:
+$$
+P(X \leq 2) = P(X=1) + P(X=2) = p + (1-p)p = 1 - 0.4624 = 0.5376 
+$$
+- Probability of a pregnancy within three tries:
+$$
+P(X \leq 3) = 1 - (1-p)^3 = 1 - (0.68)^3 = 1 - 0.314432 = 0.685568 
+$$
+```{python}
+
+# we can use the PDF of the geometric distribution
+res_within_1_alt=stats.geom.cdf(1, p=res_pregnancy)
+res_within_2_alt=stats.geom.cdf(2, p=res_pregnancy)
+res_within_3_alt=stats.geom.cdf(3, p=res_pregnancy)
+print(np.round(res_within_1_alt,3),np.round(res_within_2_alt,3), np.round(res_within_3_alt,3))
+```
+
+
+
+
+
+
+
+
+16.   Glowing seahorses are a rare, and sought after, sight by water wildlife explorers. Situated on an island in the Pacific Ocean, a tourist wildlife park offers supervised night group dives to visiting explorers. The dives take place in a specific region of the ocean, where the glowing seahorses can be found.
+
+  The table below shows data collected for number of glowing seahorses spotted in the specific region of the ocean. The data collection took place during 8 (night) hours every day for one week.
+
+  When signing up for a dive, the explorer gets to choose between a 30 minute dive, a one hour dive, a three hour dive or a four hour dive. The price for a 30 minute dive (per person) is \pounds 50, a one hour dive \pounds 100, a three hour dive \pounds 250, and a four hour dive \pounds 350.
+
+
+| Day   | Number             |
+| ----- | -------------------|
+| 1     | 5                  |
+| 2     | 6                  |
+| 3     | 4                  |
+| 4     | 3                  |
+| 5     | 8                  |
+| 6     | 12                 |
+| 7     | 7                  |
+: Number of seahorses spotted {#tbl-seahorses}
+
+
+  We wish to model the probability of number of glowing seahorses spotted for a specific time interval. For the questions below, use the Poisson distribution, and estimate the intensity parameter using the data from the table.
+
+  
+a)  What assumptions do we make regarding the occurrence of seahorses when using this distribution? 
+b)  What is the probability estimate of seeing exactly two glowing seahorses during a one hour dive? Give your answer with 2 decimal points. 
+c)  What is the probability estimate of seeing two or more glowing seahorses during a one hour dive? Give your answer with 2 decimal points. 
+d)  What is the probability estimate of seeing exactly two glowing seahorses during a three hour dive? Give your answer with 2 decimal points. 
+e)  A nature passionate data science student is very excited to see the glowing seahorse, but is also on a tight holiday budget. The student decides to go for the cheapest option (length of diving chosen) while having the probability of at least 0.9 (at least a $90\%$ chance) of seeing at least one glowing seahorse. What length of diving shall the student pay for? 
+f)  What assumption do we make regarding the data when choosing to model the probability in this way? Give two examples of when this assumption would not be fulfilled. 
+
+**Solution**
+
+a) When using the Poisson distribution to model the occurrence of glowing seahorses, we make the following assumptions:
+- The events (sightings of glowing seahorses) occur independently of each other.
+- The average rate (intensity parameter) of sightings is constant over the time period being considered.
+- The probability of more than one event occurring in an infinitesimally small time interval is negligible.
+b) To estimate the intensity parameter $\lambda$ for a one hour dive, we first calculate the average number of glowing seahorses spotted per hour based on the data provided. The total number of glowing seahorses spotted over the week is:
+$$
+5 + 6 + 4 + 3 + 8 + 12 + 7 = 45
+$$
+The total number of hours of observation is:
+$$
+8 \text{ hours/day} \times 7 \text{ days} = 56 \text{ hours}
+$$
+Thus, the estimated intensity parameter $\lambda$ for a one hour dive is:
+$$
+\lambda = \frac{45}{56} \approx 0.8036
+$$
+
+To find the probability of seeing exactly two glowing seahorses during a one hour dive, we use the Poisson probability mass function:
+$$
+P(X=k) = \frac{e^{-\lambda} \lambda^k}{k!}
+$$
+where $k$ is the number of events (sightings) we want to find the probability for. For $k=2$:
+$$
+P(X=2) = \frac{e^{-0.8036} (0.8036)^2}{2!} \approx 0.145
+$$
+```{python}
+from scipy import stats
+import numpy as np
+res=stats.poisson.pmf(2, mu=45/56)
+print(np.round(res,3))
+```
+Thus, the probability estimate of seeing exactly two glowing seahorses during a one hour dive is approximately 0.145.
+
+c) To find the probability of seeing two or more glowing seahorses during a one hour dive, we can use the complement rule:
+$$
+P(X \geq 2) = 1 - P(X < 2) = 1 - [P(X=0) + P(X=1)]
+$$
+Calculating $P(X=0)$ and $P(X=1)$:
+$$
+P(X=0) = \frac{e^{-0.8036} (0.8036)^0}{0!} \approx 0.447
+$$
+$$
+P(X=1) = \frac{e^{-0.8036} (0.8036)^1}{1!} \approx 0.359
+$$
+Thus,
+$$
+P(X \geq 2) = 1 - (0.447 + 0.359) \approx 0.194
+$$
+
+
+```{python}
+from scipy import stats
+import numpy as np
+res=1-(stats.poisson.pmf(0, mu=45/56)+stats.poisson.pmf(1, mu=45/56))
+print(np.round(res,3))
+```
+Thus, the probability estimate of seeing two or more glowing seahorses during a one hour dive is approximately 0.19.
+
+d) For a three hour dive, the intensity parameter $\lambda$ will be three times that of a one hour dive:
+
+$$
+\lambda_{3 \text{ hours}} = 3 \times 0.8036 \approx 2.4108
+$$
+To find the probability of seeing exactly two glowing seahorses during a three hour dive, we use the Poisson probability mass function again:
+
+$$
+P(X=2) = \frac{e^{-2.4108} (2.4108)^2}{2!} \approx 0.261
+$$
+
+```{python}
+from scipy import stats
+import numpy as np
+res=stats.poisson.pmf(2, mu=3*(45/56))
+print(np.round(res,3))
+```
+Thus, the probability estimate of seeing exactly two glowing seahorses during a three hour dive is approximately 0.261.
+
+e) To find the length of diving that gives at least a 0.9 probability of seeing at least one glowing seahorse, we need to find the smallest $t$ such that:
+$$
+P(X \geq 1) \geq 0.9
+$$
+
+Using the complement rule, we have:
+$$
+P(X \geq 1) = 1 - P(X=0) \geq 0.9
+$$
+This implies:
+$$
+P(X=0) \leq 0.1
+$$
+Using the Poisson probability mass function, we have:
+$$
+P(X=0) = e^{-\lambda t} \leq 0.1
+$$
+Taking the natural logarithm of both sides, we get:
+$$
+-\lambda t \leq \ln(0.1)
+$$
+$$
+t \geq -\frac{\ln(0.1)}{\lambda}
+$$
+Substituting the value of $\lambda$ for a one hour dive:
+
+$$
+t \geq -\frac{\ln(0.1)}{0.8036} \approx 2.88 \text{ hours}
+$$
+
+```{python}
+from scipy import stats
+import numpy as np
+res=-np.log(0.1)/(45/56)
+print(np.round(res,2))
+```
+
+Thus, the student should pay for a **three hour dive** to have at least a 0.9 probability of seeing at least one glowing seahorse.
+
+
+f) When choosing to model the probability of glowing seahorses using the Poisson distribution, we assume that the sightings of glowing seahorses are independent events and that the average rate of sightings is constant over time.
+Two examples of when this assumption would not be fulfilled are:
+
+- If the sightings of glowing seahorses are influenced by environmental factors such as weather conditions or time of day, leading to clustering of sightings.
+
+- If the presence of other wildlife or human activity in the area affects the likelihood of seeing glowing seahorses, leading to non-independent sightings.
+
+
+
+
+
+
+
+
