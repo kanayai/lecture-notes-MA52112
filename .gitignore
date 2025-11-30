@@ -1,2 +1,17 @@
 /.quarto/
 **/*.quarto_ipynb
+
+# macOS
+.DS_Store
+
+# LaTeX
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Quarto
+*_files/
+test.html
