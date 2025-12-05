@@ -9,7 +9,7 @@
 
 ::: {#def-1.1.1}
 
-Consider an uncertain scenario. This include a random experiment, a data-generating process  or simply the future. We define the following concepts:
+Consider an uncertain scenario. This might include a random experiment, a data-generating process  or simply the future. We define the following concepts:
 
 ```{tex}
 
